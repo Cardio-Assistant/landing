@@ -1,0 +1,108 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:import/typescript",
+    "plugin:import/recommended",
+    
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": true,
+      "node": true
+    }
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/react-in-jsx-scope": "off",
+    // --- import ---
+    "import/order": ["error", {
+      "newlines-between": "always",
+      "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"]
+    }],
+    "import/extensions": [2, "never"],
+    "import/prefer-default-export": "off",
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "@typescript-eslint/consistent-type-imports": ["error",{"prefer": "type-imports"}],
+    // --- import ---
+
+    "linebreak-style": ["error", "windows"],
+    "prefer-arrow-callback": "off",
+    
+    "react/jsx-props-no-spreading": "off",
+    "no-return-assign": "off",
+    "max-depth": ["error", {"max": 6}],
+    "max-params": "off",
+    "@next/next/no-sync-scripts": "off",
+    "react/jsx-curly-spacing": [2, "always"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "key-spacing": ["error", { "align": "colon" }],
+    "indent": ["error", 2],
+    "max-len": "off",
+    "no-multi-spaces": "off",
+    "no-unused-expressions": "off",
+    "react/jsx-equals-spacing": "off",
+
+    "no-bitwise": "off",
+    "no-underscore-dangle": "off",
+    "react/require-default-props": [0],
+    "jsx-a11y/anchor-is-valid": 1,
+    "jsx-a11y/label-has-associated-control": 1,
+    "jsx-a11y/no-static-element-interactions": 1,
+    "react/jsx-one-expression-per-line": "off",
+    "prefer-destructuring": "off",
+
+    "array-bracket-newline": ["error", "consistent"],
+    "array-bracket-spacing": ["error", "never"],
+    "block-spacing": ["error", "always"],
+    "brace-style": ["error", "1tbs"],
+    "comma-dangle": ["error", "only-multiline"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "comma-style": ["error", "last"],
+    "computed-property-spacing": ["error", "never", { "enforceForClassMembers": true }],
+    "func-call-spacing": ["error", "never"],
+    "function-call-argument-newline": ["error", "consistent"],
+    "function-paren-newline": ["error", "consistent"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "keyword-spacing": ["error", { "before": true, "after": true }],
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "multiline-ternary": ["error", "always-multiline"],
+    "new-cap": ["error", { "newIsCap": true, "capIsNew": false }],
+    "new-parens": "error",
+    "no-lonely-if": "error",
+    "no-new-object": "error",
+    "no-whitespace-before-property": "error",
+    "nonblock-statement-body-position": ["error", "beside"],
+    "object-curly-newline": ["error", { "consistent": true }],
+    "object-curly-spacing": ["error", "always"],
+    "operator-assignment": ["error", "always"],
+    "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }],
+    "prefer-exponentiation-operator": "error",
+    "quotes": ["error", "single"],
+    "semi": ["error", "always", { "omitLastInOneLineBlock": true }],
+    "semi-spacing": ["error", { "before": false, "after": true }],
+    "semi-style": ["error", "last"],
+    "space-before-blocks": "error",
+    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
+    "space-in-parens": ["error", "never"],
+    "space-infix-ops": "error",
+    "space-unary-ops": "error",
+    "switch-colon-spacing": "error",
+    "template-tag-spacing": "error",
+    "wrap-regex": "error"
+  },
+  "ignorePatterns": [
+    "next.config.js",
+    "src/component/sprite/sprite.gen.ts",
+    "public/hls",
+    "public/metrika.js"
+  ]
+}
