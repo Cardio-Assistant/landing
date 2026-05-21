@@ -1,0 +1,13 @@
+# Override для локальной сборки образа.
+# Использование:
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml build
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml up -d
+#
+# На VPS этот файл НЕ используется — там тянем готовый образ из GHCR.
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    pull_policy: build

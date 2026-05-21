@@ -1,9 +1,7 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: ai-cardio-landing:latest
+    image: ${IMAGE:-ghcr.io/cardio-assistant/landing:latest}
+    pull_policy: always
     container_name: ai-cardio-app
     restart: unless-stopped
     env_file:

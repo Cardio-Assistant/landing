@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 # One-command deploy для Ubuntu 22.04+
+# Тянет готовый образ из GHCR — на VPS ничего не собирается.
+#
 # Usage:
-#   sudo ./deploy.sh                          # полный pipeline
+#   sudo ./deploy.sh                          # полный pipeline (pull + up)
 #   sudo ./deploy.sh --skip-docker-install    # если Docker уже стоит
 #   sudo ./deploy.sh --staging                # выпуск тестового сертификата LE
 #   ./deploy.sh --renew                       # форс-обновление сертификата
+#   ./deploy.sh --update                      # быстро: только pull + restart
 
 set -euo pipefail
 
@@ -14,12 +17,14 @@ EMAIL="alexosipov03@yandex.com"
 STAGING=0
 SKIP_DOCKER_INSTALL=0
 RENEW_ONLY=0
+UPDATE_ONLY=0
 
 for arg in "$@"; do
   case "$arg" in
     --staging) STAGING=1 ;;
     --skip-docker-install) SKIP_DOCKER_INSTALL=1 ;;
     --renew) RENEW_ONLY=1 ;;
+    --update) UPDATE_ONLY=1 ;;
     *) echo "Unknown arg: $arg"; exit 1 ;;
   esac
 done
@@ -67,7 +72,7 @@ install_docker() {
 ensure_env() {
   if [[ ! -f .env ]]; then
     if [[ -f .env.example ]]; then
-      err "Файл .env не найден. Скопируй .env.example → .env и заполни SMTP-креды:"
+      err "Файл .env не найден. Скопируй .env.example → .env и заполни:"
       err "  cp .env.example .env && nano .env"
     else
       err "Файл .env не найден"
@@ -75,6 +80,14 @@ ensure_env() {
     exit 1
   fi
   set -a; . ./.env; set +a
+}
+
+ghcr_login() {
+  # Если пакет публичный — auth не нужен. Для приватного — задай GHCR_USER + GHCR_TOKEN в .env
+  if [[ -n "${GHCR_USER:-}" && -n "${GHCR_TOKEN:-}" ]]; then
+    log "Логинюсь в ghcr.io как $GHCR_USER…"
+    echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+  fi
 }
 
 prepare_dirs() {
@@ -107,7 +120,6 @@ issue_cert() {
     $staging_flag \
     -d "$DOMAIN" -d "$ALT_DOMAIN"
 
-  # Скачать options-ssl-nginx.conf и ssl-dhparams.pem если их нет
   if [[ ! -f certbot/conf/options-ssl-nginx.conf ]]; then
     log "Загружаю рекомендованные SSL-параметры certbot…"
     curl -fsSL https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf \
@@ -124,18 +136,33 @@ renew_cert() {
   compose exec nginx nginx -s reload
 }
 
+quick_update() {
+  ensure_env
+  ghcr_login
+  log "Тяну свежий образ из GHCR…"
+  compose pull app
+  log "Перезапускаю приложение…"
+  compose up -d app
+  log "✅ Обновлено"
+}
+
 main() {
   if [[ "$RENEW_ONLY" -eq 1 ]]; then
     renew_cert
     exit 0
   fi
+  if [[ "$UPDATE_ONLY" -eq 1 ]]; then
+    quick_update
+    exit 0
+  fi
 
   install_docker
   ensure_env
+  ghcr_login
   prepare_dirs
 
-  log "Собираю приложение…"
-  compose build app
+  log "Тяну готовый образ приложения из GHCR…"
+  compose pull app
 
   if [[ -d certbot/conf/live/$DOMAIN ]]; then
     log "Сертификат уже существует — пропускаю выпуск"
@@ -161,9 +188,8 @@ main() {
   log ""
   log "Полезное:"
   log "  Логи:       docker compose logs -f"
-  log "  Перезапуск: docker compose restart"
-  log "  Обновить:   git pull && sudo ./deploy.sh"
-  log "  Cert renew: ./deploy.sh --renew  (или certbot-контейнер сам обновит)"
+  log "  Обновить:   ./deploy.sh --update   (только pull + restart, без вопросов)"
+  log "  Cert renew: ./deploy.sh --renew"
 }
 
 main "$@"
