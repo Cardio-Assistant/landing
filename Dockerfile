@@ -1,7 +1,10 @@
 # syntax=docker/dockerfile:1.6
 
 FROM node:20-alpine AS base
-RUN apk add --no-cache libc6-compat && corepack enable
+ENV PNPM_VERSION=9.15.4
+RUN apk add --no-cache libc6-compat \
+  && corepack enable \
+  && corepack prepare pnpm@${PNPM_VERSION} --activate
 
 FROM base AS deps
 WORKDIR /app
