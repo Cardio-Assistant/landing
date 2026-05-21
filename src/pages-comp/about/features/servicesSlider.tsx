@@ -2,178 +2,165 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import type { ReactNode } from 'react';
-
-interface Service {
-  title: string;
-  category: string;
-  content: ReactNode;
-}
-
-const services: Service[] = [
-  {
-    title   : 'Растущий рынок цифровой медицины',
-    category: 'Рынок роста',
-    content : <div>
-      <ul className='prose text-neutral-900'>
-        <li>
-          <span className='font-semibold'>Динамика роста:</span> Рынок ИИ в медицине растет на 20-30% ежегодно — к 2032 году планируется  увеличение в 9 раз.
-        </li>
-        <li>
-          <span className='font-semibold'>Локальный и глобальный охват:</span> Фокус на России - Уже 100 клиник с потенциалом выручки 60 млн ₽/год только на подписках и перспектива выхода на международные рынки.
-        </li>
-        <li>
-          <span className='font-semibold'>Нишевая специализация:</span> Уникальное решение для кардиохирургии, где спрос на предиктивную аналитику постепенно набирает обороты.
-        </li>
-      </ul>
-    </div>
-  },
-  {
-    title   : 'Будущие клиенты продукта',
-    category: 'Клиенты',
-    content : <div>
-      <ul className='prose text-neutral-900'>
-        <li>
-          <span className='font-semibold'>Крупные кардиоцентры:</span> Клиники с высоким потоком сложных операций, где критична точность планирования.
-        </li>
-        <li>
-          <span className='font-semibold'>Региональные больницы:</span> Учреждения, нуждающиеся в удаленной экспертной поддержке и снижении рисков.
-        </li>
-        <li>
-          <span className='font-semibold'>Медицинские вузы:</span> Инструмент для обучения студентов через симуляцию реальных клинических случаев.
-        </li>
-        <li>
-          <span className='font-semibold'>Производители оборудования:</span> Партнеры, заинтересованные в интеграции ИИ-решений в свои системы.
-        </li>
-      </ul>
-    </div>
-  },
-  {
-    title   : 'Возможности монетизация продукта',
-    category: 'Монетизация продукта',
-    content : <div>
-      <ul className='prose text-neutral-900'>
-        <li>
-          <span className='font-semibold'>Подписка для клиник:</span> Доступ к платформе с регулярными обновлениями и поддержкой.
-        </li>
-        <li>
-          <span className='font-semibold'>Лицензии:</span> Кастомизированные пакеты под задачи учреждений.
-        </li>
-        <li>
-          <span className='font-semibold'>Образовательные программы:</span> Доступ к симуляторам для вузов и курсов повышения квалификации.
-        </li>
-        <li>
-          <span className='font-semibold'>Технологические партнерства:</span> Совместные решения с производителями медоборудования.
-        </li>
-        <span className='font-semibold'>Устойчивая прибыль за счет диверсификации потоков.</span>
-      </ul>
-    </div>
-  },
-  {
-    title   : 'Ищем инвестиции',
-    category: 'Инвесторам',
-    content : <div>
-      <ul className='prose text-neutral-900'>
-        <li>
-          <span className='font-semibold'>Высокая рентабельность:</span> по прогнозам 111 млн ₽ к 2027 году с чистой прибылью 56 млн ₽.
-        </li>
-        <li>
-          <span className='font-semibold'>Рентабельность:</span> IRR 921%, индекс прибыльности 3.49.
-        </li>
-        <li>
-          <span className='font-semibold'>Социальная значимость:</span> Участие в снижении смертности от сердечно-сосудистых заболеваний — первой причины смертности в мире.
-        </li>
-        <li>
-          <span className='font-semibold'>Стратегия выхода:</span> План выхода на IPO через 3-4 года с фокусом на глобальную экспансию.
-        </li>
-        <span className='font-semibold'>
-          Инвестиции в технологию, которая спасает жизни и приносит доход.</span>
-      </ul>
-    </div>
-  },
-];
+import { useI18n } from './i18n/context';
 
 export default function ServicesSlider() {
-  const [activeService, setActiveService] = useState<number>(0);
+  const { t } = useI18n();
+  const slides = t.investors.slides;
+  const tabs = t.investors.tabs;
+  const [[active, direction], setState] = useState<[number, number]>([0, 0]);
 
-  const handleScroll = (direction: 'left' | 'right') => {
-    setActiveService((prev) => {
-      if (direction === 'left' && prev > 0) return prev - 1;
-      if (direction === 'right' && prev < services.length - 1) return prev + 1;
-      return prev;
-    });
+  const goTo = (next: number) => {
+    if (next < 0 || next > slides.length - 1 || next === active) return;
+    setState([next, next > active ? 1 : -1]);
   };
 
+  const go = (dir: 'left' | 'right') => {
+    goTo(dir === 'left' ? active - 1 : active + 1);
+  };
+
+  const current = slides[active];
+  const pointsGridCols = current.points.length === 4 ? 'sm:grid-cols-2' : 'sm:grid-cols-3';
+
   return (
-    <div className='w-12/12 md:w-10/12 max-w-[1600px] px-6 mx-auto mt-8 '>
-      {/* Navigation */}
-      <div className='w-full flex items-center justify-between'>
-        <button 
-          onClick={ () => handleScroll('left') } 
-          disabled={ activeService === 0 } 
-          className={ `text-neutral-900 hover:scale-105 ${activeService === 0 ? 'opacity-50 cursor-not-allowed' : ''}` }
+    <div className='mx-auto w-full max-w-6xl px-6 py-24 sm:py-32'>
+      <div className='mx-auto max-w-2xl text-center'>
+        <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600'>
+          {t.investors.badge}
+        </div>
+        <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl'>
+          {t.investors.title}
+        </h2>
+        <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600'>
+          {t.investors.subtitle}
+        </p>
+      </div>
+
+      <div className='mt-12 flex items-center justify-center gap-2 overflow-x-auto'>
+        <button
+          onClick={ () => go('left') }
+          disabled={ active === 0 }
+          className='hidden h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40 sm:inline-flex'
+          aria-label='Prev'
         >
-          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='size-8'>
-            <path fillRule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z' clipRule='evenodd' />
+          <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={ 2 } className='h-4 w-4'>
+            <path strokeLinecap='round' strokeLinejoin='round' d='M15 19l-7-7 7-7' />
           </svg>
         </button>
-        <ul className='flex items-center gap-8 px-2 overflow-auto'>
-          {services.map((service, index) => (
-            <li key={ service.category } className='relative pb-[6px]'>
+
+        <ul className='flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1'>
+          {tabs.map((label, i) => (
+            <li key={ i } className='relative'>
               <button
-                className={ `whitespace-nowrap hover:scale-105 ${activeService === index ? 'text-gray-900' : 'text-gray-400'}` }
-                onClick={ () => setActiveService(index) }
+                onClick={ () => goTo(i) }
+                className={ `relative z-10 whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${active === i ? 'text-white' : 'text-slate-600 hover:text-slate-900'}` }
               >
-                {service.category}
+                {active === i && (
+                  <motion.span
+                    layoutId='tabPill'
+                    className='absolute inset-0 -z-10 rounded-full bg-slate-900'
+                    transition={ { type: 'spring', stiffness: 400, damping: 32 } }
+                  />
+                )}
+                {label}
               </button>
-              {activeService === index && (
-                <motion.span layoutId='underline' className='h-[3px] w-full absolute left-0 bottom-0 bg-gray-600' />
-              )}
             </li>
           ))}
         </ul>
-        <button 
-          onClick={ () => handleScroll('right') } 
-          disabled={ activeService === services.length - 1 } 
-          className={ `text-neutral-900 hover:scale-105 ${activeService === services.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}` }
+
+        <button
+          onClick={ () => go('right') }
+          disabled={ active === slides.length - 1 }
+          className='hidden h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40 sm:inline-flex'
+          aria-label='Next'
         >
-          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='size-8'>
-            <path fillRule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z' clipRule='evenodd' />
+          <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={ 2 } className='h-4 w-4'>
+            <path strokeLinecap='round' strokeLinejoin='round' d='M9 5l7 7-7 7' />
           </svg>
         </button>
       </div>
 
-      {/* Slider */}
-      <div className='relative h-[800px] md:h-[600px] lg:-mx-10 overflow-hidden'>
-        <AnimatePresence initial={ false } custom={ activeService }>
+      <div className='relative mt-10 overflow-hidden'>
+        <AnimatePresence mode='wait' custom={ direction }>
           <motion.div
-            key={ activeService }
-            initial={ { opacity: 0, x: 100 } }
-            animate={ { opacity: 1, x: 0 } }
-            exit={ { opacity: 0, x: -100 } }
-            transition={ { type: 'spring', stiffness: 300, damping: 30 } }
+            key={ active }
+            custom={ direction }
+            variants={ {
+              enter : (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
+              center: { x: 0, opacity: 1 },
+              exit  : (dir: number) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
+            } }
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={ {
+              x      : { type: 'spring', stiffness: 260, damping: 30 },
+              opacity: { duration: 0.25 },
+            } }
             drag='x'
             dragConstraints={ { left: 0, right: 0 } }
-            onDragEnd={ (event, info) => {
-              if (info.offset.x > 50) handleScroll('left');
-              if (info.offset.x < -50) handleScroll('right');
+            dragElastic={ 0.18 }
+            onDragEnd={ (_, info) => {
+              if (info.offset.x > 80) go('left');
+              if (info.offset.x < -80) go('right');
             } }
-            className='absolute w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing'
           >
-            <div className='flex flex-col lg:flex-row overflow-hidden bg-white rounded-[28px] cursor-grab max-w-[85vw] md:max-w-[70vw] shadow-xl'>
-              {/* Content */}
-              <div className='flex-1 p-6 md:p-12 lg:p-16 min-h-[200px] md:min-h-[500px]'>
-                <h2 className='text-2xl md:text-3xl lg:text-4xl text-gray-900'>
-                  {services[activeService].title}
-                </h2>
-                <div className='mt-4 lg:mt-6 text-sm lg:text-base text-gray-900 prose'>
-                  {services[activeService].content}
+            <div className='overflow-hidden rounded-3xl border border-slate-200 bg-white'>
+              {/* Заголовок слайда */}
+              <div className='border-b border-slate-200 px-8 py-8 sm:px-12 sm:py-10'>
+                <div className='flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between'>
+                  <h3 className='text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl'>
+                    {current.title}
+                  </h3>
+                  <span className='inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600'>
+                    {String(active + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
+                  </span>
                 </div>
               </div>
-              
+
+              {/* Метрики */}
+              <div className='grid grid-cols-1 gap-px bg-slate-200 sm:grid-cols-3'>
+                {current.metrics.map((m, i) => (
+                  <div key={ i } className='bg-white px-8 py-6 sm:px-12'>
+                    <div className='text-3xl font-semibold tracking-tight sm:text-4xl'>
+                      <span className='text-gradient-accent'>{m.value}</span>
+                    </div>
+                    <div className='mt-2 text-sm text-slate-600'>{m.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Пункты — адаптивная сетка без пустых ячеек */}
+              <div className={ `grid grid-cols-1 gap-px bg-slate-200 ${pointsGridCols}` }>
+                {current.points.map((p, i) => (
+                  <div key={ i } className='bg-white p-8 sm:p-10'>
+                    <div className='flex items-start gap-4'>
+                      <div className='flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-sm font-semibold text-blue-600 ring-1 ring-blue-100'>
+                        {String(i + 1).padStart(2, '0')}
+                      </div>
+                      <div>
+                        <h4 className='text-base font-semibold text-slate-900'>{p.title}</h4>
+                        <p className='mt-1.5 text-sm leading-relaxed text-slate-600'>{p.text}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
+
+        {/* Прогресс-индикатор */}
+        <div className='mt-6 flex justify-center gap-1.5'>
+          {slides.map((_, i) => (
+            <button
+              key={ i }
+              onClick={ () => goTo(i) }
+              className={ `h-1 rounded-full transition-all ${active === i ? 'w-8 bg-slate-900' : 'w-2 bg-slate-300 hover:bg-slate-400'}` }
+              aria-label={ `Slide ${i + 1}` }
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

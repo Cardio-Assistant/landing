@@ -2,33 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-2: #06b6d4;
+  --border: #e2e8f0;
+}
 
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-} */
 
+  .bg-grid-slate {
+    background-image: linear-gradient(to right, rgb(226 232 240 / 0.6) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(226 232 240 / 0.6) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
 
-@layer utilities {
+  .bg-dot-slate {
+    background-image: radial-gradient(rgb(148 163 184 / 0.35) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .mask-radial-fade {
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(90deg, #2563eb 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .animate-fade-in {
-    animation: fadeIn 1.5s ease-out;
+    animation: fadeIn 1.2s ease-out;
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .animate-float {
+    animation: float-slow 6s ease-in-out infinite;
   }
 }

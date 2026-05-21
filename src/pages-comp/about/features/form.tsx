@@ -1,79 +1,134 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
+import { useI18n } from './i18n/context';
 
 interface FeedbackFormInputs {
   name: string;
   email: string;
   message: string;
+  website: string;
 }
 
 const FeedbackForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FeedbackFormInputs>();
+  const { t } = useI18n();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FeedbackFormInputs>();
+  const [sent, setSent] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
 
   const onSubmit = async (data: FeedbackFormInputs) => {
-    //console.log(data);
-
-    const name = data.name;
-    const email = data.email;
-    const text = data.message;
-
-    const response = await fetch('https://cardioai.ru/api/landing/add', {
-      method : 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body   : JSON.stringify({
-        name,
-        text,
-        email
-      })
-    });
-    
-    reset();
-
-    console.log(response.ok);
+    setErr(null);
+    try {
+      const res = await fetch('/api/contact', {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({
+          name   : data.name,
+          email  : data.email,
+          message: data.message,
+          website: data.website,
+        }),
+      });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        setErr(j.error || 'Failed to send');
+        return;
+      }
+      reset();
+      setSent(true);
+      setTimeout(() => setSent(false), 5000);
+    } catch (e) {
+      console.error(e);
+      setErr('Network error');
+    }
   };
 
-  return (
-    <div className='md:w-[600px] p-8  rounded-2xl'>
-      <form onSubmit={ handleSubmit(onSubmit) }>
+  const inputBase =
+    'mt-1.5 block w-full rounded-xl border bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20';
 
-        <div className='flex flex-row gap-4 mb-4 flex-wrap'>
-          <div className='w-full'>
-            <label className='block text-gray-700' htmlFor='name'>Ваше имя</label>
+  return (
+    <div className='rounded-3xl border border-slate-200 bg-white p-8'>
+      <h3 className='text-lg font-semibold text-slate-900'>{t.contact.formH}</h3>
+      <p className='mt-2 text-sm text-slate-600'>{t.contact.formS}</p>
+
+      <form onSubmit={ handleSubmit(onSubmit) } className='mt-6 flex flex-col gap-4'>
+        {/* honeypot — невидим для людей, заполняется ботами */}
+        <input
+          type='text'
+          tabIndex={ -1 }
+          autoComplete='off'
+          { ...register('website') }
+          className='absolute left-[-9999px] h-0 w-0 opacity-0'
+          aria-hidden='true'
+        />
+        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
+          <div>
+            <label className='text-xs font-medium uppercase tracking-wide text-slate-500' htmlFor='name'>
+              {t.contact.name}
+            </label>
             <input
               id='name'
               type='text'
-              { ...register('name', { required: ' Заполните имя' }) }
-              className={ `text-neutral focus:text-neutral bg-white focus:bg-white mt-1 block w-full border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md p-2` }
+              placeholder={ t.contact.namePh }
+              { ...register('name', { required: t.contact.errName }) }
+              className={ `${inputBase} ${errors.name ? 'border-rose-400 focus:border-rose-500' : 'border-slate-200 focus:border-blue-500'}` }
             />
-            {errors.name && <p className='text-red-500 text-sm'>{errors.name.message}</p>}
+            {errors.name && <p className='mt-1 text-xs text-rose-600'>{errors.name.message}</p>}
           </div>
 
-          <div className='w-full'>
-            <label className='block text-gray-700' htmlFor='email'>Email или/и телефон</label>
+          <div>
+            <label className='text-xs font-medium uppercase tracking-wide text-slate-500' htmlFor='email'>
+              {t.contact.contact}
+            </label>
             <input
               id='email'
               type='text'
-              { ...register('email', { required: ' Напишите почту или телефон' }) }
-              className={ `text-neutral focus:text-neutral bg-white focus:bg-white mt-1 block w-full border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md p-2` }
+              placeholder={ t.contact.contactPh }
+              { ...register('email', { required: t.contact.errCont }) }
+              className={ `${inputBase} ${errors.email ? 'border-rose-400 focus:border-rose-500' : 'border-slate-200 focus:border-blue-500'}` }
             />
-            {errors.email && <p className='text-red-500 text-sm'>{errors.email.message}</p>}
+            {errors.email && <p className='mt-1 text-xs text-rose-600'>{errors.email.message}</p>}
           </div>
         </div>
 
-        <div className='mb-4'>
-          <label className='block text-gray-700' htmlFor='message'>Сообщение</label>
+        <div>
+          <label className='text-xs font-medium uppercase tracking-wide text-slate-500' htmlFor='message'>
+            {t.contact.message}
+          </label>
           <textarea
             id='message'
+            rows={ 5 }
+            placeholder={ t.contact.messagePh }
             { ...register('message') }
-            rows={ 4 }
-            className={ `focus:border-neutral focus:outline-none textarea textarea-ghost text-neutral focus:text-neutral bg-white focus:bg-white mt-1 block w-full border ${errors.message ? 'border-red-500' : 'border-gray-300'} rounded-md p-2` }
+            className={ `${inputBase} resize-none ${errors.message ? 'border-rose-400' : 'border-slate-200 focus:border-blue-500'}` }
           />
-          {errors.message && <p className='text-red-500 text-sm'>{errors.message.message}</p>}
         </div>
 
-        <button type='submit' className='btn rounded-2xl text-lg btn-outline bg-success text-white'>
-          Отправить
-        </button>
+        {err && (
+          <div className='rounded-xl border border-rose-200 bg-rose-50 px-4 py-2.5 text-sm text-rose-700'>
+            {err}
+          </div>
+        )}
+
+        <div className='flex items-center justify-between gap-4 pt-2'>
+          <p className='text-xs text-slate-500'>{t.contact.privacy}</p>
+          <button
+            type='submit'
+            disabled={ isSubmitting }
+            className='inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-slate-700 disabled:opacity-60'
+          >
+            { sent
+              ? t.contact.sent
+              : isSubmitting
+                ? t.contact.sending
+                : t.contact.submit }
+          </button>
+        </div>
       </form>
     </div>
   );

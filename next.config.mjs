@@ -2,8 +2,6 @@
 const nextConfig = {
   output: 'standalone',
 
-  assetPrefix: '/lending',
-  
   async redirects() {
     return [
       {

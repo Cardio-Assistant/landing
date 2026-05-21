@@ -1,394 +1,247 @@
 'use client';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { PiGraphLight, PiHeadCircuitBold, PiLightbulb, PiMagnifyingGlass, PiPerson } from 'react-icons/pi';
+import {
+  PiGraphLight,
+  PiHeadCircuitBold,
+  PiLightbulb,
+  PiMagnifyingGlass,
+  PiPerson,
+} from 'react-icons/pi';
 import { BiHeart, BiPulse } from 'react-icons/bi';
 import { LuHandHeart } from 'react-icons/lu';
 
-import SpotlightCard from '@/components/jsrepo/Components/SpotlightCard/SpotlightCard';
-
-
 import { BlockOne } from './features/block1';
-import TiltedCardCustom from './features/card/ui/card-mag';
 import ServicesSlider from './features/servicesSlider';
 import { CardTeam } from './features/card/ui/card-team';
-import Squares from './features/bg-anim/Squares';
 import { NavBar } from './features/navbar';
 import { ContactSection } from './features/contact-section';
 import { ProblemBlock } from './features/problem-section';
+import { I18nProvider, useI18n } from './features/i18n/context';
 
+export const prefex = '';
 
-export const prefex = 'lending';
-// export const prefex = '';
+const partnerLogos = [
+  { logo: 'logo/cardio.png', round: false },
+  { logo: 'logo/fmi.png', round: true },
+  { logo: 'logo/incub.jpg', round: true },
+];
 
-export function PageAbout() {
+const solutionIcons = [
+  [PiHeadCircuitBold, BiHeart, PiGraphLight],
+  [PiPerson, BiPulse, PiMagnifyingGlass],
+  [PiLightbulb, LuHandHeart],
+];
 
+const teamPeople = [
+  { name: 'Барулина Марина', img: 'team/ma.png', dept: 'mentors' as const },
+  { name: 'Породиков Артём', img: 'team/artem.png', dept: 'mentors' as const },
+  { name: 'Осипов Александр', img: 'team/alex-o.png', dept: 'lead' as const },
+  { name: 'Шаров Роман', img: 'team/roma.png', dept: 'dev' as const },
+  { name: 'Аухадиев Михаил', img: 'team/misha.png', dept: 'dev' as const },
+  { name: 'Бочкарев Владислав', img: 'team/vlad.png', dept: 'ai' as const },
+  { name: 'Усынин Александр', img: 'team/alex-y.png', dept: 'ai' as const },
+  { name: 'Стрелков Юрий', img: 'team/yra.jpg', dept: 'economy' as const },
+];
 
-  // const targetRef1 = useRef<HTMLDivElement>(null);
-  const targetRef2 = useRef<HTMLDivElement>(null);
-  const targetRef3 = useRef<HTMLDivElement>(null);
-  const targetRef31 = useRef<HTMLDivElement>(null);
-  const targetRef4 = useRef<HTMLDivElement>(null);
-  const targetRef5 = useRef<HTMLDivElement>(null);
-  const targetRef6 = useRef<HTMLDivElement>(null);
+function PageInner() {
+  const { t } = useI18n();
 
-  // const isInView2 = useInView(targetRef2, { once: true, margin: '-20%' });
-  const isInView31 = useInView(targetRef31, { once: true, margin: '-20%' });
-  const isInView3 = useInView(targetRef3, { once: true, margin: '-20%' });
-  const isInView4 = useInView(targetRef4, { once: true, margin: '-20%' });
-  const isInView5 = useInView(targetRef5, { once: true, margin: '-20%' });
-  const isInView6 = useInView(targetRef6, { once: true, margin: '-20%' });
+  const refAbout = useRef<HTMLDivElement>(null);
+  const refProblem = useRef<HTMLDivElement>(null);
+  const refSolution = useRef<HTMLDivElement>(null);
+  const refInvestors = useRef<HTMLDivElement>(null);
+  const refTeam = useRef<HTMLDivElement>(null);
+  const refContact = useRef<HTMLDivElement>(null);
+  const refPartners = useRef<HTMLDivElement>(null);
 
-  
+  const inProblem = useInView(refProblem, { once: true, margin: '-20%' });
+  const inSolution = useInView(refSolution, { once: true, margin: '-20%' });
+  const inTeam = useInView(refTeam, { once: true, margin: '-20%' });
+  const inPartners = useInView(refPartners, { once: true, margin: '-20%' });
+  const inContact = useInView(refContact, { once: true, margin: '-20%' });
+
+  const partners = t.partners;
+  const partnerNames = [partners.partner1, partners.partner2, partners.partner3];
+
   return (
-    <main className=''>
-
+    <main className='bg-white text-slate-900'>
       <NavBar
-        targetRefAbout={ targetRef3 }
-        targetRefContact={ targetRef6 }
-        targetRefInvestors={ targetRef2 }
+        targetRefAbout={ refAbout }
+        targetRefProblem={ refProblem }
+        targetRefSolution={ refSolution }
+        targetRefInvestors={ refInvestors }
+        targetRefTeam={ refTeam }
+        targetRefContact={ refContact }
       />
 
-      <BlockOne targetRef={ targetRef6 } />
-
-      <div
-        ref={ targetRef5 } 
-        className='relative bg-gray-100 flex items-center justify-center pt-8'
-      >
-        <div className='container'>
-          
-          <motion.h2
-            initial={ { opacity: 0 } }
-            animate={ isInView5 ?  { opacity: 1 } : {} }
-            transition={ { duration: 0.8, delay: 0.2 } }
-            className='flex w-full justify-center text-3xl text-neutral font-semibold'>
-          Партнеры
-          </motion.h2>
-
-          <div className='w-12/12 md:w-10/12 max-w-[1600px] px-6 mx-auto flex flex-col gap-12'>
-
-            <div className='flex flex-row gap-8 flex-wrap justify-center'>
-              <div className='justify-center flex flex-col items-center w-96'>
-                <figure className='px-10 pt-10'>
-                  <motion.img
-                    src={ prefex + '/logo/cardio.png' }
-                    alt='ФЦССХ'
-                    className='rounded-xl'
-                    style={ {
-                      width : 100,
-                      height: 120,
-                    } }
-                  />
-                </figure>
-                <div className='card-body items-center text-center'>
-                  <h2 className='text-lg text-neutral-900'>Федеральный центр сердечно-сосудистой хирургии имени С.Г. Суханова</h2>
-                </div>
-              </div>
-
-              <div className='justify-center flex flex-col items-center w-96'>
-                <figure className='px-10 pt-10'>
-                  <motion.img
-                    src={ prefex + '/logo/fmi.png' }
-                    alt='ФЦССХ'
-                    className='rounded-full'
-                    style={ {
-                      width : 130,
-                      height: 130,
-                    } }
-                  />
-                </figure>
-                <div className='card-body items-center text-center'>
-                  <h2 className='text-lg text-neutral-900'>Физико-математический
-                  институт ПГНИУ</h2>
-                </div>
-              </div>
-
-              <div className='justify-center flex flex-col items-center w-96'>
-                <figure className='px-10 pt-10'>
-                  <motion.img
-                    src={ prefex + '/logo/incub.jpg' }
-                    alt='ФЦССХ'
-                    className='rounded-full'
-                    style={ {
-                      width : 130,
-                      height: 130,
-                    } }
-                  />
-                </figure>
-                <div className='card-body items-center text-center'>
-                  <h2 className='text-lg text-neutral-900'>МКУ «Пермский бизнес-инкубатор»</h2>
-                </div>
-              </div>
-        
-            </div>
-        
-          </div>
-
-        </div>
+      <div ref={ refAbout }>
+        <BlockOne targetRef={ refContact } />
       </div>
 
-      <ProblemBlock targetRef={ targetRef31 } isInView={ isInView31 } />
-
-      {/* block 2 */}
-      <div
-        ref={ targetRef3 }
-        className='relative bg-neutral-950 overflow-hidden flex flex-col items-center justify-center py-24 pb-96 md:pb-24'
-      >
-        <div className='absolute h-full w-full bg-neutral-900 z-10'>
-          <Squares
-            speed={ 0.1 } 
-            squareSize={ 40 }
-            direction='down' // up, down, left, right, diagonal
-            borderColor='#a3a3a3'
-            hoverFillColor='#666'
-          />
-        </div>
-        <div className='container flex flex-row justify-center z-20 rounded-2xl w-fit' >
-          <motion.div
-            initial={ { clipPath: 'inset(0 0 0 100%)' } }
-            animate={ isInView3 ? { clipPath: 'inset(0 0 0 0)' } : {} }
-            transition={ { duration: 0.8, delay: 0.2 } }
+      {/* Партнёры */}
+      <section ref={ refPartners } className='bg-white py-20'>
+        <div className='mx-auto max-w-6xl px-6'>
+          <motion.p
+            initial={ { opacity: 0 } }
+            animate={ inPartners ? { opacity: 1 } : {} }
+            transition={ { duration: 0.6 } }
+            className='text-center text-xs font-medium uppercase tracking-[0.2em] text-slate-500'
           >
-            <svg width='300' height='40' viewBox='0 0 289 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <rect width='289' height='3' fill='url(#gradient1)' />
-              <defs>
-                <linearGradient id='gradient1' x1='289' y1='0' x2='0' y2='0' gradientUnits='userSpaceOnUse'>
-                  <stop stopColor='#D9D9D9'></stop>
-                  <stop offset='1' stopColor='#D9D9D9' stopOpacity='0'></stop>
-                </linearGradient>
-              </defs>
-            </svg>
-          </motion.div>
+            {partners.eyebrow}
+          </motion.p>
 
-          <motion.h2
-            initial={ { opacity: 0 } }
-            animate={ isInView3 ?  { opacity: 1 } : {} }
-            transition={ { duration: 0.8, delay: 0.2 } }
-            className='px-4 text-3xl text-gray-200 text-nowrap font-semibold'>
-          Наше решение
-          </motion.h2>
-
-          <motion.div
-            initial={ { clipPath: 'inset(0 100% 0 0)' } }
-            animate={ isInView3 ? { clipPath: 'inset(0 0 0 0)' } : {} }
-            transition={ { duration: 0.8, delay: 0.2 } }
-          >
-            <svg width='300' height='40' viewBox='0 0 289 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <rect x='289' y='3' width='289' height='3' transform='rotate(180 289 3)' fill='url(#gradient2)' />
-              <defs>
-                <linearGradient id='gradient2' x1='578' y1='3' x2='289' y2='3' gradientUnits='userSpaceOnUse'>
-                  <stop stopColor='#D9D9D9'></stop>
-                  <stop offset='1' stopColor='#D9D9D9' stopOpacity='0'></stop>
-                </linearGradient>
-              </defs>
-            </svg>
-          </motion.div>
-        </div>
-
-        <div className='my-24 flex flex-row md:gap-24 lg:gap-y-24 xl:gap-6 flex-wrap justify-center z-20'>
-
-          <motion.div
-            initial={ { opacity: 0, y: 30 } }
-            animate={ isInView3 ? { opacity: 1, y: 0 } : {} }
-            transition={ { duration: 0.8, delay: 0.2 } }>
-            <TiltedCardCustom
-              containerHeight='256px'
-              containerWidth='400px'
-              rotateAmplitude={ 1 }
-            >
-              <SpotlightCard className='mt-32 w-96 h-fit md:mt-0 md:w-[400px] md:h-80 shadow-xl' spotlightColor='rgba(0, 229, 255, 0.2)'>
-                <div className='card-body'>
-                  <h2 className='card-title text-gray-300'>Технологии будущего уже здесь</h2>
-                  <ul className='flex flex-col gap-2'>
-                    <li className='flex flex-row items-center'>
-                      <PiHeadCircuitBold size={ 32 } color='#2adfd3' className='flex-shrink-0' />
-                      <span className='text-gray-300 ml-2 text-base'>Обработка снимков сосудов алгоритмами глубокого обучения</span>
-                    </li>
-                    <li className='flex flex-row items-center'>
-                      <BiHeart size={ 32 } color='#2adfd3' />
-                      <span className='text-gray-300 ml-2 text-base'>3D-моделирование сердца</span>
-                    </li>
-                    <li className='flex flex-row items-center'>
-                      <PiGraphLight size={ 32 } color='#2adfd3' className='flex-shrink-0' />
-                      <span className='text-gray-300 ml-2 text-base'>Прогнозирование результатов хирургических вмешательств до их проведения</span>
-                    </li>
-                  </ul>
+          <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3'>
+            {partnerLogos.map((p, i) => (
+              <motion.div
+                key={ p.logo }
+                initial={ { opacity: 0, y: 12 } }
+                animate={ inPartners ? { opacity: 1, y: 0 } : {} }
+                transition={ { duration: 0.5, delay: i * 0.1 } }
+                className='group flex flex-col items-center rounded-2xl border border-slate-200 bg-white p-8 text-center transition-all hover:border-slate-300 hover:shadow-sm'
+              >
+                <div className='flex h-24 w-24 items-center justify-center'>
+                  <img
+                    src={ prefex + '/' + p.logo }
+                    alt=''
+                    className={
+                      p.round
+                        ? 'h-24 w-24 rounded-full object-cover ring-1 ring-slate-200 transition-transform group-hover:scale-105'
+                        : 'max-h-24 max-w-24 object-contain transition-transform group-hover:scale-105'
+                    }
+                  />
                 </div>
-              </SpotlightCard>
-            </TiltedCardCustom>
-          </motion.div>
-
-          <motion.div
-            initial={ { opacity: 0, y: 30 } }
-            animate={ isInView3 ? { opacity: 1, y: 0 } : {} }
-            transition={ { duration: 0.8, delay: 0.6 } }>
-            <TiltedCardCustom
-              containerHeight='256px'
-              containerWidth='400px'
-              rotateAmplitude={ 1 }
-            >
-              <SpotlightCard className='mt-[420px] w-96 h-fit md:mt-0 md:w-[400px] md:h-80 shadow-xl' spotlightColor='rgba(0, 229, 255, 0.2)'>
-                <div className='card-body'>
-                  <h2 className='card-title text-gray-300'>Персонализированная медицина</h2>
-                  <ul className='flex flex-col gap-2'>
-                    <li className='flex flex-row items-center'>
-                      <PiPerson size={ 32 } color='#2adfd3' className='flex-shrink-0' />
-                      <span className='text-gray-300 ml-2 text-base'>Учет анатомических особенностей и сопутствующих патологий</span>
-                    </li>
-                    <li className='flex flex-row items-center'>
-                      <BiPulse size={ 32 } color='#2adfd3' className='flex-shrink-0' />
-                      <span className='text-gray-300 ml-2 text-base'>Прогноз рисков</span>
-                    </li>
-                    <li className='flex flex-row items-center'>
-                      <PiMagnifyingGlass size={ 32 } color='#2adfd3' className='flex-shrink-0' />
-                      <span className='text-gray-300 ml-2 text-base'>Подбор стентов, шунтов и методов вмешательства под конкретного пациента</span>
-                    </li>
-                  </ul>
-                </div>
-              </SpotlightCard>
-            </TiltedCardCustom>
-          </motion.div>
-
-          <motion.div
-            initial={ { opacity: 0, y: 30 } }
-            animate={ isInView3 ? { opacity: 1, y: 0 } : {} }
-            transition={ { duration: 0.8, delay: 1 } }>
-            <TiltedCardCustom
-              containerHeight='256px'
-              containerWidth='400px'
-              rotateAmplitude={ 1 }
-            >
-              <SpotlightCard className='mt-[620px] w-96 h-fit md:mt-0 md:w-[400px] md:h-80 shadow-xl' spotlightColor='rgba(0, 229, 255, 0.2)'>
-                <div className='card-body'>
-                  <h2 className='card-title text-gray-300'>Удобный инструмент для врачей</h2>
-                  <ul className='flex flex-col gap-2'>
-                    <li className='flex flex-row items-center'>
-                      <PiLightbulb size={ 32 } color='#2adfd3' className='flex-shrink-0' />
-                      <span className='text-gray-300 ml-2 text-base'>Подсказки по критичным зонам сосудов во время операции</span>
-                    </li>
-                    <li className='flex flex-row items-center'>
-                      <LuHandHeart size={ 32 } color='#2adfd3' className='flex-shrink-0' />
-                      <span className='text-gray-300 ml-2 text-base'>Практика для студентов на реальных клинических случаях</span>
-                    </li>
-                  </ul>
-                </div>
-              </SpotlightCard>
-            </TiltedCardCustom>
-          </motion.div>
-
-
-
-        </div>
-      </div>
-
-      <div
-        ref={ targetRef2 } 
-        className='relative bg-gray-100 flex items-center justify-center'
-      >
-        <div className='container'>
-
-          <ServicesSlider />
-
-        </div>
-      </div>
-
-
-      <div
-        ref={ targetRef4 }
-        className='relative bg-zinc-800 flex items-center justify-center py-8'
-      >
-        <div className='container'>
-
-          <motion.h2
-            initial={ { opacity: 0 } }
-            animate={ isInView4 ?  { opacity: 1 } : {} }
-            transition={ { duration: 0.8, delay: 0.2 } }
-            className='flex w-full justify-center text-3xl text-gray-100 font-semibold'>
-          Команда
-          </motion.h2>
-
-          <div className='w-12/12 md:w-10/12 max-w-[1600px] px-6 mx-auto my-8 flex flex-col gap-8'>
-
-            <div className='bg-gray-100 px-4 py-8 rounded-2xl flex flex-row relative flex-wrap'>
-              <div className='absolute rounded-2xl h-14 w-3 bg-blue-500' />
-              <div className='absolute rounded-2xl h-14 w-3 left-10 bg-blue-500/40' />
-              <div className='absolute rounded-2xl h-14 w-3 left-16 bg-blue-500/20' />
-              <div className='absolute rounded-2xl h-14 w-3 left-[5.5rem] bg-blue-500/10' />
-
-              <p className='text-neutral sm:text-4xl text-3xl font-bold lg:ml-20 xl:ml-0 lg:mt-auto mb-4 mt-20'>
-                Наставники
-              </p>
-              <div className='flex flex-row flex-wrap gap-12 ml-auto'>
-                <CardTeam name='Барулина Марина' role='' img='team/ma.png'/>
-                <CardTeam name='Породиков Артем' role='' img='team/artem.png'/>
-              </div>
-            </div>
-
-            <div className='bg-gray-100 px-4 py-8 rounded-2xl flex flex-row relative flex-wrap'>
-              <div className='absolute rounded-2xl h-14 w-3 bg-blue-500/80' />
-              <div className='absolute rounded-2xl h-14 w-3 left-10 bg-blue-500' />
-              <div className='absolute rounded-2xl h-14 w-3 left-16 bg-blue-500/40' />
-              <div className='absolute rounded-2xl h-14 w-3 left-[5.5rem] bg-blue-500/20' />
-              <p className='text-neutral sm:text-4xl text-3xl font-bold w-full sm:w-fit lg:ml-20 xl:ml-0 lg:mt-auto mb-4 mt-20'>
-              Руководитель
-              </p>
-              <div className='flex flex-row flex-wrap gap-12 sm:ml-auto'>
-                <CardTeam name='Осипов Александр' role='' img='team/alex-o.png'/>
-              </div>
-            </div>
-
-            <div className='bg-gray-100 px-4 py-8 rounded-2xl flex flex-row relative flex-wrap'>
-              <div className='absolute rounded-2xl h-14 w-3 bg-blue-500/40' />
-              <div className='absolute rounded-2xl h-14 w-3 left-10 bg-blue-500/60' />
-              <div className='absolute rounded-2xl h-14 w-3 left-16 bg-blue-500' />
-              <div className='absolute rounded-2xl h-14 w-3 left-[5.5rem] bg-blue-500/80' />
-
-
-              <p className='text-neutral sm:text-4xl text-3xl font-bold lg:ml-20 xl:ml-0 lg:mt-auto mb-4 mt-20'>
-                Разработка
-              </p>
-              <div className='flex flex-row flex-wrap gap-12 ml-auto'>
-                <CardTeam name='Шаров Роман' role='' img='team/roma.png'/>
-                <CardTeam name='Аухадиев Михаил' role='' img='team/misha.png'/>
-              </div>
-            </div>
-
-            <div className='bg-gray-100 px-4 py-8 rounded-2xl flex flex-row relative flex-wrap'>
-              <div className='absolute rounded-2xl h-14 w-3 bg-blue-500/40' />
-              <div className='absolute rounded-2xl h-14 w-3 left-10 bg-blue-500/60' />
-              <div className='absolute rounded-2xl h-14 w-3 left-16 bg-blue-500/80' />
-              <div className='absolute rounded-2xl h-14 w-3 left-[5.5rem] bg-blue-500' />
-
-              <p className='text-neutral sm:text-4xl text-3xl font-bold lg:ml-20 xl:ml-0 lg:mt-auto mb-4 mt-20'>
-                Искусственный интеллект
-              </p>
-              <div className='flex flex-row flex-wrap gap-12 ml-auto'>
-                <CardTeam name='Бочкарев Владислав' role='' img='team/vlad.png'/>
-                <CardTeam name='Усынин Александр' role='' img='team/alex-y.png'/>
-              </div>
-            </div>
-            
-            <div className='bg-gray-100 px-4 py-8 rounded-2xl flex flex-row relative flex-wrap'>
-              <div className='absolute rounded-2xl h-14 w-3 bg-blue-500/40' />
-              <div className='absolute rounded-2xl h-14 w-3 left-10 bg-blue-500/60' />
-              <div className='absolute rounded-2xl h-14 w-3 left-16 bg-blue-500/80' />
-              <div className='absolute rounded-2xl h-14 w-3 left-[5.5rem] bg-blue-500' />
-
-              <p className='text-neutral sm:text-4xl text-3xl font-bold lg:ml-20 xl:ml-0 lg:mt-auto mb-4 mt-20'>
-                Экономика
-              </p>
-              <div className='flex flex-row flex-wrap gap-12 ml-auto'>
-                <CardTeam name='Стрелков Юрий' role='' img='team/yra.jpg'/>
-              </div>
-            </div>
-
+                <p className='mt-5 text-sm leading-snug text-slate-700'>{partnerNames[i]}</p>
+              </motion.div>
+            ))}
           </div>
-
         </div>
-      </div>
+      </section>
 
-      <ContactSection isInView6={ isInView6 } targetRef6={ targetRef6 } />
+      <ProblemBlock targetRef={ refProblem } isInView={ inProblem } />
 
+      {/* Решение */}
+      <section ref={ refSolution } className='relative overflow-hidden bg-slate-50 py-24 sm:py-32'>
+        <div className='pointer-events-none absolute inset-0 bg-grid-slate mask-radial-fade opacity-50' />
+
+        <div className='relative mx-auto max-w-7xl px-6'>
+          <motion.div
+            initial={ { opacity: 0, y: 16 } }
+            animate={ inSolution ? { opacity: 1, y: 0 } : {} }
+            transition={ { duration: 0.6 } }
+            className='mx-auto max-w-2xl text-center'
+          >
+            <div className='inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700'>
+              {t.solution.badge}
+            </div>
+            <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl'>
+              {t.solution.title}
+            </h2>
+            <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600'>
+              {t.solution.subtitle}
+            </p>
+          </motion.div>
+
+          <div className='mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3'>
+            {t.solution.cards.map((card, i) => (
+              <motion.div
+                key={ card.title }
+                initial={ { opacity: 0, y: 16 } }
+                animate={ inSolution ? { opacity: 1, y: 0 } : {} }
+                transition={ { duration: 0.6, delay: 0.15 + i * 0.1 } }
+                className='group relative flex flex-col rounded-3xl border border-slate-200 bg-white p-8 transition-all hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50'
+              >
+                <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100' />
+
+                <h3 className='text-xl font-semibold tracking-tight text-slate-900'>{card.title}</h3>
+                <p className='mt-3 text-sm leading-relaxed text-slate-600'>{card.description}</p>
+
+                <ul className='mt-6 flex flex-col gap-3'>
+                  {card.items.map((text, j) => {
+                    const Icon = solutionIcons[i][j];
+                    return (
+                      <li key={ j } className='flex items-start gap-3'>
+                        <div className='mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 ring-1 ring-blue-100'>
+                          <Icon size={ 16 } />
+                        </div>
+                        <span className='text-sm leading-relaxed text-slate-700'>{text}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Инвесторам / Слайдер */}
+      <section ref={ refInvestors } className='bg-white'>
+        <ServicesSlider />
+      </section>
+
+      {/* Команда */}
+      <section ref={ refTeam } className='bg-slate-50 py-24 sm:py-32'>
+        <div className='mx-auto max-w-6xl px-6'>
+          <motion.div
+            initial={ { opacity: 0, y: 16 } }
+            animate={ inTeam ? { opacity: 1, y: 0 } : {} }
+            transition={ { duration: 0.6 } }
+            className='mx-auto max-w-2xl text-center'
+          >
+            <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600'>
+              {t.team.badge}
+            </div>
+            <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl'>
+              {t.team.title}
+            </h2>
+            <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600'>
+              {t.team.subtitle}
+            </p>
+          </motion.div>
+
+          <div className='mt-16 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-3 md:grid-cols-4'>
+            {teamPeople.map((person, i) => (
+              <motion.div
+                key={ person.name }
+                initial={ { opacity: 0, y: 12 } }
+                animate={ inTeam ? { opacity: 1, y: 0 } : {} }
+                transition={ { duration: 0.5, delay: 0.05 + i * 0.05 } }
+              >
+                <CardTeam
+                  name={ person.name }
+                  role=''
+                  img={ person.img }
+                  department={ t.team.groups[person.dept] }
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ContactSection isInView6={ inContact } targetRef6={ refContact } />
+
+      {/* Footer */}
+      <footer className='border-t border-slate-200 bg-white'>
+        <div className='mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 sm:flex-row'>
+          <div className='flex flex-col items-center gap-1 sm:items-start'>
+            <p className='text-sm font-medium text-slate-700'>
+              {t.footer.brand.replace('{year}', String(new Date().getFullYear()))}
+            </p>
+            <p className='text-xs text-slate-500'>{t.footer.brandOwn}</p>
+          </div>
+          <p className='text-xs text-slate-400'>{t.footer.tagline}</p>
+        </div>
+      </footer>
     </main>
+  );
+}
+
+export function PageAbout() {
+  return (
+    <I18nProvider>
+      <PageInner />
+    </I18nProvider>
   );
 }

@@ -26,7 +26,14 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env*.local
+
+# deploy artifacts
+/certbot/
+/nginx/conf.d/default.conf
+/nginx/conf.d/app.conf
+/nginx/conf.d/init.conf
 
 # vercel
 .vercel

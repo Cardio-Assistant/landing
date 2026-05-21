@@ -1,0 +1,18 @@
+# Временный конфиг nginx для первичного получения сертификата Let's Encrypt.
+# Используется только deploy.sh во время начального issue.
+# После выпуска сертификата deploy.sh заменит этот файл на app.conf.
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ai-cardio.ru www.ai-cardio.ru;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        return 200 'ok';
+        add_header Content-Type text/plain;
+    }
+}
