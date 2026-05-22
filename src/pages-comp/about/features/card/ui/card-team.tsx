@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { prefex } from '@/pages-comp/about/page';
 
 export function CardTeam({
@@ -14,9 +16,11 @@ export function CardTeam({
   return (
     <div className='group flex flex-col items-center text-center'>
       <div className='relative overflow-hidden rounded-2xl ring-1 ring-slate-200 transition-all group-hover:ring-blue-300'>
-        <img
+        <Image
           src={ prefex + '/' + img }
           alt={ name }
+          width={ 144 }
+          height={ 144 }
           className='h-32 w-32 object-cover transition-transform duration-500 group-hover:scale-105 sm:h-36 sm:w-36'
         />
       </div>

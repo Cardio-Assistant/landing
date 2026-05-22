@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 import {
   PiArrowUp,
   PiGraphLight,
@@ -129,9 +130,11 @@ function PageInner() {
                 className='group flex flex-col items-center rounded-2xl border border-slate-200 bg-white p-8 text-center transition-all hover:border-slate-300 hover:shadow-sm'
               >
                 <div className='flex h-24 w-24 items-center justify-center'>
-                  <img
+                  <Image
                     src={ prefex + '/' + p.logo }
                     alt=''
+                    width={ 96 }
+                    height={ 96 }
                     className={
                       p.round
                         ? 'h-24 w-24 rounded-full object-cover ring-1 ring-slate-200 transition-transform group-hover:scale-105'

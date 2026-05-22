@@ -6,12 +6,14 @@
 
 import React, { useRef, useState } from 'react';
 
+import type { PropsWithChildren } from 'react';
+
 interface Position {
   x: number;
   y: number;
 }
 
-interface SpotlightCardProps extends React.PropsWithChildren {
+interface SpotlightCardProps extends PropsWithChildren {
   className?: string;
   spotlightColor?: `rgba(${number}, ${number}, ${number}, ${number})`;
 }
@@ -54,6 +56,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   return (
     <div
       ref={ divRef }
+      role='presentation'
       onMouseMove={ handleMouseMove }
       onFocus={ handleFocus }
       onBlur={ handleBlur }
