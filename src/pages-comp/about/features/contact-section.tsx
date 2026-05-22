@@ -16,7 +16,7 @@ export function ContactSection({
   const { t } = useI18n();
 
   return (
-    <section ref={ targetRef6 } className='relative overflow-hidden bg-slate-50 py-24 sm:py-32'>
+    <section id='contact' ref={ targetRef6 } className='relative overflow-hidden bg-slate-50 py-24 sm:py-32'>
       <div className='pointer-events-none absolute -top-32 left-1/2 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-200/40 via-cyan-100/30 to-transparent blur-3xl' />
 
       <div className='relative mx-auto max-w-6xl px-6'>

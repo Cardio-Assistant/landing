@@ -7,11 +7,21 @@ import { useI18n } from './i18n/context';
 
 import type { RefObject } from 'react';
 
-export function BlockOne({ targetRef }: { targetRef: RefObject<HTMLDivElement> }) {
+export function BlockOne({
+  targetRef,
+  scrollHintRef,
+}: {
+  targetRef: RefObject<HTMLDivElement>;
+  scrollHintRef: RefObject<HTMLDivElement>;
+}) {
   const { t } = useI18n();
 
   const handleClick = () => {
     targetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleScrollHint = () => {
+    scrollHintRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const metrics = [t.hero.metric1, t.hero.metric2, t.hero.metric3];
@@ -141,6 +151,20 @@ export function BlockOne({ targetRef }: { targetRef: RefObject<HTMLDivElement> }
           </div>
         </motion.div>
       </div>
+
+      <button
+        type='button'
+        onClick={ handleScrollHint }
+        aria-label='Scroll down'
+        className='absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 rounded-full px-4 py-2 text-slate-500 transition-colors hover:text-slate-900 lg:flex'
+      >
+        <span className='h-8 w-px bg-gradient-to-b from-transparent via-slate-300 to-slate-400' />
+        <span className='flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/80 shadow-sm backdrop-blur animate-bounce-soft'>
+          <svg className='h-4 w-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={ 2 } d='M19 9l-7 7-7-7' />
+          </svg>
+        </span>
+      </button>
     </section>
   );
 }

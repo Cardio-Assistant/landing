@@ -3,8 +3,7 @@
 FROM node:20-alpine AS base
 ENV PNPM_VERSION=9.15.4
 RUN apk add --no-cache libc6-compat \
-  && corepack enable \
-  && corepack prepare pnpm@${PNPM_VERSION} --activate
+  && npm install -g pnpm@${PNPM_VERSION}
 
 FROM base AS deps
 WORKDIR /app

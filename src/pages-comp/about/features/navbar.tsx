@@ -82,7 +82,7 @@ export function NavBar({
           </span>
         </button>
 
-        <div className='hidden items-center gap-6 xl:flex'>
+        <div className='hidden items-center gap-4 lg:flex xl:gap-6'>
           {links.map((l) => (
             <NavLink key={ l.label } onClick={ () => scrollTo(l.ref) }>
               {l.label}
@@ -101,7 +101,7 @@ export function NavBar({
           </button>
 
           <button
-            className='inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 xl:hidden'
+            className='inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 lg:hidden'
             onClick={ () => setIsMenuOpen(!isMenuOpen) }
             aria-label='Menu'
           >
@@ -121,7 +121,7 @@ export function NavBar({
         <motion.div
           initial={ { opacity: 0, y: -8 } }
           animate={ { opacity: 1, y: 0 } }
-          className='absolute left-4 right-4 top-20 rounded-2xl border border-slate-200 bg-white p-4 shadow-lg xl:hidden'
+          className='absolute left-4 right-4 top-20 rounded-2xl border border-slate-200 bg-white p-4 shadow-lg lg:hidden'
         >
           <ul className='flex flex-col gap-1 text-slate-700'>
             {links.map((l) => (

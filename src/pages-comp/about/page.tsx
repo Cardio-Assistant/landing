@@ -1,7 +1,8 @@
 'use client';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
+  PiArrowUp,
   PiGraphLight,
   PiHeadCircuitBold,
   PiLightbulb,
@@ -44,6 +45,33 @@ const teamPeople = [
   { name: 'Стрелков Юрий', img: 'team/yra.jpg', dept: 'economy' as const },
 ];
 
+function ScrollTopButton() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsVisible(window.scrollY > 640);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  if (!isVisible) return null;
+
+  return (
+    <motion.button
+      type='button'
+      initial={ { opacity: 0, y: 12, scale: 0.95 } }
+      animate={ { opacity: 1, y: 0, scale: 1 } }
+      exit={ { opacity: 0, y: 12, scale: 0.95 } }
+      onClick={ () => window.scrollTo({ top: 0, behavior: 'smooth' }) }
+      aria-label='Scroll to top'
+      className='fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-700 shadow-lg shadow-slate-200/70 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600'
+    >
+      <PiArrowUp size={ 20 } />
+    </motion.button>
+  );
+}
+
 function PageInner() {
   const { t } = useI18n();
 
@@ -76,7 +104,7 @@ function PageInner() {
       />
 
       <div ref={ refAbout }>
-        <BlockOne targetRef={ refContact } />
+        <BlockOne targetRef={ refContact } scrollHintRef={ refPartners } />
       </div>
 
       {/* Партнёры */}
@@ -234,6 +262,8 @@ function PageInner() {
           <p className='text-xs text-slate-400'>{t.footer.tagline}</p>
         </div>
       </footer>
+
+      <ScrollTopButton />
     </main>
   );
 }
