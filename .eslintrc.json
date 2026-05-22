@@ -34,7 +34,7 @@
     "@typescript-eslint/consistent-type-imports": ["error",{"prefer": "type-imports"}],
     // --- import ---
 
-    "linebreak-style": ["error", "windows"],
+    "linebreak-style": "off",
     "prefer-arrow-callback": "off",
     
     "react/jsx-props-no-spreading": "off",
