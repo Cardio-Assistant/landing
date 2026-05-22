@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
+import { ProxyAgent } from 'undici';
 
 import type { NextRequest } from 'next/server';
+import type { Dispatcher } from 'undici';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -8,7 +10,9 @@ export const dynamic = 'force-dynamic';
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 5;
 const TELEGRAM_API = 'https://api.telegram.org';
+const TELEGRAM_TIMEOUT_MS = 12_000;
 const rateMap = new Map<string, { count: number; ts: number }>();
+const proxyAgents = new Map<string, Dispatcher>();
 
 interface Body {
   name?: string;
@@ -63,6 +67,17 @@ function buildTelegramText({
   return lines.join('\n').slice(0, 4000);
 }
 
+function getTelegramProxyAgent(proxyUrl?: string): Dispatcher | undefined {
+  if (!proxyUrl) return undefined;
+
+  const cached = proxyAgents.get(proxyUrl);
+  if (cached) return cached;
+
+  const agent = new ProxyAgent(proxyUrl);
+  proxyAgents.set(proxyUrl, agent);
+  return agent;
+}
+
 export async function POST(req: NextRequest) {
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
   if (!rateLimit(ip)) {
@@ -91,6 +106,8 @@ export async function POST(req: NextRequest) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   const threadId = process.env.TELEGRAM_THREAD_ID;
+  const telegramApi = (process.env.TELEGRAM_API_BASE || TELEGRAM_API).replace(/\/$/, '');
+  const proxyAgent = getTelegramProxyAgent(process.env.TELEGRAM_PROXY_URL);
 
   if (!token || !chatId) {
     console.error('Telegram credentials are missing');
@@ -109,11 +126,18 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const res = await fetch(`${TELEGRAM_API}/bot${token}/sendMessage`, {
+    const requestOptions: RequestInit & { dispatcher?: Dispatcher } = {
       method : 'POST',
       headers: { 'Content-Type': 'application/json' },
       body   : JSON.stringify(payload),
-    });
+      signal : AbortSignal.timeout(TELEGRAM_TIMEOUT_MS),
+    };
+
+    if (proxyAgent) {
+      requestOptions.dispatcher = proxyAgent;
+    }
+
+    const res = await fetch(`${telegramApi}/bot${token}/sendMessage`, requestOptions);
 
     if (!res.ok) {
       const details = await res.text().catch(() => '');
@@ -124,6 +148,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error('Telegram request failed', e);
-    return NextResponse.json({ error: 'Failed to send' }, { status: 502 });
+    return NextResponse.json({ error: 'Telegram is unavailable' }, { status: 502 });
   }
 }
