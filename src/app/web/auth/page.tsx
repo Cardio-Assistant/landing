@@ -87,7 +87,7 @@ export default function DemoPlaceholderPage() {
   };
 
   return (
-    <main className='min-h-screen overflow-hidden bg-white text-slate-900'>
+    <main className='min-h-screen overflow-hidden bg-white dark:bg-slate-950 text-slate-900 dark:text-white'>
       <div className='pointer-events-none absolute inset-0 bg-dot-slate mask-radial-fade opacity-80' />
       <div className='pointer-events-none absolute -top-40 left-1/2 h-[560px] w-[720px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-200/50 via-cyan-200/40 to-transparent blur-3xl' />
 
@@ -100,24 +100,24 @@ export default function DemoPlaceholderPage() {
         >
           <Link
             href='/about'
-            className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm backdrop-blur transition-all hover:border-slate-300 hover:bg-white'
+            className='inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm backdrop-blur transition-all hover:border-slate-300 dark:hover:border-slate-700 hover:bg-white dark:hover:bg-slate-900'
           >
             <PiArrowLeft size={ 18 } />
             {t.back}
           </Link>
 
           <div className='flex items-center gap-2'>
-            <div className='relative inline-flex h-8 items-center rounded-full border border-slate-200 bg-white/85 p-0.5 text-[11px] font-semibold shadow-sm backdrop-blur'>
+            <div className='relative inline-flex h-8 items-center rounded-full border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/85 p-0.5 text-[11px] font-semibold shadow-sm backdrop-blur'>
               <motion.span
                 layout
                 transition={ { type: 'spring', stiffness: 500, damping: 34 } }
-                className='absolute inset-y-0.5 w-9 rounded-full bg-slate-900 shadow-sm'
+                className='absolute inset-y-0.5 w-9 rounded-full bg-slate-900 dark:bg-slate-100 shadow-sm'
                 style={ { left: locale === 'en' ? 'calc(50% - 2px)' : '2px' } }
               />
               <button
                 type='button'
                 onClick={ () => setLanguage('ru') }
-                className={ `relative z-10 w-9 rounded-full py-1 transition-colors ${locale === 'ru' ? 'text-white' : 'text-slate-500 hover:text-slate-900'}` }
+                className={ `relative z-10 w-9 rounded-full py-1 transition-colors ${locale === 'ru' ? 'text-white dark:text-slate-900' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}` }
                 aria-label='Русский'
               >
                 RU
@@ -125,14 +125,14 @@ export default function DemoPlaceholderPage() {
               <button
                 type='button'
                 onClick={ () => setLanguage('en') }
-                className={ `relative z-10 w-9 rounded-full py-1 transition-colors ${locale === 'en' ? 'text-white' : 'text-slate-500 hover:text-slate-900'}` }
+                className={ `relative z-10 w-9 rounded-full py-1 transition-colors ${locale === 'en' ? 'text-white dark:text-slate-900' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}` }
                 aria-label='English'
               >
                 EN
               </button>
             </div>
 
-            <div className='hidden items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-600 backdrop-blur sm:inline-flex'>
+            <div className='hidden items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 px-3.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 backdrop-blur sm:inline-flex'>
               <span className='relative flex h-2 w-2'>
                 <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75' />
                 <span className='relative inline-flex h-2 w-2 rounded-full bg-cyan-500' />
@@ -149,7 +149,7 @@ export default function DemoPlaceholderPage() {
               initial='hidden'
               animate='visible'
               transition={ { duration: 0.6, delay: 0.1 } }
-              className='inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700'
+              className='inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-xs font-medium text-blue-700 dark:text-blue-300'
             >
               {t.badge}
             </motion.div>
@@ -159,7 +159,7 @@ export default function DemoPlaceholderPage() {
               initial='hidden'
               animate='visible'
               transition={ { duration: 0.7, delay: 0.2 } }
-              className='mt-6 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl'
+              className='mt-6 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl'
             >
               {t.titleStart} <span className='text-gradient-accent'>{t.titleAccent}</span> {t.titleEnd}
             </motion.h1>
@@ -169,7 +169,7 @@ export default function DemoPlaceholderPage() {
               initial='hidden'
               animate='visible'
               transition={ { duration: 0.7, delay: 0.32 } }
-              className='mt-6 max-w-2xl text-balance text-base leading-relaxed text-slate-600 sm:text-lg'
+              className='mt-6 max-w-2xl text-balance text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg'
             >
               {t.description}
             </motion.p>
@@ -183,13 +183,13 @@ export default function DemoPlaceholderPage() {
             >
               <Link
                 href='/about#contact'
-                className='inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white shadow-sm transition-all hover:bg-slate-700 hover:shadow-md'
+                className='inline-flex items-center justify-center rounded-full bg-slate-900 dark:bg-slate-100 px-6 py-3 text-sm font-medium text-white dark:text-slate-900 shadow-sm transition-all hover:bg-slate-700 dark:hover:bg-white hover:shadow-md'
               >
                 {t.request}
               </Link>
               <Link
                 href='/about'
-                className='inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50'
+                className='inline-flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 transition-all hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'
               >
                 {t.about}
               </Link>
@@ -203,19 +203,19 @@ export default function DemoPlaceholderPage() {
             className='relative animate-float'
           >
             <div className='absolute -inset-8 rounded-full bg-gradient-to-br from-blue-300/30 via-cyan-200/30 to-transparent blur-3xl' />
-            <div className='relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/60'>
-              <div className='rounded-2xl border border-slate-100 bg-slate-50 p-5'>
+            <div className='relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xl shadow-slate-200/60 dark:shadow-slate-900/40'>
+              <div className='rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-5'>
                 <div className='flex items-center justify-between'>
                   <div>
-                    <p className='text-xs font-medium uppercase tracking-[0.2em] text-slate-500'>{t.modelLabel}</p>
-                    <p className='mt-1 text-lg font-semibold text-slate-900'>{t.modelCase}</p>
+                    <p className='text-xs font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400'>{t.modelLabel}</p>
+                    <p className='mt-1 text-lg font-semibold text-slate-900 dark:text-white'>{t.modelCase}</p>
                   </div>
-                  <div className='flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 ring-1 ring-blue-100'>
+                  <div className='flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-300 ring-1 ring-blue-100 dark:ring-blue-500/30'>
                     <BiHeart size={ 24 } />
                   </div>
                 </div>
 
-                <div className='relative mt-8 flex aspect-square items-center justify-center overflow-hidden rounded-3xl bg-white shadow-inner'>
+                <div className='relative mt-8 flex aspect-square items-center justify-center overflow-hidden rounded-3xl bg-white dark:bg-slate-900 shadow-inner'>
                   <div className='absolute inset-x-8 top-0 h-20 bg-gradient-to-b from-cyan-300/20 to-transparent animate-scan-line' />
                   <div className='relative flex h-44 w-44 items-center justify-center rounded-full border border-blue-100 bg-gradient-to-br from-blue-50 to-cyan-50 animate-pulse-soft'>
                     <div className='absolute h-28 w-28 rounded-full border border-cyan-200 animate-spin-slow' />
@@ -228,9 +228,9 @@ export default function DemoPlaceholderPage() {
 
                 <div className='mt-6 grid grid-cols-3 gap-3'>
                   {t.metrics.map((item, index) => (
-                    <div key={ item } className='rounded-2xl border border-slate-200 bg-white px-3 py-3'>
-                      <div className='text-lg font-semibold text-slate-900'>{index === 2 ? 'AI' : `0${index + 1}`}</div>
-                      <div className='mt-1 text-xs text-slate-500'>{item}</div>
+                    <div key={ item } className='rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3'>
+                      <div className='text-lg font-semibold text-slate-900 dark:text-white'>{index === 2 ? 'AI' : `0${index + 1}`}</div>
+                      <div className='mt-1 text-xs text-slate-500 dark:text-slate-400'>{item}</div>
                     </div>
                   ))}
                 </div>
@@ -249,13 +249,13 @@ export default function DemoPlaceholderPage() {
                 initial='hidden'
                 animate='visible'
                 transition={ { duration: 0.55, delay: 0.6 + index * 0.1 } }
-                className='rounded-2xl border border-slate-200 bg-white/85 p-5 shadow-sm backdrop-blur transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-md hover:shadow-blue-100/60'
+                className='rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/85 p-5 shadow-sm backdrop-blur transition-all hover:-translate-y-1 hover:border-blue-200 dark:hover:border-blue-500/30 hover:shadow-md hover:shadow-blue-100/60'
               >
-                <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100'>
+                <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-300 ring-1 ring-blue-100 dark:ring-blue-500/30'>
                   <Icon size={ 20 } />
                 </div>
-                <h2 className='mt-4 text-base font-semibold text-slate-900'>{step.title}</h2>
-                <p className='mt-2 text-sm leading-relaxed text-slate-600'>{step.text}</p>
+                <h2 className='mt-4 text-base font-semibold text-slate-900 dark:text-white'>{step.title}</h2>
+                <p className='mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{step.text}</p>
               </motion.div>
             );
           })}

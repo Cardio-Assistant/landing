@@ -25,13 +25,13 @@ export default function ServicesSlider() {
   return (
     <div className='mx-auto w-full max-w-6xl px-6 py-24 sm:py-32'>
       <div className='mx-auto max-w-2xl text-center'>
-        <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600'>
+        <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-400'>
           {t.investors.badge}
         </div>
-        <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl'>
+        <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl'>
           {t.investors.title}
         </h2>
-        <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600'>
+        <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600 dark:text-slate-400'>
           {t.investors.subtitle}
         </p>
       </div>
@@ -40,7 +40,7 @@ export default function ServicesSlider() {
         <button
           onClick={ () => go('left') }
           disabled={ active === 0 }
-          className='hidden h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40 sm:inline-flex'
+          className='hidden h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 sm:inline-flex'
           aria-label='Prev'
         >
           <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={ 2 } className='h-4 w-4'>
@@ -48,17 +48,17 @@ export default function ServicesSlider() {
           </svg>
         </button>
 
-        <ul className='flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1'>
+        <ul className='flex items-center gap-1 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-1'>
           {tabs.map((label, i) => (
             <li key={ i } className='relative'>
               <button
                 onClick={ () => goTo(i) }
-                className={ `relative z-10 whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${active === i ? 'text-white' : 'text-slate-600 hover:text-slate-900'}` }
+                className={ `relative z-10 whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${active === i ? 'text-white dark:text-slate-900' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}` }
               >
                 {active === i && (
                   <motion.span
                     layoutId='tabPill'
-                    className='absolute inset-0 -z-10 rounded-full bg-slate-900'
+                    className='absolute inset-0 -z-10 rounded-full bg-slate-900 dark:bg-slate-100'
                     transition={ { type: 'spring', stiffness: 400, damping: 32 } }
                   />
                 )}
@@ -71,7 +71,7 @@ export default function ServicesSlider() {
         <button
           onClick={ () => go('right') }
           disabled={ active === slides.length - 1 }
-          className='hidden h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40 sm:inline-flex'
+          className='hidden h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 sm:inline-flex'
           aria-label='Next'
         >
           <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={ 2 } className='h-4 w-4'>
@@ -105,42 +105,42 @@ export default function ServicesSlider() {
               if (info.offset.x < -80) go('right');
             } }
           >
-            <div className='overflow-hidden rounded-3xl border border-slate-200 bg-white'>
+            <div className='overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'>
               {/* Заголовок слайда */}
-              <div className='border-b border-slate-200 px-8 py-8 sm:px-12 sm:py-10'>
+              <div className='border-b border-slate-200 dark:border-slate-800 px-8 py-8 sm:px-12 sm:py-10'>
                 <div className='flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between'>
-                  <h3 className='text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl'>
+                  <h3 className='text-balance text-2xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-3xl'>
                     {current.title}
                   </h3>
-                  <span className='inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600'>
+                  <span className='inline-flex items-center gap-1.5 rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-400'>
                     {String(active + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
                   </span>
                 </div>
               </div>
 
               {/* Метрики */}
-              <div className='grid grid-cols-1 gap-px bg-slate-200 sm:grid-cols-3'>
+              <div className='grid grid-cols-1 gap-px bg-slate-200 dark:bg-slate-800 sm:grid-cols-3'>
                 {current.metrics.map((m, i) => (
-                  <div key={ i } className='bg-white px-8 py-6 sm:px-12'>
+                  <div key={ i } className='bg-white dark:bg-slate-900 px-8 py-6 sm:px-12'>
                     <div className='text-3xl font-semibold tracking-tight sm:text-4xl'>
                       <span className='text-gradient-accent'>{m.value}</span>
                     </div>
-                    <div className='mt-2 text-sm text-slate-600'>{m.label}</div>
+                    <div className='mt-2 text-sm text-slate-600 dark:text-slate-400'>{m.label}</div>
                   </div>
                 ))}
               </div>
 
               {/* Пункты — адаптивная сетка без пустых ячеек */}
-              <div className={ `grid grid-cols-1 gap-px bg-slate-200 ${pointsGridCols}` }>
+              <div className={ `grid grid-cols-1 gap-px bg-slate-200 dark:bg-slate-800 ${pointsGridCols}` }>
                 {current.points.map((p, i) => (
-                  <div key={ i } className='bg-white p-8 sm:p-10'>
+                  <div key={ i } className='bg-white dark:bg-slate-900 p-8 sm:p-10'>
                     <div className='flex items-start gap-4'>
-                      <div className='flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-sm font-semibold text-blue-600 ring-1 ring-blue-100'>
+                      <div className='flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-sm font-semibold text-blue-600 dark:text-blue-300 ring-1 ring-blue-100 dark:ring-blue-500/30'>
                         {String(i + 1).padStart(2, '0')}
                       </div>
                       <div>
-                        <h4 className='text-base font-semibold text-slate-900'>{p.title}</h4>
-                        <p className='mt-1.5 text-sm leading-relaxed text-slate-600'>{p.text}</p>
+                        <h4 className='text-base font-semibold text-slate-900 dark:text-white'>{p.title}</h4>
+                        <p className='mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{p.text}</p>
                       </div>
                     </div>
                   </div>
@@ -156,7 +156,7 @@ export default function ServicesSlider() {
             <button
               key={ i }
               onClick={ () => goTo(i) }
-              className={ `h-1 rounded-full transition-all ${active === i ? 'w-8 bg-slate-900' : 'w-2 bg-slate-300 hover:bg-slate-400'}` }
+              className={ `h-1 rounded-full transition-all ${active === i ? 'w-8 bg-slate-900 dark:bg-slate-100' : 'w-2 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600'}` }
               aria-label={ `Slide ${i + 1}` }
             />
           ))}

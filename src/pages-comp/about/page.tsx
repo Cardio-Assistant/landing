@@ -66,7 +66,7 @@ function ScrollTopButton() {
       exit={ { opacity: 0, y: 12, scale: 0.95 } }
       onClick={ () => window.scrollTo({ top: 0, behavior: 'smooth' }) }
       aria-label='Scroll to top'
-      className='fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-700 shadow-lg shadow-slate-200/70 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600'
+      className='fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 shadow-lg shadow-slate-200/70 dark:shadow-slate-900/40 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-blue-200 dark:hover:border-blue-500/30 hover:text-blue-600 dark:hover:text-blue-300'
     >
       <PiArrowUp size={ 20 } />
     </motion.button>
@@ -94,7 +94,7 @@ function PageInner() {
   const partnerNames = [partners.partner1, partners.partner2, partners.partner3];
 
   return (
-    <main className='bg-white text-slate-900'>
+    <main className='bg-white dark:bg-slate-950 text-slate-900 dark:text-white'>
       <NavBar
         targetRefAbout={ refAbout }
         targetRefProblem={ refProblem }
@@ -109,13 +109,13 @@ function PageInner() {
       </div>
 
       {/* Партнёры */}
-      <section ref={ refPartners } className='bg-white py-20'>
+      <section ref={ refPartners } className='bg-white dark:bg-slate-950 py-20'>
         <div className='mx-auto max-w-6xl px-6'>
           <motion.p
             initial={ { opacity: 0 } }
             animate={ inPartners ? { opacity: 1 } : {} }
             transition={ { duration: 0.6 } }
-            className='text-center text-xs font-medium uppercase tracking-[0.2em] text-slate-500'
+            className='text-center text-xs font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400'
           >
             {partners.eyebrow}
           </motion.p>
@@ -127,7 +127,7 @@ function PageInner() {
                 initial={ { opacity: 0, y: 12 } }
                 animate={ inPartners ? { opacity: 1, y: 0 } : {} }
                 transition={ { duration: 0.5, delay: i * 0.1 } }
-                className='group flex flex-col items-center rounded-2xl border border-slate-200 bg-white p-8 text-center transition-all hover:border-slate-300 hover:shadow-sm'
+                className='group flex flex-col items-center rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 text-center transition-all hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm'
               >
                 <div className='flex h-24 w-24 items-center justify-center'>
                   <Image
@@ -137,12 +137,12 @@ function PageInner() {
                     height={ 96 }
                     className={
                       p.round
-                        ? 'h-24 w-24 rounded-full object-cover ring-1 ring-slate-200 transition-transform group-hover:scale-105'
+                        ? 'h-24 w-24 rounded-full object-cover ring-1 ring-slate-200 dark:ring-slate-700 transition-transform group-hover:scale-105'
                         : 'max-h-24 max-w-24 object-contain transition-transform group-hover:scale-105'
                     }
                   />
                 </div>
-                <p className='mt-5 text-sm leading-snug text-slate-700'>{partnerNames[i]}</p>
+                <p className='mt-5 text-sm leading-snug text-slate-700 dark:text-slate-300'>{partnerNames[i]}</p>
               </motion.div>
             ))}
           </div>
@@ -152,7 +152,7 @@ function PageInner() {
       <ProblemBlock targetRef={ refProblem } isInView={ inProblem } />
 
       {/* Решение */}
-      <section ref={ refSolution } className='relative overflow-hidden bg-slate-50 py-24 sm:py-32'>
+      <section ref={ refSolution } className='relative overflow-hidden bg-slate-50 dark:bg-slate-900 py-24 sm:py-32'>
         <div className='pointer-events-none absolute inset-0 bg-grid-slate mask-radial-fade opacity-50' />
 
         <div className='relative mx-auto max-w-7xl px-6'>
@@ -162,13 +162,13 @@ function PageInner() {
             transition={ { duration: 0.6 } }
             className='mx-auto max-w-2xl text-center'
           >
-            <div className='inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700'>
+            <div className='inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-xs font-medium text-blue-700 dark:text-blue-300'>
               {t.solution.badge}
             </div>
-            <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl'>
+            <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl'>
               {t.solution.title}
             </h2>
-            <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600'>
+            <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600 dark:text-slate-400'>
               {t.solution.subtitle}
             </p>
           </motion.div>
@@ -180,22 +180,22 @@ function PageInner() {
                 initial={ { opacity: 0, y: 16 } }
                 animate={ inSolution ? { opacity: 1, y: 0 } : {} }
                 transition={ { duration: 0.6, delay: 0.15 + i * 0.1 } }
-                className='group relative flex flex-col rounded-3xl border border-slate-200 bg-white p-8 transition-all hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50'
+                className='group relative flex flex-col rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 transition-all hover:border-blue-200 dark:hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-100/50'
               >
                 <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100' />
 
-                <h3 className='text-xl font-semibold tracking-tight text-slate-900'>{card.title}</h3>
-                <p className='mt-3 text-sm leading-relaxed text-slate-600'>{card.description}</p>
+                <h3 className='text-xl font-semibold tracking-tight text-slate-900 dark:text-white'>{card.title}</h3>
+                <p className='mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{card.description}</p>
 
                 <ul className='mt-6 flex flex-col gap-3'>
                   {card.items.map((text, j) => {
                     const Icon = solutionIcons[i][j];
                     return (
                       <li key={ j } className='flex items-start gap-3'>
-                        <div className='mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 ring-1 ring-blue-100'>
+                        <div className='mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-300 ring-1 ring-blue-100 dark:ring-blue-500/30'>
                           <Icon size={ 16 } />
                         </div>
-                        <span className='text-sm leading-relaxed text-slate-700'>{text}</span>
+                        <span className='text-sm leading-relaxed text-slate-700 dark:text-slate-300'>{text}</span>
                       </li>
                     );
                   })}
@@ -207,12 +207,12 @@ function PageInner() {
       </section>
 
       {/* Инвесторам / Слайдер */}
-      <section ref={ refInvestors } className='bg-white'>
+      <section ref={ refInvestors } className='bg-white dark:bg-slate-950'>
         <ServicesSlider />
       </section>
 
       {/* Команда */}
-      <section ref={ refTeam } className='bg-slate-50 py-24 sm:py-32'>
+      <section ref={ refTeam } className='bg-slate-50 dark:bg-slate-900 py-24 sm:py-32'>
         <div className='mx-auto max-w-6xl px-6'>
           <motion.div
             initial={ { opacity: 0, y: 16 } }
@@ -220,13 +220,13 @@ function PageInner() {
             transition={ { duration: 0.6 } }
             className='mx-auto max-w-2xl text-center'
           >
-            <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600'>
+            <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-400'>
               {t.team.badge}
             </div>
-            <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl'>
+            <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl'>
               {t.team.title}
             </h2>
-            <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600'>
+            <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600 dark:text-slate-400'>
               {t.team.subtitle}
             </p>
           </motion.div>
@@ -254,15 +254,15 @@ function PageInner() {
       <ContactSection isInView6={ inContact } targetRef6={ refContact } />
 
       {/* Footer */}
-      <footer className='border-t border-slate-200 bg-white'>
+      <footer className='border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950'>
         <div className='mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 sm:flex-row'>
           <div className='flex flex-col items-center gap-1 sm:items-start'>
-            <p className='text-sm font-medium text-slate-700'>
+            <p className='text-sm font-medium text-slate-700 dark:text-slate-300'>
               {t.footer.brand.replace('{year}', String(new Date().getFullYear()))}
             </p>
-            <p className='text-xs text-slate-500'>{t.footer.brandOwn}</p>
+            <p className='text-xs text-slate-500 dark:text-slate-400'>{t.footer.brandOwn}</p>
           </div>
-          <p className='text-xs text-slate-400'>{t.footer.tagline}</p>
+          <p className='text-xs text-slate-400 dark:text-slate-500'>{t.footer.tagline}</p>
         </div>
       </footer>
 
