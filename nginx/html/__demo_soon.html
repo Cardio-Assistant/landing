@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="20">
+<title>Демо скоро будет доступно — Cardio-Assistant</title>
+<style>
+  :root { --bg:#0b1220; --card:#111a2e; --fg:#e8eefc; --muted:#93a1c0; --accent:#e5484d; --accent2:#3b82f6; }
+  * { box-sizing:border-box; }
+  html,body { height:100%; margin:0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(1200px 600px at 50% -10%, #16233f 0%, var(--bg) 60%);
+    color: var(--fg); display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  .card {
+    max-width: 560px; width:100%; text-align:center;
+    background: var(--card); border:1px solid rgba(255,255,255,.06);
+    border-radius: 20px; padding: 44px 36px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  }
+  .ecg { width:100%; height:64px; margin: 4px 0 22px; }
+  .ecg path { fill:none; stroke: var(--accent); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2.4s linear infinite; filter: drop-shadow(0 0 6px rgba(229,72,77,.5)); }
+  @keyframes draw { to { stroke-dashoffset: -600; } }
+  h1 { font-size: 1.6rem; margin: 0 0 12px; letter-spacing:.2px; }
+  p { color: var(--muted); line-height:1.6; margin: 0 0 8px; font-size: 1rem; }
+  .brand { margin-top: 26px; font-size:.8rem; color:#6b7a9c; letter-spacing:.14em; text-transform:uppercase; }
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent2); margin-right:8px;
+    animation: pulse 1.4s ease-in-out infinite; vertical-align: middle; }
+  @keyframes pulse { 0%,100%{ opacity:.35; transform:scale(.8);} 50%{ opacity:1; transform:scale(1.15);} }
+</style>
+</head>
+<body>
+  <div class="card">
+    <svg class="ecg" viewBox="0 0 600 64" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,32 L120,32 L150,32 L165,12 L180,52 L195,32 L240,32 L420,32 L450,32 L465,12 L480,52 L495,32 L540,32 L600,32"/>
+    </svg>
+    <h1>Демо скоро будет доступно</h1>
+    <p><span class="dot"></span>Мы готовим интерактивную демонстрацию Cardio-Assistant.</p>
+    <p>Страница обновится автоматически, как только сервис снова будет онлайн.</p>
+    <div class="brand">Cardio-Assistant</div>
+  </div>
+</body>
+</html>

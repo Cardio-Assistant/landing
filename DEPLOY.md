@@ -45,6 +45,39 @@ cd /opt/ai-cardio
 ./deploy.sh --update
 ```
 
+## Демо через туннель: `ai-cardio.ru/web/*` → домашний ПК
+
+Лендинг отдаётся с VPS, а web-приложение (демо) крутится на домашнем ПК без
+публичного IP. Их связывает обратный туннель frp: ПК сам подключается к VPS.
+
+```
+браузер → https://ai-cardio.ru/          → nginx → лендинг (app:3000, на VPS)
+браузер → https://ai-cardio.ru/web/auth  → nginx → frps:7001 ═tunnel═► ПК web:3001
+                                                                        ПК: web → api → ML
+```
+
+Наружу открыт только порт `7000` (к нему подключается ПК). Порт `7001` живёт
+внутри docker-сети и доступен только nginx'у. Всё уже прошито в `docker-compose.yml`
+(сервис `frps`), `nginx/conf.d/app.conf.template` (`location /web/`) и `proxy/`.
+
+**На VPS:**
+1. Задать общий секрет туннеля: `openssl rand -hex 32`, вписать в `.env` как `FRP_TOKEN`.
+2. Открыть порт `7000/tcp` в firewall (80/443 уже нужны для сайта).
+3. Обычный `sudo ./deploy.sh` — он поднимет и `frps` вместе с nginx.
+
+**На домашнем ПК:**
+1. Поставить `frpc` (бинарь с github.com/fatedier/frp/releases).
+2. Взять `proxy/frpc.toml`, вписать `serverAddr = <IP VPS>`, задать тот же `FRP_TOKEN`
+   (env или `/etc/frp/frpc.env`). Запустить: Linux — `proxy/frpc.service`; Windows —
+   `frpc.exe -c frpc.toml` (автозапуск через Task Scheduler / nssm).
+3. Поднять демо-стек из готовых образов (в репо `api`):
+   `docker compose -f docker-compose.prod.yml up -d` — web встанет на `:3001`,
+   ровно туда смотрит `frpc`.
+
+**Проверка:** `https://ai-cardio.ru/` → лендинг; `https://ai-cardio.ru/web/auth`
+→ страница входа демо с ПК. Если `/web/*` даёт 502 — не поднят frpc на ПК или не
+запущен web:3001.
+
 ## Проверка Telegram
 
 После деплоя отправьте тестовую заявку через форму на сайте. Сообщение должно прийти в чат, указанный в `TELEGRAM_CHAT_ID`.

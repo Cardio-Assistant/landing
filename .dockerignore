@@ -17,4 +17,5 @@ docker-compose.yml
 deploy.sh
 nginx
 certbot
+proxy
 build.ps1

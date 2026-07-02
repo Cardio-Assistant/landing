@@ -1,0 +1,22 @@
+# systemd-юнит для frpc на ПК под Linux.
+#   sudo install frpc /usr/local/bin/frpc
+#   sudo mkdir -p /etc/frp && sudo cp frpc.toml /etc/frp/
+#   echo 'FRP_TOKEN=<тот же токен, что на VPS>' | sudo tee /etc/frp/frpc.env
+#   sudo cp frpc.service /etc/systemd/system/ && sudo systemctl enable --now frpc
+#
+# На Windows юнит не нужен — используй Task Scheduler (триггер "At startup") или nssm.
+
+[Unit]
+Description=frp reverse proxy client (frpc) — cardio web tunnel
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+EnvironmentFile=/etc/frp/frpc.env
+ExecStart=/usr/local/bin/frpc -c /etc/frp/frpc.toml
+
+[Install]
+WantedBy=multi-user.target

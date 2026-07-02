@@ -14,7 +14,7 @@ export function ProblemBlock({
   const { t } = useI18n();
 
   return (
-    <section ref={ targetRef } className='relative bg-white py-24 sm:py-32'>
+    <section ref={ targetRef } className='relative bg-white dark:bg-slate-950 py-24 sm:py-32'>
       <div className='mx-auto max-w-7xl px-6'>
         <motion.div
           initial={ { opacity: 0, y: 16 } }
@@ -25,28 +25,28 @@ export function ProblemBlock({
           <div className='inline-flex items-center gap-2 rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-medium text-rose-700'>
             {t.problem.badge}
           </div>
-          <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl'>
+          <h2 className='mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl'>
             {t.problem.title}
           </h2>
-          <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600'>
+          <p className='mx-auto mt-5 max-w-xl text-balance text-base leading-relaxed text-slate-600 dark:text-slate-400'>
             {t.problem.subtitle}
           </p>
         </motion.div>
 
-        <div className='mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 md:grid-cols-3'>
+        <div className='mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-800 md:grid-cols-3'>
           {t.problem.stats.map((s, i) => (
             <motion.div
               key={ s.label }
               initial={ { opacity: 0, y: 16 } }
               animate={ isInView ? { opacity: 1, y: 0 } : {} }
               transition={ { duration: 0.6, delay: 0.15 + i * 0.1 } }
-              className='bg-white p-8 sm:p-10'
+              className='bg-white dark:bg-slate-900 p-8 sm:p-10'
             >
-              <div className='text-5xl font-semibold tracking-tight text-slate-900 sm:text-6xl'>
+              <div className='text-5xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-6xl'>
                 <span className='text-gradient-accent'>{s.value}</span>
               </div>
-              <div className='mt-3 text-sm font-medium text-slate-900'>{s.label}</div>
-              <div className='mt-1 text-sm leading-relaxed text-slate-500'>{s.note}</div>
+              <div className='mt-3 text-sm font-medium text-slate-900 dark:text-white'>{s.label}</div>
+              <div className='mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400'>{s.note}</div>
             </motion.div>
           ))}
         </div>
@@ -58,13 +58,13 @@ export function ProblemBlock({
               initial={ { opacity: 0, y: 16 } }
               animate={ isInView ? { opacity: 1, y: 0 } : {} }
               transition={ { duration: 0.6, delay: 0.4 + i * 0.1 } }
-              className='group relative rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:border-slate-300 hover:shadow-sm'
+              className='group relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 transition-all hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm'
             >
-              <div className='flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-sm font-semibold text-slate-700'>
+              <div className='flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-sm font-semibold text-slate-700 dark:text-slate-300'>
                 {String(i + 1).padStart(2, '0')}
               </div>
-              <h3 className='mt-4 text-base font-semibold text-slate-900'>{p.title}</h3>
-              <p className='mt-2 text-sm leading-relaxed text-slate-600'>{p.text}</p>
+              <h3 className='mt-4 text-base font-semibold text-slate-900 dark:text-white'>{p.title}</h3>
+              <p className='mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{p.text}</p>
             </motion.div>
           ))}
         </div>
