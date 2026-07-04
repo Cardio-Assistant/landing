@@ -1,0 +1,25 @@
+# frpc — клиентская часть. Копируется на ТВОЙ ПК (где docker-стек: web:3001,
+# api:8080, ML:1667). ПК сам инициирует соединение к VPS, публичный IP не нужен.
+#
+# Наружу выставляем ТОЛЬКО web:3001. api и ML остаются внутри ПК — web ходит к
+# ним сам (server-side proxy /web/api/* -> backend -> ML).
+#
+# Запуск:
+#   Linux:   положи frpc.toml в /etc/frp/, подними frpc.service (см. рядом).
+#            токен:  export FRP_TOKEN=... (или через EnvironmentFile в юните).
+#   Windows: FRP_TOKEN=<...> ; frpc.exe -c frpc.toml   (автозапуск — Task Scheduler/nssm).
+
+serverAddr = "ПУБЛИЧНЫЙ_IP_ИЛИ_ДОМЕН_VPS"
+serverPort = 7000
+
+auth.method = "token"
+auth.token  = "{{ .Envs.FRP_TOKEN }}"   # тот же FRP_TOKEN, что на VPS
+
+loginFailExit = false   # не падать, а переподключаться, если VPS/сеть моргнули
+
+[[proxies]]
+name       = "cardio-web"
+type       = "tcp"
+localIP    = "127.0.0.1"
+localPort  = 3001      # web-приложение на ПК
+remotePort = 7001      # порт внутри контейнера frps, куда ходит nginx (location /web/)

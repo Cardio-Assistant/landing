@@ -16,17 +16,35 @@ services:
       timeout: 5s
       retries: 5
 
+  # Обратный туннель: принимает соединение с домашнего ПК (frpc) и даёт nginx
+  # доступ к web-приложению на ПК по адресу frps:7001 (внутри сети web).
+  # Наружу открыт только 7000 (к нему подключается frpc); 7001 не публикуется.
+  frps:
+    image: snowdreamtech/frps:0.61.1
+    container_name: ai-cardio-frps
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./proxy/frps.toml:/etc/frp/frps.toml:ro
+    ports:
+      - "7000:7000"
+    networks:
+      - web
+
   nginx:
     image: nginx:1.27-alpine
     container_name: ai-cardio-nginx
     restart: unless-stopped
     depends_on:
       - app
+      - frps
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/html:/var/www/html:ro
       - ./certbot/www:/var/www/certbot:ro
       - ./certbot/conf:/etc/letsencrypt:ro
     networks:
