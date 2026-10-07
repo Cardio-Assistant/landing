@@ -33,6 +33,12 @@ export const dict = {
       partner2: 'Физико-математический институт ПГНИУ',
       partner3: 'МКУ «Пермский бизнес-инкубатор»',
     },
+    support: {
+      eyebrow    : 'При поддержке',
+      fundAlt    : 'Фонд содействия инновациям',
+      platformAlt: 'Платформа университетского технологического предпринимательства',
+      translation: '',
+    },
     problem: {
       badge   : 'Проблема',
       title   : 'Сердечно-сосудистые заболевания — главная причина смертности',
@@ -218,6 +224,12 @@ export const dict = {
       partner1: 'Federal Center for Cardiovascular Surgery named after S.G. Sukhanov',
       partner2: 'Institute of Physics and Mathematics, PSU',
       partner3: 'Perm Business Incubator',
+    },
+    support: {
+      eyebrow    : 'Supported by',
+      fundAlt    : 'Foundation for Assistance to Innovations',
+      platformAlt: 'University Technological Entrepreneurship Platform',
+      translation: 'The project is implemented with the support of the Foundation for Assistance to Innovations under the «Student Startup» programme of the «University Technological Entrepreneurship Platform» initiative of the federal project «Technologies».',
     },
     problem: {
       badge   : 'Problem',

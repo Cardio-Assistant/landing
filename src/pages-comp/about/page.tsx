@@ -29,6 +29,72 @@ const partnerLogos = [
   { logo: 'logo/incub.jpg', round: true },
 ];
 
+// Required grant attribution (Annex 3 of grant agreement No. 1571ГССС27/108458):
+// the exact Russian wording must stay on the main page in every locale.
+const FUND_SUPPORT_TEXT =
+  'Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап» ' +
+  'мероприятия «Платформа университетского технологического предпринимательства» ' +
+  'федерального проекта «Технологии»';
+
+function SupportLogos({ size }: { size: 'lg' | 'sm' }) {
+  const { t } = useI18n();
+  const h = size === 'lg' ? 'h-24 sm:h-28' : 'h-12';
+
+  return (
+    <div className='flex flex-shrink-0 items-center gap-6'>
+      <a href='https://fasie.ru' target='_blank' rel='noopener noreferrer' aria-label={ t.support.fundAlt }>
+        <Image
+          src={ prefex + '/logo/fasie.png' }
+          alt={ t.support.fundAlt }
+          width={ 376 }
+          height={ 211 }
+          className={ `${h} w-auto dark:hidden` }
+        />
+        <Image
+          src={ prefex + '/logo/fasie-white.png' }
+          alt={ t.support.fundAlt }
+          width={ 334 }
+          height={ 190 }
+          className={ `${h} hidden w-auto dark:block` }
+        />
+      </a>
+      <a href='https://univertechpred.ru' target='_blank' rel='noopener noreferrer' aria-label={ t.support.platformAlt }>
+        <Image
+          src={ prefex + '/logo/putp.svg' }
+          alt={ t.support.platformAlt }
+          width={ 384 }
+          height={ 298 }
+          unoptimized
+          className={ `${h} w-auto` }
+        />
+      </a>
+    </div>
+  );
+}
+
+function SupportBlock() {
+  const { t } = useI18n();
+
+  return (
+    <section className='border-y border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 py-12'>
+      <div className='mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 md:flex-row md:gap-12'>
+        <SupportLogos size='lg' />
+        <div className='text-center md:text-left'>
+          <p className='text-xs font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400'>
+            {t.support.eyebrow}
+          </p>
+          <p className='mt-3 text-balance text-base leading-relaxed text-slate-800 dark:text-slate-200'>
+            {FUND_SUPPORT_TEXT}
+          </p>
+          {t.support.translation && (
+            <p className='mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400'>{t.support.translation}</p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const solutionIcons = [
   [PiHeadCircuitBold, BiHeart, PiGraphLight],
   [PiPerson, BiPulse, PiMagnifyingGlass],
@@ -41,7 +107,6 @@ const teamPeople = [
   { name: 'Осипов Александр', img: 'team/alex-o.png', dept: 'lead' as const },
   { name: 'Шаров Роман', img: 'team/roma.png', dept: 'dev' as const },
   { name: 'Аухадиев Михаил', img: 'team/misha.png', dept: 'dev' as const },
-  { name: 'Бочкарев Владислав', img: 'team/vlad.png', dept: 'ai' as const },
   { name: 'Усынин Александр', img: 'team/alex-y.png', dept: 'ai' as const },
   { name: 'Стрелков Юрий', img: 'team/yra.jpg', dept: 'economy' as const },
 ];
@@ -107,6 +172,8 @@ function PageInner() {
       <div ref={ refAbout }>
         <BlockOne targetRef={ refContact } scrollHintRef={ refPartners } />
       </div>
+
+      <SupportBlock />
 
       {/* Партнёры */}
       <section ref={ refPartners } className='bg-white dark:bg-slate-950 py-20'>
@@ -263,6 +330,12 @@ function PageInner() {
             <p className='text-xs text-slate-500 dark:text-slate-400'>{t.footer.brandOwn}</p>
           </div>
           <p className='text-xs text-slate-400 dark:text-slate-500'>{t.footer.tagline}</p>
+        </div>
+        <div className='mx-auto flex max-w-6xl flex-col items-center gap-4 border-t border-slate-100 dark:border-slate-900 px-6 py-6 sm:flex-row'>
+          <SupportLogos size='sm' />
+          <p className='text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400 sm:text-left'>
+            {FUND_SUPPORT_TEXT}
+          </p>
         </div>
       </footer>
 
