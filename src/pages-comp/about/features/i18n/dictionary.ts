@@ -29,6 +29,7 @@ export const dict = {
       tag1Sub    : 'Глубокое обучение',
       tag2       : 'Анализ сужений',
       tag2Sub    : 'Стеноз по каждой ветви',
+      imageAlt   : 'Экран анализа 3D-модели коронарных артерий: сужения подсвечены цветом по степени стеноза',
     },
     partners: {
       eyebrow : 'Партнёры',
@@ -289,6 +290,7 @@ export const dict = {
       tag1Sub    : 'Deep learning',
       tag2       : 'Narrowing analysis',
       tag2Sub    : 'Stenosis per branch',
+      imageAlt   : 'Coronary artery 3D model analysis screen: narrowings highlighted in color by stenosis grade',
     },
     partners: {
       eyebrow : 'Partners',

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
-
-import { prefex } from '../page';
 
 import { useI18n } from './i18n/context';
 
@@ -118,10 +117,14 @@ export function BlockOne({
 
             <div className='relative animate-float'>
               <div className='relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 shadow-xl shadow-slate-200/60 dark:shadow-slate-900/40'>
-                <motion.img
-                  src={ prefex + '/logo/3d.png' }
-                  alt='3D heart model'
-                  className='h-auto w-full max-w-[420px] rounded-2xl object-cover'
+                <Image
+                  src='/screens/hero-3d-stenosis.webp'
+                  alt={ t.hero.imageAlt }
+                  width={ 868 }
+                  height={ 564 }
+                  priority
+                  sizes='(min-width: 1024px) 500px, 90vw'
+                  className='h-auto w-full max-w-[500px] rounded-2xl'
                 />
                 <div className='pointer-events-none absolute inset-3 rounded-2xl ring-1 ring-inset ring-white/40' />
               </div>
@@ -130,7 +133,7 @@ export function BlockOne({
                 initial={ { opacity: 0, x: -16 } }
                 animate={ { opacity: 1, x: 0 } }
                 transition={ { duration: 0.6, delay: 0.8 } }
-                className='absolute -left-6 top-10 hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-3 py-2 text-xs shadow-md backdrop-blur sm:block'
+                className='absolute -left-6 top-6 hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-3 py-2 text-xs shadow-md backdrop-blur sm:block'
               >
                 <div className='flex items-center gap-2'>
                   <span className='h-2 w-2 rounded-full bg-emerald-500' />
@@ -143,7 +146,7 @@ export function BlockOne({
                 initial={ { opacity: 0, x: 16 } }
                 animate={ { opacity: 1, x: 0 } }
                 transition={ { duration: 0.6, delay: 1 } }
-                className='absolute -right-6 bottom-12 hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-3 py-2 text-xs shadow-md backdrop-blur sm:block'
+                className='absolute -bottom-5 -right-6 hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-3 py-2 text-xs shadow-md backdrop-blur sm:block'
               >
                 <div className='flex items-center gap-2'>
                   <span className='h-2 w-2 rounded-full bg-blue-500' />
