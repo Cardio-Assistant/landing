@@ -92,14 +92,18 @@ export function BlockOne({
             initial={ { opacity: 0 } }
             animate={ { opacity: 1 } }
             transition={ { duration: 0.7, delay: 0.5 } }
-            className='mt-12 grid grid-cols-3 gap-6 border-t border-slate-200 dark:border-slate-800 pt-8 lg:max-w-md'
+            className='mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 lg:max-w-xl'
           >
-            {metrics.map((m) => (
-              <div key={ m.label } className='text-center lg:text-left'>
-                <div className='text-2xl font-semibold tracking-tight text-slate-900 dark:text-white'>{m.value}</div>
-                <div className='mt-1 text-xs text-slate-500 dark:text-slate-400'>{m.label}</div>
-              </div>
-            ))}
+            <div className='grid grid-cols-3 gap-6'>
+              {metrics.map((m) => (
+                <div key={ m.label } className='text-center lg:text-left'>
+                  <div className='text-2xl font-semibold tracking-tight text-slate-900 dark:text-white'>{m.value}</div>
+                  <div className='mt-1 text-xs text-slate-500 dark:text-slate-400'>{m.label}</div>
+                </div>
+              ))}
+            </div>
+            <p className='mt-4 text-center text-xs text-slate-500 dark:text-slate-400 lg:text-left'>{t.hero.metricsNote}</p>
+            <p className='mt-3 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400 lg:text-left'>{t.hero.disclaimer}</p>
           </motion.div>
         </div>
 
