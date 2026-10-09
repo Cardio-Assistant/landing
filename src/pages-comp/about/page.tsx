@@ -4,14 +4,22 @@ import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import {
   PiArrowUp,
-  PiGraphLight,
+  PiBookOpenText,
+  PiChartLineUp,
+  PiCloud,
+  PiCubeFocus,
+  PiFileText,
+  PiFilmStrip,
+  PiHardDrives,
   PiHeadCircuitBold,
-  PiLightbulb,
-  PiMagnifyingGlass,
-  PiPerson,
+  PiIdentificationCard,
+  PiMicrophone,
+  PiRobot,
+  PiShieldCheck,
+  PiTarget,
+  PiTreeStructure,
+  PiUserList,
 } from 'react-icons/pi';
-import { BiHeart, BiPulse } from 'react-icons/bi';
-import { LuHandHeart } from 'react-icons/lu';
 
 import { BlockOne } from './features/block1';
 import ServicesSlider from './features/servicesSlider';
@@ -95,10 +103,12 @@ function SupportBlock() {
   );
 }
 
+// Icons per solution card / item (same order as `solution.cards` in the dictionary).
 const solutionIcons = [
-  [PiHeadCircuitBold, BiHeart, PiGraphLight],
-  [PiPerson, BiPulse, PiMagnifyingGlass],
-  [PiLightbulb, LuHandHeart],
+  [PiFilmStrip, PiHeadCircuitBold, PiTreeStructure, PiCubeFocus],
+  [PiChartLineUp, PiTarget, PiBookOpenText, PiFileText],
+  [PiUserList, PiMicrophone, PiRobot],
+  [PiIdentificationCard, PiShieldCheck, PiHardDrives, PiCloud],
 ];
 
 const teamPeople = [
@@ -240,7 +250,7 @@ function PageInner() {
             </p>
           </motion.div>
 
-          <div className='mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3'>
+          <div className='mt-16 grid grid-cols-1 gap-6 md:grid-cols-2'>
             {t.solution.cards.map((card, i) => (
               <motion.div
                 key={ card.title }
