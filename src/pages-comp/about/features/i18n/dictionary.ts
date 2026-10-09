@@ -89,7 +89,7 @@ export const dict = {
           items      : [
             'Карточка пациента с хронологической лентой исследований, 3D-моделей и приёмов; печатный сводный отчёт',
             'Голосовой протокол операции: запись, распознавание речи (Whisper), резюме и черновик протокола со структурированными данными — врач утверждает',
-            'ИИ-ассистент врача на локальной модели (Qwen3-14B): отвечает по данным пациентов, 3D-моделей и заключений в рамках прав врача; рекомендации берёт только из заключения модуля анализа',
+            'ИИ-ассистент врача на локальной модели (Qwen3-14B): отвечает по данным пациентов, голосовых сессий, 3D-моделей и заключений в рамках прав врача; рекомендации берёт только из заключения модуля анализа',
           ],
         },
         {
@@ -137,7 +137,7 @@ export const dict = {
         {
           tab  : 'Проект заключения',
           title: 'Проект заключения и рекомендации с источниками',
-          text : 'Языковая модель составляет черновик строго по рассчитанным фактам, рекомендации формируются по правилам клинических рекомендаций и сопровождаются источниками. Врач отмечает подтверждаемые находки, правит текст, подтверждает и печатает заключение.',
+          text : 'Языковая модель составляет черновик строго по рассчитанным фактам, рекомендации формируются по правилам, привязанным к клиническим рекомендациям, и сопровождаются источниками. Врач отмечает подтверждаемые находки, правит текст, подтверждает и печатает заключение.',
           alt  : 'Редактор заключения: находки с отметками подтверждения, рекомендации по правилам с источниками и редактируемый текст заключения',
         },
         {
@@ -350,7 +350,7 @@ export const dict = {
           items      : [
             'Patient card with a chronological feed of studies, 3D models and visits; printable summary report',
             'Voice protocol of the operation: recording, speech recognition (Whisper), a summary and a draft report with structured data — approved by the physician',
-            'AI assistant on a local model (Qwen3-14B): answers from patient, 3D-model and conclusion data within the physician’s access rights; recommendations only from the analysis module’s conclusion',
+            'AI assistant on a local model (Qwen3-14B): answers from patient, voice-session, 3D-model and conclusion data within the physician’s access rights; recommendations only from the analysis module’s conclusion',
           ],
         },
         {
