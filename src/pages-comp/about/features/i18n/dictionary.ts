@@ -115,20 +115,19 @@ export const dict = {
     investors: {
       badge   : 'Для инвесторов',
       title   : 'Бизнес-модель и рынок',
-      subtitle: 'Растущая ниша на пересечении ИИ и кардиохирургии с понятной монетизацией.',
-      tabs    : ['Рынок роста', 'Клиенты', 'Монетизация', 'Инвестору'],
+      subtitle: 'Рынок, клиенты, модель монетизации и текущий статус проекта.',
+      tabs    : ['Рынок роста', 'Клиенты', 'Монетизация', 'Статус и планы'],
       slides  : [
         {
           title  : 'Растущий рынок цифровой медицины',
           metrics: [
             { value: '20–30%', label: 'Рост рынка ИИ в медицине в год' },
-            { value: '×9', label: 'Рост к 2032 году' },
-            { value: '60 млн ₽', label: 'Потенциал выручки в РФ' },
+            { value: '×9', label: 'Ожидаемый рост к 2032 году' },
           ],
           points: [
             { title: 'Динамика', text: 'Рынок ИИ в медицине растёт на 20–30% ежегодно — к 2032 году ожидается рост в 9 раз.' },
-            { title: 'Охват', text: 'Фокус на России: уже 100 клиник, потенциал выручки 60 млн ₽/год только на подписках.' },
-            { title: 'Ниша', text: 'Уникальное решение для кардиохирургии с растущим спросом на предиктивную аналитику.' },
+            { title: 'Фокус на России', text: 'Первый рынок — Россия, где работают более 100 кардиоцентров.' },
+            { title: 'Ниша', text: 'Решение для кардиохирургии: от ангиограммы до проекта заключения в одном рабочем месте врача.' },
           ],
         },
         {
@@ -136,13 +135,12 @@ export const dict = {
           metrics: [
             { value: '4', label: 'Сегмента клиентов' },
             { value: '100+', label: 'Кардиоцентров в РФ' },
-            { value: '∞', label: 'Образовательный рынок' },
           ],
           points: [
-            { title: 'Крупные кардиоцентры', text: 'Клиники с высоким потоком сложных операций, где критична точность планирования.' },
-            { title: 'Региональные больницы', text: 'Учреждения, нуждающиеся в удалённой экспертной поддержке и снижении рисков.' },
-            { title: 'Медицинские вузы', text: 'Инструмент для обучения студентов через симуляцию реальных клинических случаев.' },
-            { title: 'Производители оборудования', text: 'Партнёры, заинтересованные в интеграции ИИ-решений в свои системы.' },
+            { title: 'Крупные кардиоцентры', text: 'Клиники с высоким потоком ангиографий и операций, где важны скорость и единообразие разбора.' },
+            { title: 'Региональные больницы', text: 'Учреждения, которым нужна дополнительная опора при разборе ангиограмм: структурированный анализ и проект заключения готовятся автоматически, решение принимает врач.' },
+            { title: 'Медицинские вузы', text: 'Образовательные программы: разбор реальных клинических случаев на 3D-моделях (направление развития).' },
+            { title: 'Производители оборудования', text: 'Потенциальные партнёры для интеграции ИИ-решений в их системы.' },
           ],
         },
         {
@@ -155,21 +153,25 @@ export const dict = {
           points: [
             { title: 'Подписка для клиник', text: 'Доступ к платформе с регулярными обновлениями и поддержкой.' },
             { title: 'Лицензии', text: 'Кастомизированные пакеты под задачи конкретных учреждений.' },
-            { title: 'Образование', text: 'Доступ к симуляторам для вузов и курсов повышения квалификации.' },
+            { title: 'Образование', text: 'Доступ для вузов и курсов повышения квалификации к платформе для разбора клинических случаев.' },
             { title: 'Технологические партнёрства', text: 'Совместные решения с производителями медоборудования.' },
           ],
         },
         {
-          title  : 'Инвестиции в технологию, спасающую жизни',
+          title  : 'Статус проекта и планы',
           metrics: [
-            { value: '111 млн ₽', label: 'Выручка к 2027' },
-            { value: '56 млн ₽', label: 'Чистая прибыль' },
-            { value: 'IRR 921%', label: 'Индекс прибыльности 3.49' },
+            { value: 'Прототип', label: 'Рабочий; не медицинское изделие, решение принимает врач' },
+            { value: '~18 с', label: '3D-модель в среднем на тестовом стенде проекта' },
+            { value: 'Валидация', label: 'с врачами ФЦССХ им. С.Г. Суханова продолжается' },
           ],
           points: [
-            { title: 'Высокая рентабельность', text: 'Прогноз 111 млн ₽ выручки к 2027 году с чистой прибылью 56 млн ₽.' },
-            { title: 'Социальная значимость', text: 'Снижение смертности от ССЗ — первой причины смертности в мире.' },
-            { title: 'Стратегия выхода', text: 'План выхода на IPO через 3–4 года с фокусом на глобальную экспансию.' },
+            { title: 'Готово сегодня', text: 'Загрузка DICOM, 3D-модель коронарных артерий, анализ сужений с проектом заключения, голосовой протокол операции и ИИ-ассистент врача.' },
+            { title: 'Социальная значимость', text: 'Сердечно-сосудистые заболевания — первая причина смертности в мире. Мы делаем инструмент, который помогает врачу разбирать коронарографию.' },
+            {
+              title: 'В планах',
+              text : 'Пока не реализовано:',
+              items: ['оценка рисков и прогноз исходов', 'моделирование кровотока', 'подбор стентов, шунтов и методов вмешательства'],
+            },
           ],
         },
       ],
@@ -332,20 +334,19 @@ export const dict = {
     investors: {
       badge   : 'For investors',
       title   : 'Business model & market',
-      subtitle: 'A growing niche at the intersection of AI and cardiac surgery with clear monetization.',
-      tabs    : ['Growth market', 'Customers', 'Monetization', 'For investors'],
+      subtitle: 'Market, customers, the monetization model and the current status of the project.',
+      tabs    : ['Growth market', 'Customers', 'Monetization', 'Status & roadmap'],
       slides  : [
         {
           title  : 'A growing digital-medicine market',
           metrics: [
             { value: '20–30%', label: 'AI in medicine yearly growth' },
-            { value: '×9', label: 'Growth by 2032' },
-            { value: '€600K', label: 'Revenue potential in RU' },
+            { value: '×9', label: 'Expected growth by 2032' },
           ],
           points: [
             { title: 'Momentum', text: 'AI in medicine grows 20–30% per year — 9× growth expected by 2032.' },
-            { title: 'Coverage', text: 'Russia first: 100 clinics already, 60M ₽/year revenue potential from subscriptions.' },
-            { title: 'Niche', text: 'A unique solution for cardiac surgery with rising demand for predictive analytics.' },
+            { title: 'Russia first', text: 'The first market is Russia, which has more than 100 cardiac centers.' },
+            { title: 'Niche', text: 'A solution for cardiac surgery: from an angiogram to a draft conclusion in one workspace for the physician.' },
           ],
         },
         {
@@ -353,13 +354,12 @@ export const dict = {
           metrics: [
             { value: '4', label: 'Customer segments' },
             { value: '100+', label: 'Cardiac centers in RU' },
-            { value: '∞', label: 'Educational market' },
           ],
           points: [
-            { title: 'Major cardiac centers', text: 'Clinics with a high flow of complex surgeries where planning accuracy is critical.' },
-            { title: 'Regional hospitals', text: 'Facilities that need remote expert support and risk reduction.' },
-            { title: 'Medical universities', text: 'A tool for student training via simulation of real clinical cases.' },
-            { title: 'Equipment manufacturers', text: 'Partners interested in integrating AI into their systems.' },
+            { title: 'Major cardiac centers', text: 'Clinics with a high flow of angiographies and surgeries where speed and a consistent review matter.' },
+            { title: 'Regional hospitals', text: 'Facilities that need extra support when reviewing angiograms: a structured analysis and a draft conclusion are prepared automatically, the physician decides.' },
+            { title: 'Medical universities', text: 'Educational programs: reviewing real clinical cases on 3D models (a direction for development).' },
+            { title: 'Equipment manufacturers', text: 'Potential partners for integrating AI solutions into their systems.' },
           ],
         },
         {
@@ -372,21 +372,25 @@ export const dict = {
           points: [
             { title: 'Clinic subscription', text: 'Platform access with regular updates and support.' },
             { title: 'Licensing', text: 'Customized packages for the needs of specific institutions.' },
-            { title: 'Education', text: 'Simulator access for universities and continuing-education courses.' },
+            { title: 'Education', text: 'Access for universities and continuing-education courses to the platform for reviewing clinical cases.' },
             { title: 'Technology partnerships', text: 'Joint solutions with medical equipment manufacturers.' },
           ],
         },
         {
-          title  : 'Invest in technology that saves lives',
+          title  : 'Project status and roadmap',
           metrics: [
-            { value: '111M ₽', label: 'Revenue by 2027' },
-            { value: '56M ₽', label: 'Net profit' },
-            { value: 'IRR 921%', label: 'PI 3.49' },
+            { value: 'Prototype', label: 'Working; not a medical device, the physician decides' },
+            { value: '~18 s', label: '3D model on average on the project’s test stand' },
+            { value: 'Validation', label: 'with physicians of the S.G. Sukhanov Federal Center for Cardiovascular Surgery is ongoing' },
           ],
           points: [
-            { title: 'High profitability', text: 'Projected 111M ₽ in revenue by 2027 with 56M ₽ net profit.' },
-            { title: 'Social impact', text: 'Reducing mortality from CVD — the world’s #1 cause of death.' },
-            { title: 'Exit strategy', text: 'IPO plan in 3–4 years with a focus on global expansion.' },
+            { title: 'Ready today', text: 'DICOM upload, a 3D model of the coronary arteries, narrowing analysis with a draft conclusion, the voice protocol of the operation and an AI assistant for the physician.' },
+            { title: 'Social impact', text: 'Cardiovascular disease is the world’s #1 cause of death. We are building a tool that helps the physician review coronary angiography.' },
+            {
+              title: 'Planned',
+              text : 'Not implemented yet:',
+              items: ['risk assessment and outcome forecasting', 'blood-flow modeling', 'selection of stents, bypass grafts and intervention methods'],
+            },
           ],
         },
       ],

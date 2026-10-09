@@ -20,6 +20,7 @@ export default function ServicesSlider() {
   };
 
   const current = slides[active];
+  const metricsGridCols = current.metrics.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-3';
   const pointsGridCols = current.points.length === 4 ? 'sm:grid-cols-2' : 'sm:grid-cols-3';
 
   return (
@@ -119,7 +120,7 @@ export default function ServicesSlider() {
               </div>
 
               {/* Метрики */}
-              <div className='grid grid-cols-1 gap-px bg-slate-200 dark:bg-slate-800 sm:grid-cols-3'>
+              <div className={ `grid grid-cols-1 gap-px bg-slate-200 dark:bg-slate-800 ${metricsGridCols}` }>
                 {current.metrics.map((m, i) => (
                   <div key={ i } className='bg-white dark:bg-slate-900 px-8 py-6 sm:px-12'>
                     <div className='text-3xl font-semibold tracking-tight sm:text-4xl'>
@@ -141,6 +142,16 @@ export default function ServicesSlider() {
                       <div>
                         <h4 className='text-base font-semibold text-slate-900 dark:text-white'>{p.title}</h4>
                         <p className='mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{p.text}</p>
+                        {p.items && (
+                          <ul className='mt-2 flex flex-col gap-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>
+                            {p.items.map((item) => (
+                              <li key={ item } className='flex items-start gap-2'>
+                                <span className='mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500 dark:bg-blue-400' />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                     </div>
                   </div>
