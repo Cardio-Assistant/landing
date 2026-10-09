@@ -27,7 +27,19 @@ Contact form needs `TELEGRAM_*` / `SMTP_*` env to actually deliver; UI works wit
 
 ## Layout
 - `src/app/` — App Router pages (about, partners, team, …) + `api/contact`.
+- `src/pages-comp/about/features/i18n/dictionary.ts` — all ru/en copy of the landing (keep both locales in parity).
+- `public/screens/` — WebP screenshots of the product UI for the "Interface" section (test patient only).
 - Animation-heavy components; design tokens are the source of truth for the ecosystem look.
+
+## Copy rules (state as of 2026-10)
+- Describe only what the product does today: DICOM viewer, AI segmentation + 3D model of the coronary arteries,
+  per-branch narrowing analysis, draft conclusion confirmed by the physician, voice protocol, local AI assistant.
+- No risk prediction / risk scores, blood-flow modelling or stent/bypass selection. They may appear only in the
+  clearly labelled "Planned / В планах" list.
+- It is a working prototype of a decision-support system, **not a medical device**; the physician decides.
+  Do not state clinical accuracy figures (validation with the Sukhanov Federal Center physicians is ongoing).
+- Analysis values are in model units (no metric calibration): never write millimetres.
+- Speed/load numbers are measured on the project GPU stand — keep the "measured on the test stand" wording.
 
 ## Deployment
 - Dockerized (multi-stage, port 3000) behind nginx + certbot — see `DEPLOY.md`.
