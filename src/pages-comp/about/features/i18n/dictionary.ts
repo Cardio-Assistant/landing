@@ -163,11 +163,11 @@ export const dict = {
         {
           title  : 'Растущий рынок цифровой медицины',
           metrics: [
-            { value: '20–30%', label: 'Рост рынка ИИ в медицине в год' },
-            { value: '×9', label: 'Ожидаемый рост к 2032 году' },
+            { value: '~23%', label: 'Рост рынка ИИ в кардиологии в год' },
+            { value: '$4,3 млрд', label: 'Рынок ИИ в кардиологии к 2030 году' },
           ],
           points: [
-            { title: 'Динамика', text: 'Рынок ИИ в медицине растёт на 20–30% ежегодно — к 2032 году ожидается рост в 9 раз.' },
+            { title: 'Динамика', text: 'Рынок ИИ в кардиологии растёт примерно на 23% в год и к 2030 году может достичь $4,3 млрд (Global Industry Analysts).' },
             { title: 'Фокус на России', text: 'Первый рынок — Россия, где работают более 100 кардиоцентров.' },
             { title: 'Ниша', text: 'Решение для кардиохирургии: от ангиограммы до проекта заключения в одном рабочем месте врача.' },
           ],
@@ -424,11 +424,11 @@ export const dict = {
         {
           title  : 'A growing digital-medicine market',
           metrics: [
-            { value: '20–30%', label: 'AI in medicine yearly growth' },
-            { value: '×9', label: 'Expected growth by 2032' },
+            { value: '~23%', label: 'AI in cardiology yearly growth' },
+            { value: '$4.3B', label: 'AI in cardiology market by 2030' },
           ],
           points: [
-            { title: 'Momentum', text: 'AI in medicine grows 20–30% per year — 9× growth expected by 2032.' },
+            { title: 'Momentum', text: 'The AI-in-cardiology market grows about 23% a year and may reach $4.3B by 2030 (Global Industry Analysts).' },
             { title: 'Russia first', text: 'The first market is Russia, which has more than 100 cardiac centers.' },
             { title: 'Niche', text: 'A solution for cardiac surgery: from an angiogram to a draft conclusion in one workspace for the physician.' },
           ],
