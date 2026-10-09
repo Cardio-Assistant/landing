@@ -17,16 +17,16 @@ const demoDict = {
     titleStart : 'Скоро здесь появится',
     titleAccent: 'ранняя версия',
     titleEnd   : 'платформы',
-    description: 'Мы собираем демонстрационный кабинет для просмотра 3D-моделей, оценки рисков и подготовки пилотных показов для клиник и партнеров.',
+    description: 'Мы собираем демонстрационный кабинет для просмотра 3D-моделей коронарных артерий, анализа сужений и проекта заключения, а также для пилотных показов клиникам и партнёрам. Рабочий прототип: не является медицинским изделием.',
     request    : 'Оставить заявку',
     about      : 'Вернуться к описанию',
-    modelLabel : 'Patient model',
-    modelCase  : 'Demo case',
-    metrics    : ['Scan', 'Model', 'Risk'],
+    modelLabel : 'Модель пациента',
+    modelCase  : 'Демонстрационный случай',
+    metrics    : ['Снимок', 'Модель', 'Заключение'],
     steps      : [
       {
         title: '3D-реконструкция',
-        text : 'Готовим демонстрационный сценарий с сосудистой моделью и понятным врачебным интерфейсом.',
+        text : 'Готовим демонстрационный сценарий: 3D-модель коронарных артерий, анализ сужений и проект заключения в понятном врачебном интерфейсе.',
       },
       {
         title: 'Безопасный контур',
@@ -44,16 +44,16 @@ const demoDict = {
     titleStart : 'An',
     titleAccent: 'early version',
     titleEnd   : 'of the platform is coming soon',
-    description: 'We are preparing a demo workspace for viewing 3D models, assessing risks, and running pilot presentations for clinics and partners.',
+    description: 'We are preparing a demo workspace for viewing 3D models of the coronary arteries, narrowing analysis and a draft conclusion, and for pilot presentations to clinics and partners. A working prototype: not a medical device.',
     request    : 'Request access',
     about      : 'Back to overview',
     modelLabel : 'Patient model',
     modelCase  : 'Demo case',
-    metrics    : ['Scan', 'Model', 'Risk'],
+    metrics    : ['Scan', 'Model', 'Conclusion'],
     steps      : [
       {
         title: '3D reconstruction',
-        text : 'We are preparing a demo flow with a vessel model and a clear clinical interface.',
+        text : 'We are preparing a demo flow: a 3D model of the coronary arteries, narrowing analysis and a draft conclusion in a clear clinical interface.',
       },
       {
         title: 'Secure environment',
@@ -229,7 +229,7 @@ export default function DemoPlaceholderPage() {
                 <div className='mt-6 grid grid-cols-3 gap-3'>
                   {t.metrics.map((item, index) => (
                     <div key={ item } className='rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3'>
-                      <div className='text-lg font-semibold text-slate-900 dark:text-white'>{index === 2 ? 'AI' : `0${index + 1}`}</div>
+                      <div className='text-lg font-semibold text-slate-900 dark:text-white'>{`0${index + 1}`}</div>
                       <div className='mt-1 text-xs text-slate-500 dark:text-slate-400'>{item}</div>
                     </div>
                   ))}
