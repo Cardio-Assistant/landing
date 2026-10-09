@@ -44,16 +44,16 @@ export const dict = {
     problem: {
       badge   : 'Проблема',
       title   : 'Сердечно-сосудистые заболевания — главная причина смертности',
-      subtitle: 'Современная кардиохирургия по-прежнему опирается на опыт врача и 2D-снимки. Точного прогноза рисков для конкретного пациента нет.',
+      subtitle: 'Современная кардиохирургия по-прежнему опирается на опыт врача и плоские 2D-снимки: объёмную картину сосудов и разбор каждого сужения приходится выстраивать вручную.',
       stats   : [
-        { value: '20 млн', label: 'Смертей в мире ежегодно', note: '~30% всех смертей — сердечно-сосудистые заболевания' },
-        { value: '800 тыс', label: 'Смертей в России в год', note: '~50% всех смертей в стране — первая причина смертности' },
-        { value: '0', label: 'Готовых решений', note: 'Нет инструментов персонализированного прогноза для кардиохирургии' },
+        { value: '~20 млн', label: 'Смертей в мире ежегодно', note: '~32% всех смертей в мире — сердечно-сосудистые заболевания (ВОЗ, 2022)' },
+        { value: '~800 тыс', label: 'Смертей в России в год', note: '~46% всех смертей в стране — первая причина смертности (Росстат)' },
+        { value: '2D', label: 'Плоские проекции', note: 'Ангиограмма — плоский снимок: объёмную форму ветвей врач вынужден представлять мысленно' },
       ],
       items: [
         { title: 'Зависимость от опыта врача', text: 'Качество диагностики и лечения напрямую зависит от квалификации специалиста.' },
-        { title: 'Невозможность точного прогнозирования', text: 'Нет инструментов моделирования кровотока и анализа рисков с учётом особенностей пациента.' },
-        { title: 'Длительная подготовка к операции', text: 'Отсутствие интеллектуальных систем для кардиохирургов усложняет принятие решений.' },
+        { title: 'Оценка по плоским снимкам', text: 'Степень и протяжённость сужения оценивают по 2D-проекциям, а измерения и описание каждой ветви требуют ручной работы.' },
+        { title: 'Много ручной работы', text: 'Разбор ангиограмм, измерения и оформление заключения занимают время врача перед принятием решения о тактике лечения.' },
       ],
     },
     solution: {
@@ -238,16 +238,16 @@ export const dict = {
     problem: {
       badge   : 'Problem',
       title   : 'Cardiovascular disease is the leading cause of death',
-      subtitle: 'Modern cardiac surgery still relies on the doctor’s experience and 2D scans. There is no accurate risk forecast for individual patients.',
+      subtitle: 'Modern cardiac surgery still relies on the doctor’s experience and flat 2D images: the 3D picture of the vessels and the assessment of every narrowing have to be built by hand.',
       stats   : [
-        { value: '20M', label: 'Deaths worldwide per year', note: '~30% of all deaths globally are from cardiovascular disease' },
-        { value: '800K', label: 'Deaths in Russia per year', note: '~50% of all deaths — the leading cause of mortality' },
-        { value: '0', label: 'Off-the-shelf solutions', note: 'No tools for personalized cardiac-surgery prognosis exist today' },
+        { value: '~20M', label: 'Deaths worldwide per year', note: '~32% of all deaths worldwide are from cardiovascular disease (WHO, 2022)' },
+        { value: '~800K', label: 'Deaths in Russia per year', note: '~46% of all deaths in the country — the leading cause of mortality (Rosstat)' },
+        { value: '2D', label: 'Flat projections', note: 'An angiogram is a flat image: the doctor has to picture the 3D shape of the branches mentally' },
       ],
       items: [
         { title: 'Reliance on doctor experience', text: 'Diagnosis and treatment quality depend on the specialist’s qualification.' },
-        { title: 'No accurate forecasting', text: 'No tools for blood-flow modeling and complication risk analysis personalized to the patient.' },
-        { title: 'Long pre-op preparation', text: 'The lack of intelligent systems for cardiac surgeons complicates decision-making.' },
+        { title: 'Assessment from flat images', text: 'The degree and extent of a narrowing are judged from 2D projections, and measuring and describing every branch takes manual work.' },
+        { title: 'Lots of manual work', text: 'Reviewing angiograms, measuring and writing up the conclusion take the doctor’s time before a treatment decision is made.' },
       ],
     },
     solution: {
