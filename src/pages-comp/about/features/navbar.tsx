@@ -12,6 +12,7 @@ type NavBarProps = {
   targetRefAbout: RefObject<HTMLDivElement>;
   targetRefProblem: RefObject<HTMLDivElement>;
   targetRefSolution: RefObject<HTMLDivElement>;
+  targetRefInterface: RefObject<HTMLDivElement>;
   targetRefInvestors: RefObject<HTMLDivElement>;
   targetRefTeam: RefObject<HTMLDivElement>;
   targetRefContact: RefObject<HTMLDivElement>;
@@ -31,6 +32,7 @@ export function NavBar({
   targetRefAbout,
   targetRefProblem,
   targetRefSolution,
+  targetRefInterface,
   targetRefInvestors,
   targetRefTeam,
   targetRefContact,
@@ -54,6 +56,7 @@ export function NavBar({
     { label: t.nav.about, ref: targetRefAbout },
     { label: t.nav.problem, ref: targetRefProblem },
     { label: t.nav.solution, ref: targetRefSolution },
+    { label: t.nav.interface, ref: targetRefInterface },
     { label: t.nav.investors, ref: targetRefInvestors },
     { label: t.nav.team, ref: targetRefTeam },
     { label: t.nav.contact, ref: targetRefContact },

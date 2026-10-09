@@ -23,6 +23,7 @@ import {
 
 import { BenchmarksStrip } from './features/benchmarks';
 import { BlockOne } from './features/block1';
+import { InterfaceSection } from './features/interface-section';
 import ServicesSlider from './features/servicesSlider';
 import { CardTeam } from './features/card/ui/card-team';
 import { NavBar } from './features/navbar';
@@ -155,6 +156,7 @@ function PageInner() {
   const refAbout = useRef<HTMLDivElement>(null);
   const refProblem = useRef<HTMLDivElement>(null);
   const refSolution = useRef<HTMLDivElement>(null);
+  const refInterface = useRef<HTMLDivElement>(null);
   const refInvestors = useRef<HTMLDivElement>(null);
   const refTeam = useRef<HTMLDivElement>(null);
   const refContact = useRef<HTMLDivElement>(null);
@@ -162,6 +164,7 @@ function PageInner() {
 
   const inProblem = useInView(refProblem, { once: true, margin: '-20%' });
   const inSolution = useInView(refSolution, { once: true, margin: '-20%' });
+  const inInterface = useInView(refInterface, { once: true, margin: '-15%' });
   const inTeam = useInView(refTeam, { once: true, margin: '-20%' });
   const inPartners = useInView(refPartners, { once: true, margin: '-20%' });
   const inContact = useInView(refContact, { once: true, margin: '-20%' });
@@ -175,6 +178,7 @@ function PageInner() {
         targetRefAbout={ refAbout }
         targetRefProblem={ refProblem }
         targetRefSolution={ refSolution }
+        targetRefInterface={ refInterface }
         targetRefInvestors={ refInvestors }
         targetRefTeam={ refTeam }
         targetRefContact={ refContact }
@@ -285,6 +289,9 @@ function PageInner() {
           <BenchmarksStrip />
         </div>
       </section>
+
+      {/* Интерфейс / Скриншоты новой версии */}
+      <InterfaceSection targetRef={ refInterface } isInView={ inInterface } />
 
       {/* Инвесторам / Слайдер */}
       <section ref={ refInvestors } className='bg-white dark:bg-slate-950'>
