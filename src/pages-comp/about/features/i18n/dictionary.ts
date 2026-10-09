@@ -381,7 +381,7 @@ export const dict = {
       subtitle    : 'Screens of the current version — from a 3D model with highlighted narrowings to the patient summary report.',
       tablistLabel: 'Interface screens',
       openFull    : 'Open full size',
-      note        : 'Screenshots of the test environment with a test patient; the interface language is Russian. Sizes are shown in model units, not in millimetres. A decision-support prototype: not a medical device, the physician makes the final decision.',
+      note        : 'Screenshots of the test environment with a test patient; the interface language is Russian. Sizes are shown in model units, not in millimeters. A decision-support prototype: not a medical device, the physician makes the final decision.',
       screens     : [
         {
           tab  : 'Narrowing highlight',
