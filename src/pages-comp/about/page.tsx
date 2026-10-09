@@ -21,6 +21,7 @@ import {
   PiUserList,
 } from 'react-icons/pi';
 
+import { BenchmarksStrip } from './features/benchmarks';
 import { BlockOne } from './features/block1';
 import ServicesSlider from './features/servicesSlider';
 import { CardTeam } from './features/card/ui/card-team';
@@ -280,6 +281,8 @@ function PageInner() {
               </motion.div>
             ))}
           </div>
+
+          <BenchmarksStrip />
         </div>
       </section>
 

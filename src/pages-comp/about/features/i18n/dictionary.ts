@@ -102,6 +102,16 @@ export const dict = {
         },
       ],
     },
+    benchmarks: {
+      title   : 'Измерено на тестовом стенде проекта',
+      subtitle: 'Скорость и нагрузка на GPU-стенде проекта. Это не оценка клинической точности: валидация с врачами ФЦССХ им. С.Г. Суханова продолжается.',
+      items   : [
+        { value: '~18 с', label: 'Построение 3D-модели', note: 'в среднем, максимум ~32 с; требование — не более 300 с' },
+        { value: '~48', label: 'Кадров в минуту', note: 'скорость обработки кадров ангиограммы' },
+        { value: '≤ 0,65 с', label: 'Страницы веб-интерфейса', note: 'открываются не дольше чем за 0,65 с' },
+        { value: '50', label: 'Пользователей одновременно', note: '5 минут под нагрузкой, 0 ошибок' },
+      ],
+    },
     investors: {
       badge   : 'Для инвесторов',
       title   : 'Бизнес-модель и рынок',
@@ -307,6 +317,16 @@ export const dict = {
             'Deployment in a Russian cloud or on-premise in the clinic',
           ],
         },
+      ],
+    },
+    benchmarks: {
+      title   : 'Measured on the project’s test stand',
+      subtitle: 'Speed and load results from the project’s GPU stand. This is not a clinical accuracy assessment: validation with physicians of the S.G. Sukhanov Federal Center for Cardiovascular Surgery is ongoing.',
+      items   : [
+        { value: '~18 s', label: '3D model build time', note: 'on average, max ~32 s; the requirement is up to 300 s' },
+        { value: '~48', label: 'Frames per minute', note: 'angiogram frame processing speed' },
+        { value: '≤ 0.65 s', label: 'Web UI pages', note: 'open in no more than 0.65 s' },
+        { value: '50', label: 'Concurrent users', note: '5 minutes under load, 0 errors' },
       ],
     },
     investors: {
