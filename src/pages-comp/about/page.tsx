@@ -28,8 +28,9 @@ import ServicesSlider from './features/servicesSlider';
 import { CardTeam } from './features/card/ui/card-team';
 import { NavBar } from './features/navbar';
 import { ContactSection } from './features/contact-section';
+import { LegalFooter } from './features/legal-footer';
 import { ProblemBlock } from './features/problem-section';
-import { I18nProvider, useI18n } from './features/i18n/context';
+import { useI18n } from './features/i18n/context';
 
 export const prefex = '';
 
@@ -351,6 +352,7 @@ function PageInner() {
           </div>
           <p className='text-xs text-slate-400 dark:text-slate-500'>{t.footer.tagline}</p>
         </div>
+        <LegalFooter />
         <div className='mx-auto flex max-w-6xl flex-col items-center gap-4 border-t border-slate-100 dark:border-slate-900 px-6 py-6 sm:flex-row'>
           <SupportLogos size='sm' />
           <p className='text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400 sm:text-left'>
@@ -364,10 +366,8 @@ function PageInner() {
   );
 }
 
+// The I18nProvider lives in the root layout (the cookie notice and the legal footer need the
+// language on every page), so the page itself does not wrap it.
 export function PageAbout() {
-  return (
-    <I18nProvider>
-      <PageInner />
-    </I18nProvider>
-  );
+  return <PageInner />;
 }

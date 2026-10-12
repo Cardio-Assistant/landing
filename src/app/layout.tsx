@@ -4,8 +4,10 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
 import './globals.css';
+import { CookieNotice } from '@/components/cookie-notice';
 import ReactQueryProveder from '@/components/react-query-provider';
 import { ThemeProvider } from '@/components/theme-provider';
+import { I18nProvider } from '@/pages-comp/about/features/i18n/context';
 
 const geistSans = localFont({
   src     : './fonts/GeistVF.woff',
@@ -57,7 +59,10 @@ export default function RootLayout({
       >
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
           <ReactQueryProveder>
-            {children}
+            <I18nProvider>
+              {children}
+              <CookieNotice />
+            </I18nProvider>
           </ReactQueryProveder>
         </ThemeProvider>
       </body>

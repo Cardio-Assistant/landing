@@ -266,6 +266,19 @@ export const dict = {
       brand   : '© {year} Cardio Assistant',
       brandOwn: 'Бренд принадлежит ООО «Нексли»',
       tagline : 'ИИ для кардиохирургии · Пермь, Россия',
+      legal   : {
+        label  : 'Правовая информация',
+        inn    : 'ИНН',
+        ogrn   : 'ОГРН',
+        cookies: 'Cookie',
+        note   : '',
+      },
+    },
+    cookies: {
+      label: 'Уведомление о cookie',
+      text : 'Сайт использует технические cookie и локальное хранилище браузера (тема оформления, язык). Аналитических и рекламных cookie нет.',
+      more : 'Подробнее',
+      ok   : 'Понятно',
     },
   },
   en: {
@@ -533,6 +546,19 @@ export const dict = {
       brand   : '© {year} Cardio Assistant',
       brandOwn: 'Brand owned by Nexli LLC',
       tagline : 'AI for cardiac surgery · Perm, Russia',
+      legal   : {
+        label  : 'Legal information',
+        inn    : 'TIN',
+        ogrn   : 'PSRN',
+        cookies: 'Cookies',
+        note   : 'The legal documents are published in Russian; the Russian text is authoritative.',
+      },
+    },
+    cookies: {
+      label: 'Cookie notice',
+      text : 'This site uses only technical cookies and browser local storage (theme, language). There are no analytics or advertising cookies.',
+      more : 'Learn more',
+      ok   : 'Got it',
     },
   },
 };
