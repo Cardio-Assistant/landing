@@ -10,7 +10,6 @@ import {
   PiUserList,
 } from 'react-icons/pi';
 
-import { BenchmarksStrip } from './features/benchmarks';
 import { BlockOne } from './features/block1';
 import { InterfaceSection } from './features/interface-section';
 import ServicesSlider from './features/servicesSlider';
@@ -263,8 +262,6 @@ function PageInner() {
               );
             })}
           </div>
-
-          <BenchmarksStrip />
         </div>
       </section>
 
