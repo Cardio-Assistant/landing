@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { createTransport } from 'nodemailer';
 import { ProxyAgent } from 'undici';
 
+import { LEGAL_DOCS } from '@/legal/documents';
+
 import type { NextRequest } from 'next/server';
 import type { Dispatcher } from 'undici';
 
@@ -13,6 +15,8 @@ const RATE_MAX = 5;
 const TELEGRAM_API = 'https://api.telegram.org';
 const TELEGRAM_TIMEOUT_MS = Number(process.env.TELEGRAM_TIMEOUT_MS || 12_000);
 const SMTP_TIMEOUT_MS = Number(process.env.SMTP_TIMEOUT_MS || 15_000);
+// An edition of a legal document is the date it came into force, e.g. 2026-10-13.
+const EDITION = /^\d{4}-\d{2}-\d{2}$/;
 const rateMap = new Map<string, { count: number; ts: number }>();
 const proxyAgents = new Map<string, Dispatcher>();
 
@@ -21,6 +25,8 @@ interface Body {
   email?: string;
   message?: string;
   website?: string;
+  consent?: boolean;
+  consentVersion?: string;
 }
 
 interface Lead {
@@ -29,6 +35,8 @@ interface Lead {
   message: string;
   ip: string;
   createdAt: string;
+  // Proof of the consent (art. 9 of Federal Law 152-FZ): the edition of the consent the person saw.
+  consentVersion: string;
 }
 
 interface SendResult {
@@ -68,6 +76,7 @@ function buildTelegramText(lead: Lead) {
     '',
     `<b>IP:</b> ${escapeHtml(lead.ip)}`,
     `<b>Время:</b> ${lead.createdAt}`,
+    `<b>Согласие на обработку ПД:</b> дано, редакция ${escapeHtml(lead.consentVersion)}`,
   ];
 
   return lines.join('\n').slice(0, 4000);
@@ -83,6 +92,7 @@ function buildEmailText(lead: Lead) {
     '',
     `IP: ${lead.ip}`,
     `Время: ${lead.createdAt}`,
+    `Согласие на обработку ПД: дано, редакция ${lead.consentVersion}`,
   ].join('\n');
 }
 
@@ -96,6 +106,7 @@ function buildEmailHtml(lead: Lead) {
         <tr><td style="color:#64748b;vertical-align:top">Сообщение</td><td>${escapeHtml(lead.message || '—').replace(/\n/g, '<br/>')}</td></tr>
         <tr><td style="color:#64748b">IP</td><td>${escapeHtml(lead.ip)}</td></tr>
         <tr><td style="color:#64748b">Время</td><td>${lead.createdAt}</td></tr>
+        <tr><td style="color:#64748b">Согласие на обработку ПД</td><td>дано, редакция ${escapeHtml(lead.consentVersion)}</td></tr>
       </table>
     </div>
   `;
@@ -218,12 +229,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
+  // The consent to the processing of personal data is given with its own checkbox, and the
+  // form cannot be sent without it. The server does not rely on the browser: a request
+  // without the consent is refused before anything is read, stored or forwarded.
+  if (body.consent !== true) {
+    return NextResponse.json({ error: 'Consent to personal data processing is required' }, { status: 400 });
+  }
+
   const lead: Lead = {
-    name     : (body.name || '').trim().slice(0, 200),
-    contact  : (body.email || '').trim().slice(0, 200),
-    message  : (body.message || '').trim().slice(0, 3000),
+    name          : (body.name || '').trim().slice(0, 200),
+    contact       : (body.email || '').trim().slice(0, 200),
+    message       : (body.message || '').trim().slice(0, 3000),
     ip,
-    createdAt: new Date().toISOString(),
+    createdAt     : new Date().toISOString(),
+    consentVersion: EDITION.test(body.consentVersion || '') ? String(body.consentVersion) : LEGAL_DOCS.consentContacts.version,
   };
 
   if (!lead.name || !lead.contact) {

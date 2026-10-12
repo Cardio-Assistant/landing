@@ -1,5 +1,8 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
+import { LEGAL_DOCS, legalPath } from '@/legal/documents';
 
 import { useI18n } from './i18n/context';
 
@@ -8,6 +11,7 @@ interface FeedbackFormInputs {
   email: string;
   message: string;
   website: string;
+  consent: boolean;
 }
 
 const FeedbackForm: React.FC = () => {
@@ -15,23 +19,31 @@ const FeedbackForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<FeedbackFormInputs>();
+  } = useForm<FeedbackFormInputs>({ defaultValues: { consent: false } });
   const [sent, setSent] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
+  // The consent is its own document and its own checkbox (art. 9 of Federal Law 152-FZ):
+  // unchecked by default, and nothing is sent until the person ticks it.
+  const consent = watch('consent');
+
   const onSubmit = async (data: FeedbackFormInputs) => {
+    if (!data.consent) return;
     setErr(null);
     try {
       const res = await fetch('/api/contact', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body   : JSON.stringify({
-          name   : data.name,
-          email  : data.email,
-          message: data.message,
-          website: data.website,
+          name          : data.name,
+          email         : data.email,
+          message       : data.message,
+          website       : data.website,
+          consent       : true,
+          consentVersion: LEGAL_DOCS.consentContacts.version,
         }),
       });
       if (!res.ok) {
@@ -115,12 +127,46 @@ const FeedbackForm: React.FC = () => {
           </div>
         )}
 
-        <div className='flex items-center justify-between gap-4 pt-2'>
-          <p className='text-xs text-slate-500 dark:text-slate-400'>{t.contact.privacy}</p>
+        <div className='pt-2'>
+          <div className='flex items-start gap-3'>
+            <input
+              id='consent'
+              type='checkbox'
+              className='mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer rounded border-slate-300 accent-blue-600 dark:border-slate-600'
+              aria-invalid={ errors.consent ? 'true' : 'false' }
+              { ...register('consent', { required: t.contact.consent.error }) }
+            />
+            <label htmlFor='consent' className='cursor-pointer text-sm leading-snug text-slate-700 dark:text-slate-300'>
+              {t.contact.consent.pre}{' '}
+              <Link
+                href={ legalPath('consentContacts') }
+                target='_blank'
+                rel='noopener noreferrer'
+                className='font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-200'
+              >
+                {t.contact.consent.link}
+              </Link>
+            </label>
+          </div>
+          {errors.consent && <p className='mt-1 text-xs text-rose-600'>{errors.consent.message}</p>}
+          <p className='mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400'>
+            {t.contact.consent.policyPre}{' '}
+            <Link
+              href={ legalPath('privacy') }
+              target='_blank'
+              rel='noopener noreferrer'
+              className='underline underline-offset-2 hover:text-slate-900 dark:hover:text-white'
+            >
+              {t.contact.consent.policyLink}
+            </Link>.
+          </p>
+        </div>
+
+        <div className='flex justify-end'>
           <button
             type='submit'
-            disabled={ isSubmitting }
-            className='inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-full bg-slate-900 dark:bg-slate-100 px-5 py-2.5 text-sm font-medium text-white dark:text-slate-900 transition-all hover:bg-slate-700 dark:hover:bg-white disabled:opacity-60'
+            disabled={ isSubmitting || !consent }
+            className='inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-full bg-slate-900 dark:bg-slate-100 px-5 py-2.5 text-sm font-medium text-white dark:text-slate-900 transition-all hover:bg-slate-700 dark:hover:bg-white disabled:cursor-not-allowed disabled:opacity-60'
           >
             { sent
               ? t.contact.sent
