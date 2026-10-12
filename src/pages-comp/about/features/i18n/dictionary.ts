@@ -301,7 +301,7 @@ export const dict = {
       subtitle    : 'Screens of the current version.',
       tablistLabel: 'Interface screens',
       openFull    : 'Open full size',
-      note        : 'Test-environment screenshots, test data.',
+      note        : 'Test-environment screenshots, test data; the interface is in Russian.',
       screens     : [
         {
           tab : 'Narrowing highlight',
