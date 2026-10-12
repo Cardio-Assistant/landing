@@ -4,20 +4,9 @@ import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import {
   PiArrowUp,
-  PiBookOpenText,
   PiChartLineUp,
-  PiCloud,
   PiCubeFocus,
-  PiFileText,
-  PiFilmStrip,
-  PiHardDrives,
-  PiHeadCircuitBold,
-  PiIdentificationCard,
-  PiMicrophone,
-  PiRobot,
   PiShieldCheck,
-  PiTarget,
-  PiTreeStructure,
   PiUserList,
 } from 'react-icons/pi';
 
@@ -106,13 +95,8 @@ function SupportBlock() {
   );
 }
 
-// Icons per solution card / item (same order as `solution.cards` in the dictionary).
-const solutionIcons = [
-  [PiFilmStrip, PiHeadCircuitBold, PiTreeStructure, PiCubeFocus],
-  [PiChartLineUp, PiTarget, PiBookOpenText, PiFileText],
-  [PiUserList, PiMicrophone, PiRobot],
-  [PiIdentificationCard, PiShieldCheck, PiHardDrives, PiCloud],
-];
+// One icon per solution card (same order as `solution.cards` in the dictionary).
+const solutionIcons = [PiCubeFocus, PiChartLineUp, PiUserList, PiShieldCheck];
 
 const teamPeople = [
   { name: 'Барулина Марина', img: 'team/ma.png', dept: 'mentors' as const },
@@ -257,34 +241,27 @@ function PageInner() {
           </motion.div>
 
           <div className='mt-16 grid grid-cols-1 gap-6 md:grid-cols-2'>
-            {t.solution.cards.map((card, i) => (
-              <motion.div
-                key={ card.title }
-                initial={ { opacity: 0, y: 16 } }
-                animate={ inSolution ? { opacity: 1, y: 0 } : {} }
-                transition={ { duration: 0.6, delay: 0.15 + i * 0.1 } }
-                className='group relative flex flex-col rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 transition-all hover:border-blue-200 dark:hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-100/50'
-              >
-                <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100' />
+            {t.solution.cards.map((card, i) => {
+              const Icon = solutionIcons[i];
 
-                <h3 className='text-xl font-semibold tracking-tight text-slate-900 dark:text-white'>{card.title}</h3>
-                <p className='mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{card.description}</p>
+              return (
+                <motion.div
+                  key={ card.title }
+                  initial={ { opacity: 0, y: 16 } }
+                  animate={ inSolution ? { opacity: 1, y: 0 } : {} }
+                  transition={ { duration: 0.6, delay: 0.15 + i * 0.1 } }
+                  className='group relative flex flex-col rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 transition-all hover:border-blue-200 dark:hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-100/50'
+                >
+                  <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100' />
 
-                <ul className='mt-6 flex flex-col gap-3'>
-                  {card.items.map((text, j) => {
-                    const Icon = solutionIcons[i][j];
-                    return (
-                      <li key={ j } className='flex items-start gap-3'>
-                        <div className='mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-300 ring-1 ring-blue-100 dark:ring-blue-500/30'>
-                          <Icon size={ 16 } />
-                        </div>
-                        <span className='text-sm leading-relaxed text-slate-700 dark:text-slate-300'>{text}</span>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </motion.div>
-            ))}
+                  <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-300 ring-1 ring-blue-100 dark:ring-blue-500/30'>
+                    <Icon size={ 20 } />
+                  </div>
+                  <h3 className='mt-5 text-xl font-semibold tracking-tight text-slate-900 dark:text-white'>{card.title}</h3>
+                  <p className='mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{card.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
 
           <BenchmarksStrip />

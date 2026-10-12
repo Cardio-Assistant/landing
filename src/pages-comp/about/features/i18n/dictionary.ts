@@ -47,46 +47,23 @@ export const dict = {
     solution: {
       badge   : 'Наше решение',
       title   : 'ИИ-платформа для кардиохирургии',
-      subtitle: 'От DICOM-исследования до проекта заключения: 3D-модель коронарных артерий, анализ сужений и рекомендации с источниками. Врач проверяет и подписывает.',
+      subtitle: 'От DICOM-исследования до проекта заключения.',
       cards   : [
         {
           title      : 'От ангиограммы к 3D-модели',
-          description: 'Загрузите DICOM-исследование коронарографии — платформа выберет кадры и построит модель.',
-          items      : [
-            'Загрузка DICOM и просмотр с измерениями',
-            'ИИ-сегментация коронарных артерий на ангиограммах (семейство U-Net) и подбор кадров',
-            'Центрлайны и радиусы сосудов',
-            '3D-модель по двум проекциям (эпиполярная геометрия)',
-          ],
+          description: 'Загрузите DICOM — платформа выберет кадры и построит 3D-модель коронарных артерий.',
         },
         {
           title      : 'Анализ и заключение',
-          description: 'Расчёт по каждой ветви и проект заключения, который врач проверяет и подписывает.',
-          items      : [
-            'Профиль сужения по ветви: стеноз по диаметру в %, градация, локализация, протяжённость и флаг надёжности',
-            'Подсветка сужений на 3D-модели',
-            'Рекомендации по правилам, привязанным к клиническим рекомендациям (ESC/EACTS 2018, ESC 2024, Минздрав РФ «Стабильная ИБС» 2024), — с источниками',
-            'Проект заключения от локальной языковой модели строго по рассчитанным фактам; числа проверяет сервер',
-          ],
+          description: 'Анализ сужений по каждой ветви и проект заключения с опорой на клинические рекомендации.',
         },
         {
           title      : 'Рабочее место врача',
-          description: 'Всё по пациенту — от исследования до печатного отчёта.',
-          items      : [
-            'Карточка пациента с хронологической лентой исследований, 3D-моделей и приёмов; печатный сводный отчёт',
-            'Голосовой протокол операции: запись, распознавание речи (Whisper), резюме и черновик протокола со структурированными данными — врач утверждает',
-            'ИИ-ассистент врача на локальной модели (Qwen3-14B): отвечает по данным пациентов, голосовых сессий, 3D-моделей и заключений в рамках прав врача; рекомендации берёт только из заключения модуля анализа',
-          ],
+          description: 'Карточка пациента, голосовой протокол операции и ИИ-ассистент на локальной модели.',
         },
         {
           title      : 'Безопасность и развёртывание',
-          description: 'Языковая модель и распознавание речи работают на собственной инфраструктуре.',
-          items      : [
-            'Роли и права доступа, журнал аудита',
-            'Деидентификация DICOM при загрузке',
-            'Ежедневные резервные копии с проверкой восстановления, HTTPS',
-            'Развёртывание в российском облаке или в контуре клиники (on-premise)',
-          ],
+          description: 'Роли и права доступа, журнал аудита, деидентификация DICOM; облако в России или контур клиники.',
         },
       ],
     },
@@ -313,46 +290,23 @@ export const dict = {
     solution: {
       badge   : 'Our solution',
       title   : 'AI platform for cardiac surgery',
-      subtitle: 'From a DICOM study to a draft conclusion: a 3D model of the coronary arteries, narrowing analysis and recommendations with sources. The physician reviews and signs.',
+      subtitle: 'From a DICOM study to a draft conclusion.',
       cards   : [
         {
           title      : 'From angiogram to 3D model',
-          description: 'Upload a coronary angiography DICOM study — the platform selects the frames and builds the model.',
-          items      : [
-            'DICOM upload and a viewer with measurements',
-            'AI segmentation of coronary arteries on angiograms (U-Net family) and frame selection',
-            'Vessel centerlines and radii',
-            '3D model from two projections (epipolar geometry)',
-          ],
+          description: 'Upload a DICOM study — the platform selects the frames and builds a 3D model of the coronary arteries.',
         },
         {
           title      : 'Analysis and conclusion',
-          description: 'Per-branch calculation and a draft conclusion that the physician reviews and signs.',
-          items      : [
-            'Narrowing profile per branch: % diameter stenosis, grade, location, extent and a reliability flag',
-            'Narrowings highlighted on the 3D model',
-            'Rule-based recommendations tied to clinical guidelines (ESC/EACTS 2018, ESC 2024, Russian MoH “Stable CAD” 2024), shown with sources',
-            'Draft conclusion written by a local language model strictly from the computed facts; the server verifies the numbers',
-          ],
+          description: 'Per-branch narrowing analysis and a draft conclusion based on clinical guidelines.',
         },
         {
           title      : 'The physician’s workspace',
-          description: 'Everything about the patient — from the study to a printable report.',
-          items      : [
-            'Patient card with a chronological feed of studies, 3D models and visits; printable summary report',
-            'Voice protocol of the operation: recording, speech recognition (Whisper), a summary and a draft report with structured data — approved by the physician',
-            'AI assistant on a local model (Qwen3-14B): answers from patient, voice-session, 3D-model and conclusion data within the physician’s access rights; recommendations only from the analysis module’s conclusion',
-          ],
+          description: 'Patient card, a voice protocol of the operation and an AI assistant on a local model.',
         },
         {
           title      : 'Security and deployment',
-          description: 'The language model and speech recognition run on our own infrastructure.',
-          items      : [
-            'Roles and access rights, audit log',
-            'DICOM de-identification on upload',
-            'Daily backups with restore checks, HTTPS',
-            'Deployment in a Russian cloud or on-premise in the clinic',
-          ],
+          description: 'Roles and access rights, audit log, DICOM de-identification; a Russian cloud or on-premise in the clinic.',
         },
       ],
     },
