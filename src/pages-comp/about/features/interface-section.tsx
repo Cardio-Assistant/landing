@@ -137,18 +137,13 @@ export function InterfaceSection({
                 />
               </a>
 
-              <figcaption className='mt-6'>
-                <h3 className='text-lg font-semibold tracking-tight text-slate-900 dark:text-white sm:text-xl'>
-                  {screen.title}
-                </h3>
-                <p className='mt-2 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base'>
-                  {screen.text}
-                </p>
+              <figcaption className='mt-5 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6'>
+                <p className='text-base font-medium text-slate-800 dark:text-slate-200'>{screen.text}</p>
                 <a
                   href={ shot.src }
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-blue-700 hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-200'
+                  className='inline-flex flex-shrink-0 items-center gap-1.5 text-sm font-medium text-blue-700 hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-200'
                 >
                   <PiArrowSquareOut size={ 16 } />
                   {sc.openFull}
@@ -158,7 +153,7 @@ export function InterfaceSection({
           </div>
         </div>
 
-        <p className='mx-auto mt-12 max-w-3xl text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400'>
+        <p className='mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400'>
           {sc.note}
         </p>
       </div>
