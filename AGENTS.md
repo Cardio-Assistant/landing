@@ -26,7 +26,7 @@ pnpm dev            # http://localhost:3000  (redirects to /about)
 Contact form needs `TELEGRAM_*` / `SMTP_*` env to actually deliver; UI works without them.
 
 ## Layout
-- `src/app/` — App Router pages (about, partners, team, …) + `api/contact`.
+- `src/app/` — App Router pages (about, legal, …) + `api/contact`.
 - `src/pages-comp/about/features/i18n/dictionary.ts` — all ru/en copy of the landing (keep both locales in parity).
 - `public/screens/` — WebP screenshots of the product UI for the "Interface" section (test patient only).
 - Animation-heavy components; design tokens are the source of truth for the ecosystem look.
@@ -39,7 +39,12 @@ Contact form needs `TELEGRAM_*` / `SMTP_*` env to actually deliver; UI works wit
 - It is a working prototype of a decision-support system, **not a medical device**; the physician decides.
   Do not state clinical accuracy figures (validation with the Sukhanov Federal Center physicians is ongoing).
 - Analysis values are in model units (no metric calibration): never write millimetres.
-- Speed/load numbers are measured on the project GPU stand — keep the "measured on the test stand" wording.
+- The only measured figure on the page is the 3D build time (~18 с on average, on the project test stand): keep the
+  "test stand" qualifier next to it. Do not bring back the benchmark strip (maxima, requirements, load tests).
+- **Keep the copy short** (owner's request, 2026-10): hero = one value sentence + three short bullets + the one-line
+  "prototype, not a medical device"; problem = a claim of 1–2 sentences + the one WHO figure; solution cards = a title and
+  one line; interface = one-line captions; investors = three short points (market, model, status). No methodology,
+  no lists of guideline or model names, no tables. New copy must not claim anything the page did not already say.
 
 ## Legal documents (152-FZ) — `src/legal/`
 - Pages: `/legal` (hub + short EN note), `/legal/privacy` (policy, cookies in `#cookies`), `/legal/consent-contacts`
