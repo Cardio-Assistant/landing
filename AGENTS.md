@@ -41,6 +41,26 @@ Contact form needs `TELEGRAM_*` / `SMTP_*` env to actually deliver; UI works wit
 - Analysis values are in model units (no metric calibration): never write millimetres.
 - Speed/load numbers are measured on the project GPU stand — keep the "measured on the test stand" wording.
 
+## Legal documents (152-FZ) — `src/legal/`
+- Pages: `/legal` (hub + short EN note), `/legal/privacy` (policy, cookies in `#cookies`), `/legal/consent-contacts`
+  (consent for the contact form), `/legal/consent-registration` (consent for registering in the web app), `/legal/terms`.
+  Russian only; the EN note says the Russian text is authoritative. The texts are TSX in `src/legal/content/`.
+- `src/legal/operator.ts` — the operator's details (ООО «Нексли»: ИНН/КПП/ОГРН, address, e-mail, phone, responsible
+  person) and the retention periods the pages print. `src/legal/documents.ts` — the registry: slug, code, **edition**
+  (the date the text came into force, now `2026-10-13`). Footer, form and pages all read these; change them there only.
+- **The consent is a separate document** (art. 9 of the Law since 1 Sep 2025): never fold it into the policy or the terms.
+  The contact form has its own unchecked, required checkbox, the button is disabled until ticked, and
+  `api/contact` refuses a request without `consent: true` and writes the consent edition into the lead message.
+- **When a text changes**, change its edition in `documents.ts` AND in `web/config/legal.ts` AND in `api/internal/consent`
+  (registration sends the edition; the api refuses an old one), and deploy the three together.
+- **The policy states facts about the deployment** — keep them true or change the text: no analytics/ads/third-party
+  scripts (do not add any without an opt-in and a new edition); fonts are self-hosted; the web app, its database and the
+  AI services run in Russia; contact-form requests go to **Telegram** (a foreign service: cross-border transfer, named in the
+  policy, the consent and the footer) with e-mail as the fallback; log retention (`RETENTION`).
+  Switching Telegram off (`TELEGRAM_*` unset) means the policy section 8 and the consent section 5 must be edited.
+- The cookie notice (`components/cookie-notice.tsx`) stores `ca-cookie-notice` in localStorage — the same key as the web
+  app (same origin). `I18nProvider` sits in the root layout because the notice and the footer need the language everywhere.
+
 ## Deployment
 - Dockerized (multi-stage, port 3000) behind nginx + certbot — see `DEPLOY.md`.
 - Image: `ghcr.io/cardio-assistant/landing`.
