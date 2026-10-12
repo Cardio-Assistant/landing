@@ -23,8 +23,6 @@ export function BlockOne({
     scrollHintRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const metrics = [t.hero.metric1, t.hero.metric2, t.hero.metric3];
-
   return (
     <section className='relative min-h-screen overflow-hidden bg-white dark:bg-slate-950 pt-28'>
       <div className='pointer-events-none absolute inset-0 bg-dot-slate mask-radial-fade' />
@@ -64,6 +62,20 @@ export function BlockOne({
             {t.hero.subtitle}
           </motion.p>
 
+          <motion.ul
+            initial={ { opacity: 0, y: 20 } }
+            animate={ { opacity: 1, y: 0 } }
+            transition={ { duration: 0.7, delay: 0.25 } }
+            className='mt-6 flex flex-col items-center gap-2 lg:items-start'
+          >
+            {t.hero.bullets.map((b) => (
+              <li key={ b } className='flex items-center gap-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 sm:text-base'>
+                <span className='h-1.5 w-1.5 flex-shrink-0 rounded-full bg-cyan-500' />
+                {b}
+              </li>
+            ))}
+          </motion.ul>
+
           <motion.div
             initial={ { opacity: 0, y: 20 } }
             animate={ { opacity: 1, y: 0 } }
@@ -87,23 +99,14 @@ export function BlockOne({
             </button>
           </motion.div>
 
-          <motion.div
+          <motion.p
             initial={ { opacity: 0 } }
             animate={ { opacity: 1 } }
             transition={ { duration: 0.7, delay: 0.5 } }
-            className='mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 lg:max-w-xl'
+            className='mt-10 border-t border-slate-200 dark:border-slate-800 pt-6 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400 lg:max-w-xl lg:text-left'
           >
-            <div className='grid grid-cols-3 gap-6'>
-              {metrics.map((m) => (
-                <div key={ m.label } className='text-center lg:text-left'>
-                  <div className='text-2xl font-semibold tracking-tight text-slate-900 dark:text-white'>{m.value}</div>
-                  <div className='mt-1 text-xs text-slate-500 dark:text-slate-400'>{m.label}</div>
-                </div>
-              ))}
-            </div>
-            <p className='mt-4 text-center text-xs text-slate-500 dark:text-slate-400 lg:text-left'>{t.hero.metricsNote}</p>
-            <p className='mt-3 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400 lg:text-left'>{t.hero.disclaimer}</p>
-          </motion.div>
+            {t.hero.disclaimer}
+          </motion.p>
         </div>
 
         <motion.div
@@ -139,7 +142,6 @@ export function BlockOne({
                   <span className='h-2 w-2 rounded-full bg-emerald-500' />
                   <span className='font-medium text-slate-900 dark:text-white'>{t.hero.tag1}</span>
                 </div>
-                <div className='mt-0.5 text-[11px] text-slate-500 dark:text-slate-400'>{t.hero.tag1Sub}</div>
               </motion.div>
 
               <motion.div
@@ -152,7 +154,6 @@ export function BlockOne({
                   <span className='h-2 w-2 rounded-full bg-blue-500' />
                   <span className='font-medium text-slate-900 dark:text-white'>{t.hero.tag2}</span>
                 </div>
-                <div className='mt-0.5 text-[11px] text-slate-500 dark:text-slate-400'>{t.hero.tag2Sub}</div>
               </motion.div>
             </div>
           </div>
