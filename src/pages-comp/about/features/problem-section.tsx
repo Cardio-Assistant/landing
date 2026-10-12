@@ -33,41 +33,18 @@ export function ProblemBlock({
           </p>
         </motion.div>
 
-        <div className='mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-800 md:grid-cols-3'>
-          {t.problem.stats.map((s, i) => (
-            <motion.div
-              key={ s.label }
-              initial={ { opacity: 0, y: 16 } }
-              animate={ isInView ? { opacity: 1, y: 0 } : {} }
-              transition={ { duration: 0.6, delay: 0.15 + i * 0.1 } }
-              className='bg-white dark:bg-slate-900 p-8 sm:p-10'
-            >
-              <div className='text-5xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-6xl'>
-                <span className='text-gradient-accent'>{s.value}</span>
-              </div>
-              <div className='mt-3 text-sm font-medium text-slate-900 dark:text-white'>{s.label}</div>
-              <div className='mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400'>{s.note}</div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className='mt-12 grid grid-cols-1 gap-6 md:grid-cols-3'>
-          {t.problem.items.map((p, i) => (
-            <motion.div
-              key={ p.title }
-              initial={ { opacity: 0, y: 16 } }
-              animate={ isInView ? { opacity: 1, y: 0 } : {} }
-              transition={ { duration: 0.6, delay: 0.4 + i * 0.1 } }
-              className='group relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 transition-all hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm'
-            >
-              <div className='flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-sm font-semibold text-slate-700 dark:text-slate-300'>
-                {String(i + 1).padStart(2, '0')}
-              </div>
-              <h3 className='mt-4 text-base font-semibold text-slate-900 dark:text-white'>{p.title}</h3>
-              <p className='mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{p.text}</p>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={ { opacity: 0, y: 16 } }
+          animate={ isInView ? { opacity: 1, y: 0 } : {} }
+          transition={ { duration: 0.6, delay: 0.15 } }
+          className='mx-auto mt-14 max-w-md rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 text-center sm:p-10'
+        >
+          <div className='text-5xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-6xl'>
+            <span className='text-gradient-accent'>{t.problem.stat.value}</span>
+          </div>
+          <div className='mt-3 text-sm font-medium text-slate-900 dark:text-white'>{t.problem.stat.label}</div>
+          <div className='mt-1 text-sm text-slate-500 dark:text-slate-400'>{t.problem.stat.note}</div>
+        </motion.div>
       </div>
     </section>
   );

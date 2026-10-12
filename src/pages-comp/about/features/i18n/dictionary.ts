@@ -41,17 +41,8 @@ export const dict = {
     problem: {
       badge   : 'Проблема',
       title   : 'Сердечно-сосудистые заболевания — главная причина смертности',
-      subtitle: 'Современная кардиохирургия по-прежнему опирается на опыт врача и плоские 2D-снимки: объёмную картину сосудов и разбор каждого сужения приходится выстраивать вручную.',
-      stats   : [
-        { value: '~20 млн', label: 'Смертей в мире ежегодно', note: '~32% всех смертей в мире — сердечно-сосудистые заболевания (ВОЗ, 2022)' },
-        { value: '~800 тыс', label: 'Смертей в России в год', note: '~46% всех смертей в стране — первая причина смертности (Росстат)' },
-        { value: '2D', label: 'Плоские проекции', note: 'Ангиограмма — плоский снимок: объёмную форму ветвей врач вынужден представлять мысленно' },
-      ],
-      items: [
-        { title: 'Зависимость от опыта врача', text: 'Качество диагностики и лечения напрямую зависит от квалификации специалиста.' },
-        { title: 'Оценка по плоским снимкам', text: 'Степень и протяжённость сужения оценивают по 2D-проекциям, а измерения и описание каждой ветви требуют ручной работы.' },
-        { title: 'Много ручной работы', text: 'Разбор ангиограмм, измерения и оформление заключения занимают время врача перед принятием решения о тактике лечения.' },
-      ],
+      subtitle: 'Ангиограмму врач разбирает по плоским 2D-снимкам, а заключение оформляет вручную.',
+      stat    : { value: '~20 млн', label: 'смертей в мире ежегодно', note: 'ВОЗ, 2022' },
     },
     solution: {
       badge   : 'Наше решение',
@@ -316,17 +307,8 @@ export const dict = {
     problem: {
       badge   : 'Problem',
       title   : 'Cardiovascular disease is the leading cause of death',
-      subtitle: 'Modern cardiac surgery still relies on the doctor’s experience and flat 2D images: the 3D picture of the vessels and the assessment of every narrowing have to be built by hand.',
-      stats   : [
-        { value: '~20M', label: 'Deaths worldwide per year', note: '~32% of all deaths worldwide are from cardiovascular disease (WHO, 2022)' },
-        { value: '~800K', label: 'Deaths in Russia per year', note: '~46% of all deaths in the country — the leading cause of mortality (Rosstat)' },
-        { value: '2D', label: 'Flat projections', note: 'An angiogram is a flat image: the doctor has to picture the 3D shape of the branches mentally' },
-      ],
-      items: [
-        { title: 'Reliance on doctor experience', text: 'Diagnosis and treatment quality depend on the specialist’s qualification.' },
-        { title: 'Assessment from flat images', text: 'The degree and extent of a narrowing are judged from 2D projections, and measuring and describing every branch takes manual work.' },
-        { title: 'Lots of manual work', text: 'Reviewing angiograms, measuring and writing up the conclusion take the doctor’s time before a treatment decision is made.' },
-      ],
+      subtitle: 'The doctor reviews an angiogram from flat 2D images and writes up the conclusion by hand.',
+      stat    : { value: '~20M', label: 'deaths worldwide per year', note: 'WHO, 2022' },
     },
     solution: {
       badge   : 'Our solution',
