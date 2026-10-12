@@ -12,7 +12,7 @@ import {
 
 import { BlockOne } from './features/block1';
 import { InterfaceSection } from './features/interface-section';
-import ServicesSlider from './features/servicesSlider';
+import InvestorsBlock from './features/investors-block';
 import { CardTeam } from './features/card/ui/card-team';
 import { NavBar } from './features/navbar';
 import { ContactSection } from './features/contact-section';
@@ -268,9 +268,9 @@ function PageInner() {
       {/* Интерфейс / Скриншоты новой версии */}
       <InterfaceSection targetRef={ refInterface } isInView={ inInterface } />
 
-      {/* Инвесторам / Слайдер */}
+      {/* Инвесторам */}
       <section ref={ refInvestors } className='bg-white dark:bg-slate-950'>
-        <ServicesSlider />
+        <InvestorsBlock />
       </section>
 
       {/* Команда */}

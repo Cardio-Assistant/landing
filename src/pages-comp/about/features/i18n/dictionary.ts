@@ -103,66 +103,20 @@ export const dict = {
       ],
     },
     investors: {
-      badge   : 'Для инвесторов',
-      title   : 'Бизнес-модель и рынок',
-      subtitle: 'Рынок, клиенты, модель монетизации и текущий статус проекта.',
-      tabs    : ['Рынок роста', 'Клиенты', 'Монетизация', 'Статус и планы'],
-      slides  : [
+      badge : 'Для инвесторов',
+      title : 'Бизнес-модель и рынок',
+      points: [
         {
-          title  : 'Растущий рынок цифровой медицины',
-          metrics: [
-            { value: '~23%', label: 'Рост рынка ИИ в кардиологии в год' },
-            { value: '$4,3 млрд', label: 'Рынок ИИ в кардиологии к 2030 году' },
-          ],
-          points: [
-            { title: 'Динамика', text: 'Рынок ИИ в кардиологии растёт примерно на 23% в год и к 2030 году может достичь $4,3 млрд (Global Industry Analysts).' },
-            { title: 'Фокус на России', text: 'Первый рынок — Россия, где работают более 100 кардиоцентров.' },
-            { title: 'Ниша', text: 'Решение для кардиохирургии: от ангиограммы до проекта заключения в одном рабочем месте врача.' },
-          ],
+          title: 'Рынок',
+          text : 'ИИ в кардиологии растёт примерно на 23% в год — до $4,3 млрд к 2030 году (Global Industry Analysts). Первый рынок — Россия.',
         },
         {
-          title  : 'Будущие клиенты',
-          metrics: [
-            { value: '4', label: 'Сегмента клиентов' },
-            { value: '100+', label: 'Кардиоцентров в РФ' },
-          ],
-          points: [
-            { title: 'Крупные кардиоцентры', text: 'Клиники с высоким потоком ангиографий и операций, где важны скорость и единообразие разбора.' },
-            { title: 'Региональные больницы', text: 'Учреждения, которым нужна дополнительная опора при разборе ангиограмм: структурированный анализ и проект заключения готовятся автоматически, решение принимает врач.' },
-            { title: 'Медицинские вузы', text: 'Образовательные программы: разбор реальных клинических случаев на 3D-моделях (направление развития).' },
-            { title: 'Производители оборудования', text: 'Потенциальные партнёры для интеграции ИИ-решений в их системы.' },
-          ],
+          title: 'Модель',
+          text : 'B2B: подписка (SaaS) и лицензии для клиник и вузов.',
         },
         {
-          title  : 'Возможности монетизации',
-          metrics: [
-            { value: '4', label: 'Канала выручки' },
-            { value: 'SaaS', label: 'Подписочная модель' },
-            { value: 'B2B', label: 'Клиники и вузы' },
-          ],
-          points: [
-            { title: 'Подписка для клиник', text: 'Доступ к платформе с регулярными обновлениями и поддержкой.' },
-            { title: 'Лицензии', text: 'Кастомизированные пакеты под задачи конкретных учреждений.' },
-            { title: 'Образование', text: 'Доступ для вузов и курсов повышения квалификации к платформе для разбора клинических случаев.' },
-            { title: 'Технологические партнёрства', text: 'Совместные решения с производителями медоборудования.' },
-          ],
-        },
-        {
-          title  : 'Статус проекта и планы',
-          metrics: [
-            { value: 'Прототип', label: 'Рабочий; не медицинское изделие, решение принимает врач' },
-            { value: '~18 с', label: '3D-модель в среднем на тестовом стенде проекта' },
-            { value: 'Валидация', label: 'с врачами ФЦССХ им. С.Г. Суханова продолжается' },
-          ],
-          points: [
-            { title: 'Готово сегодня', text: 'Загрузка DICOM, 3D-модель коронарных артерий, анализ сужений с проектом заключения, голосовой протокол операции и ИИ-ассистент врача.' },
-            { title: 'Социальная значимость', text: 'Сердечно-сосудистые заболевания — первая причина смертности в мире. Мы делаем инструмент, который помогает врачу разбирать коронарографию.' },
-            {
-              title: 'В планах',
-              text : 'Пока не реализовано:',
-              items: ['оценка рисков и прогноз исходов', 'моделирование кровотока', 'подбор стентов, шунтов и методов вмешательства'],
-            },
-          ],
+          title: 'Статус',
+          text : 'Рабочий прототип, не медицинское изделие; валидация с врачами ФЦССХ им. С.Г. Суханова продолжается. В планах, пока не реализовано: оценка рисков, моделирование кровотока, подбор стентов.',
         },
       ],
     },
@@ -331,66 +285,20 @@ export const dict = {
       ],
     },
     investors: {
-      badge   : 'For investors',
-      title   : 'Business model & market',
-      subtitle: 'Market, customers, the monetization model and the current status of the project.',
-      tabs    : ['Growth market', 'Customers', 'Monetization', 'Status & roadmap'],
-      slides  : [
+      badge : 'For investors',
+      title : 'Business model & market',
+      points: [
         {
-          title  : 'A growing digital-medicine market',
-          metrics: [
-            { value: '~23%', label: 'AI in cardiology yearly growth' },
-            { value: '$4.3B', label: 'AI in cardiology market by 2030' },
-          ],
-          points: [
-            { title: 'Momentum', text: 'The AI-in-cardiology market grows about 23% a year and may reach $4.3B by 2030 (Global Industry Analysts).' },
-            { title: 'Russia first', text: 'The first market is Russia, which has more than 100 cardiac centers.' },
-            { title: 'Niche', text: 'A solution for cardiac surgery: from an angiogram to a draft conclusion in one workspace for the physician.' },
-          ],
+          title: 'Market',
+          text : 'AI in cardiology grows about 23% a year, to $4.3B by 2030 (Global Industry Analysts). Russia is the first market.',
         },
         {
-          title  : 'Future customers',
-          metrics: [
-            { value: '4', label: 'Customer segments' },
-            { value: '100+', label: 'Cardiac centers in RU' },
-          ],
-          points: [
-            { title: 'Major cardiac centers', text: 'Clinics with a high flow of angiographies and surgeries where speed and a consistent review matter.' },
-            { title: 'Regional hospitals', text: 'Facilities that need extra support when reviewing angiograms: a structured analysis and a draft conclusion are prepared automatically, the physician decides.' },
-            { title: 'Medical universities', text: 'Educational programs: reviewing real clinical cases on 3D models (a direction for development).' },
-            { title: 'Equipment manufacturers', text: 'Potential partners for integrating AI solutions into their systems.' },
-          ],
+          title: 'Model',
+          text : 'B2B: subscription (SaaS) and licenses for clinics and universities.',
         },
         {
-          title  : 'Monetization opportunities',
-          metrics: [
-            { value: '4', label: 'Revenue streams' },
-            { value: 'SaaS', label: 'Subscription model' },
-            { value: 'B2B', label: 'Clinics & universities' },
-          ],
-          points: [
-            { title: 'Clinic subscription', text: 'Platform access with regular updates and support.' },
-            { title: 'Licensing', text: 'Customized packages for the needs of specific institutions.' },
-            { title: 'Education', text: 'Access for universities and continuing-education courses to the platform for reviewing clinical cases.' },
-            { title: 'Technology partnerships', text: 'Joint solutions with medical equipment manufacturers.' },
-          ],
-        },
-        {
-          title  : 'Project status and roadmap',
-          metrics: [
-            { value: 'Prototype', label: 'Working; not a medical device, the physician decides' },
-            { value: '~18 s', label: '3D model on average on the project’s test stand' },
-            { value: 'Validation', label: 'with physicians of the S.G. Sukhanov Federal Center for Cardiovascular Surgery is ongoing' },
-          ],
-          points: [
-            { title: 'Ready today', text: 'DICOM upload, a 3D model of the coronary arteries, narrowing analysis with a draft conclusion, the voice protocol of the operation and an AI assistant for the physician.' },
-            { title: 'Social impact', text: 'Cardiovascular disease is the world’s #1 cause of death. We are building a tool that helps the physician review coronary angiography.' },
-            {
-              title: 'Planned',
-              text : 'Not implemented yet:',
-              items: ['risk assessment and outcome forecasting', 'blood-flow modeling', 'selection of stents, bypass grafts and intervention methods'],
-            },
-          ],
+          title: 'Status',
+          text : 'A working prototype, not a medical device; validation with physicians of the S.G. Sukhanov Federal Center for Cardiovascular Surgery is ongoing. Planned, not implemented yet: risk assessment, blood-flow modeling, stent selection.',
         },
       ],
     },
