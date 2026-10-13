@@ -4,7 +4,9 @@ import { Article, Bullets, Clause, DocHeader, DocLink, MailLink, OperatorTable, 
 
 // Consent to the processing of personal data given through the contact form of the site.
 // A separate document (art. 9(1) of Federal Law 152-FZ in force since 1 September 2025): it is
-// not a clause of the Policy or of any terms. The contents follow art. 9(4), adapted to
+// not a clause of the Policy. Its references to the Policy (section 5: the persons who process
+// the data and no cross-border transfer; section 8: the rights) must follow the Policy's
+// numbering. The contents follow art. 9(4), adapted to
 // the electronic form: the operator, the purpose, the data, the actions and methods, the
 // persons who process the data for the operator, the term and the way to withdraw.
 export function ConsentContactsContent() {
@@ -60,14 +62,14 @@ export function ConsentContactsContent() {
             ] }
           />
           <p>
-            Подробности — в разделах 7 и 8 <DocLink doc='privacy'>Политики обработки персональных данных</DocLink>. Других лиц Оператор к обработке моего обращения не привлекает. Трансграничная передача моих данных не осуществляется.
+            Подробности — в разделе 5 <DocLink doc='privacy'>Политики обработки персональных данных</DocLink>. Других лиц Оператор к обработке моего обращения не привлекает. Трансграничная передача моих данных не осуществляется.
           </p>
         </Section>
 
         <Section id='term' title='6. Срок действия согласия'>
           <p>
             Согласие действует до достижения цели обработки, но не более {RETENTION.requestMonths} месяцев с даты отправки формы, либо до его отзыва, если он поступит раньше.
-            По истечении срока мои данные уничтожаются: сообщение удаляется из чата и почтового ящика Оператора.
+            По истечении срока мои данные уничтожаются: обращение удаляется из почтового ящика Оператора.
           </p>
         </Section>
 
@@ -82,14 +84,14 @@ export function ConsentContactsContent() {
           </Clause>
           <Clause n='7.3'>
             Остальные права — получить сведения об обработке, потребовать уточнить, заблокировать или уничтожить данные, обжаловать действия Оператора — описаны
-            в разделе 11 <DocLink doc='privacy'>Политики обработки персональных данных</DocLink>.
+            в разделе 8 <DocLink doc='privacy'>Политики обработки персональных данных</DocLink>.
           </Clause>
         </Section>
 
         <Section id='confirm' title='8. Подтверждения'>
           <Bullets
             items={ [
-              'Согласие даётся в электронной форме отметкой в форме на Сайте. Оно отделено от других документов: не является частью Политики или каких-либо условий, не зависит от их принятия.',
+              'Согласие даётся в электронной форме отметкой в форме на Сайте. Оно отделено от других документов и не является частью Политики.',
               'Я подтверждаю, что мне исполнилось 18 лет и что указанные мной данные принадлежат мне.',
               `Факт согласия фиксируется: дата и время отправки формы, редакция настоящего документа (${LEGAL_VERSION}) и IP-адрес сохраняются вместе с заявкой как подтверждение согласия.`,
             ] }
