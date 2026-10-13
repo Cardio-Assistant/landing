@@ -4,64 +4,67 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { BiHeart, BiPulse } from 'react-icons/bi';
-import { PiArrowLeft, PiBellSimple, PiCubeFocus, PiShieldCheck } from 'react-icons/pi';
+import { PiArrowLeft, PiCubeFocus, PiEnvelopeSimple, PiShieldCheck } from 'react-icons/pi';
 
 type Locale = 'ru' | 'en';
 
-const stepIcons = [PiCubeFocus, PiShieldCheck, PiBellSimple];
+const stepIcons = [PiCubeFocus, PiShieldCheck, PiEnvelopeSimple];
 
+// This page is the fallback of the demo: the site shows it only when the demo under /web is not
+// served (in production nginx answers there first). The demo runs on fictional example data, so
+// the page has no sign-in, no registration and no invitations, and promises none.
 const demoDict = {
   ru: {
     back       : 'На сайт',
-    badge      : 'Демо готовится',
-    titleStart : 'Скоро здесь появится',
-    titleAccent: 'ранняя версия',
-    titleEnd   : 'платформы',
-    description: 'Мы собираем демонстрационный кабинет для просмотра 3D-моделей коронарных артерий, анализа сужений и проекта заключения, а также для пилотных показов клиникам и партнёрам. Рабочий прототип: не является медицинским изделием.',
+    badge      : 'Демонстрация на примерах данных',
+    titleStart : 'Демо',
+    titleAccent: 'временно недоступно',
+    titleEnd   : '',
+    description: 'Демо показывает 3D-модель коронарных артерий, анализ сужений и проект заключения на вымышленных примерах данных. Попробуйте открыть его чуть позже. Рабочий прототип: не является медицинским изделием.',
     request    : 'Оставить заявку',
     about      : 'Вернуться к описанию',
-    modelLabel : 'Модель пациента',
+    modelLabel : 'Пример данных',
     modelCase  : 'Демонстрационный случай',
     metrics    : ['Снимок', 'Модель', 'Заключение'],
     steps      : [
       {
         title: '3D-реконструкция',
-        text : 'Готовим демонстрационный сценарий: 3D-модель коронарных артерий, анализ сужений и проект заключения в понятном врачебном интерфейсе.',
+        text : 'От ангиограммы к 3D-модели коронарных артерий, анализу сужений и проекту заключения в понятном врачебном интерфейсе.',
       },
       {
-        title: 'Безопасный контур',
-        text : 'Демо будет работать без загрузки персональных медицинских данных и с контролем доступа.',
+        title: 'Только примеры',
+        text : 'Демо использует только вымышленные примеры данных и не собирает персональные данные.',
       },
       {
-        title: 'Ранний доступ',
-        text : 'Оставьте заявку на сайте, и мы пришлем приглашение, когда демо будет открыто.',
+        title: 'Связаться с нами',
+        text : 'Хотите обсудить демо, пилот или партнёрство? Оставьте заявку на сайте — мы свяжемся с вами.',
       },
     ],
   },
   en: {
     back       : 'Back to site',
-    badge      : 'Demo in progress',
-    titleStart : 'An',
-    titleAccent: 'early version',
-    titleEnd   : 'of the platform is coming soon',
-    description: 'We are preparing a demo workspace for viewing 3D models of the coronary arteries, narrowing analysis and a draft conclusion, and for pilot presentations to clinics and partners. A working prototype: not a medical device.',
-    request    : 'Request access',
+    badge      : 'Demo on example data',
+    titleStart : 'The demo is',
+    titleAccent: 'temporarily unavailable',
+    titleEnd   : '',
+    description: 'The demo shows a 3D model of the coronary arteries, narrowing analysis and a draft conclusion on fictional example data. Please try again a little later. A working prototype: not a medical device.',
+    request    : 'Send a request',
     about      : 'Back to overview',
-    modelLabel : 'Patient model',
+    modelLabel : 'Example data',
     modelCase  : 'Demo case',
     metrics    : ['Scan', 'Model', 'Conclusion'],
     steps      : [
       {
         title: '3D reconstruction',
-        text : 'We are preparing a demo flow: a 3D model of the coronary arteries, narrowing analysis and a draft conclusion in a clear clinical interface.',
+        text : 'From an angiogram to a 3D model of the coronary arteries, narrowing analysis and a draft conclusion in a clear clinical interface.',
       },
       {
-        title: 'Secure environment',
-        text : 'The demo will work without uploading personal medical data and with access control.',
+        title: 'Example data only',
+        text : 'The demo uses only fictional example data and does not collect personal data.',
       },
       {
-        title: 'Early access',
-        text : 'Leave a request on the site, and we will send an invitation when the demo opens.',
+        title: 'Get in touch',
+        text : 'Want to talk about the demo, a pilot or a partnership? Leave a request on the site and we will get back to you.',
       },
     ],
   },

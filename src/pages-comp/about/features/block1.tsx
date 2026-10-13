@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { useI18n } from './i18n/context';
 
@@ -82,15 +81,17 @@ export function BlockOne({
             transition={ { duration: 0.7, delay: 0.3 } }
             className='mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start'
           >
-            <Link
-              href='/web/auth'
+            {/* The demo is a separate app behind the same domain (nginx): a plain link, so the browser
+                leaves this app and nothing under /web is prefetched from here. */}
+            <a
+              href='/web'
               className='group inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-900 dark:bg-slate-100 px-6 py-3 text-sm font-medium text-white dark:text-slate-900 shadow-sm transition-all hover:bg-slate-700 dark:hover:bg-white hover:shadow-md sm:w-auto'
             >
               {t.hero.ctaDemo}
               <svg className='h-4 w-4 transition-transform group-hover:translate-x-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={ 2 } d='M17 8l4 4m0 0l-4 4m4-4H3' />
               </svg>
-            </Link>
+            </a>
             <button
               onClick={ handleClick }
               className='inline-flex w-full items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 transition-all hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 sm:w-auto'
@@ -98,6 +99,15 @@ export function BlockOne({
               {t.hero.ctaTalk}
             </button>
           </motion.div>
+
+          <motion.p
+            initial={ { opacity: 0 } }
+            animate={ { opacity: 1 } }
+            transition={ { duration: 0.7, delay: 0.4 } }
+            className='mt-3 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400 lg:text-left'
+          >
+            {t.hero.demoNote}
+          </motion.p>
 
           <motion.p
             initial={ { opacity: 0 } }
