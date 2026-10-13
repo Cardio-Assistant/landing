@@ -87,8 +87,8 @@ server {
         proxy_read_timeout  60s;
         proxy_send_timeout  60s;
         proxy_buffering off;
-        # Фолбэк-заставка «демо скоро будет доступно»
-        proxy_intercept_errors on;
+        # Контейнер демо не запущен (ошибку дал сам nginx) — заставка «демо скоро будет доступно».
+        # proxy_intercept_errors не включаем: ответы самого демо (JSON) проходят как есть.
         error_page 502 503 504 =503 /__demo_soon.html;
     }
     location @demo_too_large {

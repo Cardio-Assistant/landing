@@ -55,6 +55,16 @@ server {
         proxy_read_timeout  300s;
         proxy_send_timeout  300s;
         proxy_buffering off;
+        # ПК или туннель недоступны (nginx сам не смог соединиться/дождаться) — заставка.
+        # proxy_intercept_errors не включаем: ответы 502/503 самого приложения (JSON) проходят как есть.
+        error_page 502 504 =503 /__app_unavailable.html;
+    }
+    location = /__app_unavailable.html {
+        internal;
+        root /var/www/certbot;
+        add_header Retry-After 60 always;
+        add_header Cache-Control "no-store" always;
+        add_header X-Robots-Tag "noindex, nofollow" always;
     }
 
     location /.well-known/acme-challenge/ {

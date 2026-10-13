@@ -101,8 +101,8 @@ cd /root/landing && docker compose up -d web-demo
    `APP_SIGNUP_ENABLED=false`, `NEXT_PUBLIC_SIGNUP_ENABLED=false`, `NEXT_PUBLIC_APP_URL=https://app.ai-cardio.ru/web`.
 
 **Проверка:** `https://ai-cardio.ru/` → лендинг; `https://ai-cardio.ru/web/auth` → «Войти в демонстрацию»;
-`https://app.ai-cardio.ru/web/auth` → вход без вкладки «Регистрация». Если `app.ai-cardio.ru/web/*` даёт 502 —
-не поднят frpc на ПК или не запущен web:3001.
+`https://app.ai-cardio.ru/web/auth` → вход без вкладки «Регистрация». Если вместо него заставка «Сервис временно
+недоступен» (`nginx/html/__app_unavailable.html`, на VPS лежит в `certbot/www/`) — не поднят frpc на ПК или не запущен web:3001.
 
 ## Проверка формы
 
