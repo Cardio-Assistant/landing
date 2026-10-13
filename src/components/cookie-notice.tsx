@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import { useI18n } from '@/pages-comp/about/features/i18n/context';
 import { LEGAL_VERSION, cookiesPath } from '@/legal/documents';
 
-// The key is shared with the web app (same origin, https://ai-cardio.ru): a person who
-// closes the notice on the site does not see it again in the app. The value is the edition
-// of the legal documents, so a changed notice is shown once more.
+// The demo served under /web (same origin, https://ai-cardio.ru) uses the same key: a person
+// who closes the notice on the site does not see it again in the demo. The value is the
+// edition of the legal documents, so a changed notice is shown once more.
 const STORAGE_KEY = 'ca-cookie-notice';
 
 // The notice that the site uses only technical cookies and local storage (there is no

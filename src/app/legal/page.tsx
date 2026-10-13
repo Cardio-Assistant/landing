@@ -7,7 +7,7 @@ import { Article, MailLink, OperatorTable, Section } from '@/legal/ui';
 import type { Metadata } from 'next';
 
 const TITLE = 'Правовая информация — Cardio Assistant';
-const DESCRIPTION = 'Политика обработки персональных данных, согласия на обработку, пользовательское соглашение и сведения об операторе ООО «Нексли». Legal information in English: short note.';
+const DESCRIPTION = 'Политика обработки персональных данных, согласие на обработку для формы обратной связи и сведения об операторе ООО «Нексли». Legal information in English: short note.';
 
 export const metadata: Metadata = {
   title      : TITLE,
@@ -23,7 +23,7 @@ export default function LegalIndexPage() {
         <p className='text-xs font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400'>{OPERATOR.shortName} · Cardio Assistant</p>
         <h1 className='mt-3 text-balance text-3xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-4xl'>Правовая информация</h1>
         <p className='mt-4 text-slate-600 dark:text-slate-400'>
-          Документы о том, как {OPERATOR.shortName} обрабатывает персональные данные на сайте и в веб-приложении Cardio Assistant. Действуют с {LEGAL_DATE}.
+          Документы о том, как {OPERATOR.shortName} обрабатывает персональные данные на сайте. Действуют с {LEGAL_DATE}.
         </p>
       </header>
 
@@ -62,13 +62,11 @@ export default function LegalIndexPage() {
           </p>
           <p>In short:</p>
           <ul>
-            <li>We process only what you give us: the contact form (name, e-mail or phone, message, IP address) and the account data of the web app.</li>
-            <li>There are no analytics or advertising cookies: only technical storage (theme, language, sign-in).</li>
-            <li>
-              The web app and its database run on servers in Russia. Contact-form requests are delivered by e-mail to our mailbox on a Russian mail service; nothing is sent abroad.
-            </li>
-            <li>Consent is given separately for each purpose and can be withdrawn at any time by e-mail to <MailLink />.</li>
-            <li>The web app is a research prototype of a clinical decision-support system, not a medical device. Do not upload identifiable patient data without a legal basis.</li>
+            <li>We process only what you send us in the contact form (name, e-mail or phone, message, IP address) and the technical logs of the web server.</li>
+            <li>There are no analytics or advertising cookies: only technical browser storage (theme, language).</li>
+            <li>Data is stored in Russia. Contact-form requests are delivered by e-mail to our mailbox on a Russian mail service; nothing is sent abroad.</li>
+            <li>Consent is given separately and can be withdrawn at any time by e-mail to <MailLink />.</li>
+            <li>The demo on this site uses only fictional example data and collects no personal data.</li>
           </ul>
         </section>
       </Article>
