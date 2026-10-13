@@ -61,15 +61,17 @@ server {
                text/javascript image/svg+xml;
     gzip_min_length 1024;
 
-    # ---- ДЕМО: web-приложение на домашнем ПК через туннель frp ----
-    # web поднят с basePath=/web (см. web/next.config.mjs) — путь /web/* уходит
-    # в туннель как есть. resolver + переменная => nginx стартует, даже если
-    # frps/ПК недоступны. Если ПК офлайн (502/503/504) — отдаём заставку.
+    # ---- ДЕМО: web-приложение на вымышленных данных (контейнер cardio-web-demo) ----
+    # Образ собран из репозитория web с DEMO_MODE=true: все ответы api — из памяти,
+    # сервер, база и ML не нужны. basePath=/web, поэтому /web/* (и /web/api/*) уходит
+    # в контейнер как есть. Рабочая система — отдельно, на app.ai-cardio.ru (app.ai-cardio.conf).
+    # resolver + переменная => nginx стартует, даже если контейнер демо не запущен;
+    # тогда (502/503/504) вместо ошибки отдаём заставку.
     location = /web { return 302 /web/; }
     location /web/ {
         resolver 127.0.0.11 valid=30s;
-        set $frps_upstream frps:7001;
-        proxy_pass http://$frps_upstream$request_uri;
+        set $demo_upstream cardio-web-demo:3000;
+        proxy_pass http://$demo_upstream$request_uri;
         proxy_http_version 1.1;
         proxy_set_header Host              $host;
         proxy_set_header X-Real-IP         $remote_addr;
@@ -77,15 +79,21 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Upgrade           $http_upgrade;
         proxy_set_header Connection        "upgrade";
-        # DICOM-аплоады крупные, инференс на GPU долгий — снимаем лимит 64k и таймауты
-        client_max_body_size 512m;
+        # Демо не принимает настоящих снимков: тело запроса до 2 МБ, больше — тот же
+        # JSON-ответ 413, что даёт само демо (см. web/src/demo/http.ts, tooLarge).
+        client_max_body_size 2m;
+        error_page 413 = @demo_too_large;
         proxy_connect_timeout 5s;
-        proxy_read_timeout  300s;
-        proxy_send_timeout  300s;
+        proxy_read_timeout  60s;
+        proxy_send_timeout  60s;
         proxy_buffering off;
         # Фолбэк-заставка «демо скоро будет доступно»
         proxy_intercept_errors on;
         error_page 502 503 504 =503 /__demo_soon.html;
+    }
+    location @demo_too_large {
+        default_type application/json;
+        return 413 '{"error":{"code":"demo_too_large","message":"В демонстрационной версии размер загружаемого файла ограничен 2 МБ. Настоящие снимки сюда загружать не нужно: для примера используется готовое исследование."}}';
     }
     location = /__demo_soon.html {
         internal;
