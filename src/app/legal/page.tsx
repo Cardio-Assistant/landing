@@ -65,8 +65,7 @@ export default function LegalIndexPage() {
             <li>We process only what you give us: the contact form (name, e-mail or phone, message, IP address) and the account data of the web app.</li>
             <li>There are no analytics or advertising cookies: only technical storage (theme, language, sign-in).</li>
             <li>
-              The web app and its database run on servers in Russia. Contact-form requests are delivered to our team through Telegram (this may involve servers outside Russia)
-              or by e-mail.
+              The web app and its database run on servers in Russia. Contact-form requests are delivered by e-mail to our mailbox on a Russian mail service; nothing is sent abroad.
             </li>
             <li>Consent is given separately for each purpose and can be withdrawn at any time by e-mail to <MailLink />.</li>
             <li>The web app is a research prototype of a clinical decision-support system, not a medical device. Do not upload identifiable patient data without a legal basis.</li>

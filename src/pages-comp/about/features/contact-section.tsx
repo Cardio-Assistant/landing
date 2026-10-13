@@ -66,8 +66,8 @@ export function ContactSection({
                   </div>
                   <div>
                     <div className='text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400'>{t.contact.email}</div>
-                    <a href='mailto:alexosipov03@yandex.com' className='mt-0.5 block break-all text-base font-medium text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-300'>
-                      alexosipov03@yandex.com
+                    <a href='mailto:support@ai-cardio.ru' className='mt-0.5 block break-all text-base font-medium text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-300'>
+                      support@ai-cardio.ru
                     </a>
                   </div>
                 </li>

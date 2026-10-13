@@ -1,24 +1,19 @@
 import { NextResponse } from 'next/server';
 import { createTransport } from 'nodemailer';
-import { ProxyAgent } from 'undici';
 
 import { LEGAL_DOCS } from '@/legal/documents';
 
 import type { NextRequest } from 'next/server';
-import type { Dispatcher } from 'undici';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 5;
-const TELEGRAM_API = 'https://api.telegram.org';
-const TELEGRAM_TIMEOUT_MS = Number(process.env.TELEGRAM_TIMEOUT_MS || 12_000);
 const SMTP_TIMEOUT_MS = Number(process.env.SMTP_TIMEOUT_MS || 15_000);
 // An edition of a legal document is the date it came into force, e.g. 2026-10-13.
 const EDITION = /^\d{4}-\d{2}-\d{2}$/;
 const rateMap = new Map<string, { count: number; ts: number }>();
-const proxyAgents = new Map<string, Dispatcher>();
 
 interface Body {
   name?: string;
@@ -41,7 +36,7 @@ interface Lead {
 
 interface SendResult {
   ok: boolean;
-  channel: 'telegram' | 'email';
+  channel: 'email';
   error?: unknown;
 }
 
@@ -64,22 +59,6 @@ function escapeHtml(s: string): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
-}
-
-function buildTelegramText(lead: Lead) {
-  const lines = [
-    '<b>Новая заявка с ai-cardio.ru</b>',
-    '',
-    `<b>Имя:</b> ${escapeHtml(lead.name)}`,
-    `<b>Контакт:</b> ${escapeHtml(lead.contact)}`,
-    `<b>Сообщение:</b> ${escapeHtml(lead.message || '—')}`,
-    '',
-    `<b>IP:</b> ${escapeHtml(lead.ip)}`,
-    `<b>Время:</b> ${lead.createdAt}`,
-    `<b>Согласие на обработку ПД:</b> дано, редакция ${escapeHtml(lead.consentVersion)}`,
-  ];
-
-  return lines.join('\n').slice(0, 4000);
 }
 
 function buildEmailText(lead: Lead) {
@@ -112,70 +91,8 @@ function buildEmailHtml(lead: Lead) {
   `;
 }
 
-function getTelegramProxyAgent(proxyUrl?: string): Dispatcher | undefined {
-  if (!proxyUrl) return undefined;
-
-  const cached = proxyAgents.get(proxyUrl);
-  if (cached) return cached;
-
-  const agent = new ProxyAgent(proxyUrl);
-  proxyAgents.set(proxyUrl, agent);
-  return agent;
-}
-
-async function sendTelegram(lead: Lead): Promise<SendResult> {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  const threadId = process.env.TELEGRAM_THREAD_ID;
-  const telegramApi = (process.env.TELEGRAM_API_BASE || TELEGRAM_API).replace(/\/$/, '');
-  const proxyAgent = getTelegramProxyAgent(process.env.TELEGRAM_PROXY_URL);
-
-  if (!token || !chatId) {
-    return { ok: false, channel: 'telegram', error: new Error('Telegram credentials are missing') };
-  }
-
-  const payload: Record<string, string | boolean> = {
-    chat_id                 : chatId,
-    text                    : buildTelegramText(lead),
-    parse_mode              : 'HTML',
-    disable_web_page_preview: true,
-  };
-
-  if (threadId) {
-    payload.message_thread_id = threadId;
-  }
-
-  try {
-    const requestOptions: RequestInit & { dispatcher?: Dispatcher } = {
-      method : 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body   : JSON.stringify(payload),
-      signal : AbortSignal.timeout(TELEGRAM_TIMEOUT_MS),
-    };
-
-    if (proxyAgent) {
-      requestOptions.dispatcher = proxyAgent;
-    }
-
-    const res = await fetch(`${telegramApi}/bot${token}/sendMessage`, requestOptions);
-
-    if (!res.ok) {
-      const details = await res.text().catch(() => '');
-      return {
-        ok     : false,
-        channel: 'telegram',
-        error  : new Error(`Telegram responded ${res.status}: ${details}`),
-      };
-    }
-
-    return { ok: true, channel: 'telegram' };
-  } catch (error) {
-    return { ok: false, channel: 'telegram', error };
-  }
-}
-
 async function sendEmail(lead: Lead): Promise<SendResult> {
-  const host = process.env.SMTP_HOST || 'smtp.yandex.ru';
+  const host = process.env.SMTP_HOST || 'smtp.beget.com';
   const port = Number(process.env.SMTP_PORT || 465);
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
@@ -249,18 +166,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Name and contact are required' }, { status: 400 });
   }
 
-  const telegramResult = await sendTelegram(lead);
-  if (telegramResult.ok) {
-    return NextResponse.json({ ok: true, channel: telegramResult.channel });
-  }
-
-  console.error('Telegram send failed, trying email fallback', telegramResult.error);
-
+  // Requests are delivered only by e-mail to the operator's mailbox on the mail service of
+  // the ai-cardio.ru domain (Russia); nothing is sent to foreign services.
   const emailResult = await sendEmail(lead);
   if (emailResult.ok) {
-    return NextResponse.json({ ok: true, channel: emailResult.channel, fallback: true });
+    return NextResponse.json({ ok: true, channel: emailResult.channel });
   }
 
-  console.error('Email fallback failed', emailResult.error);
+  console.error('Email send failed', emailResult.error);
   return NextResponse.json({ error: 'Failed to send' }, { status: 502 });
 }
