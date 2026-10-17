@@ -82,9 +82,10 @@ export function BlockOne({
             className='mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start'
           >
             {/* The demo is a separate app behind the same domain (nginx): a plain link, so the browser
-                leaves this app and nothing under /web is prefetched from here. */}
+                leaves this app and nothing under /web is prefetched from here. It opens the demo's entry
+                screen with «Войти в демонстрацию» directly. */}
             <a
-              href='/web'
+              href='/web/auth'
               className='group inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-900 dark:bg-slate-100 px-6 py-3 text-sm font-medium text-white dark:text-slate-900 shadow-sm transition-all hover:bg-slate-700 dark:hover:bg-white hover:shadow-md sm:w-auto'
             >
               {t.hero.ctaDemo}

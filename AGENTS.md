@@ -48,8 +48,9 @@ Contact form needs the `SMTP_*` env to actually deliver; UI works without it.
   one line; interface = one-line captions; investors = three short points (market, model, status). No methodology,
   no lists of guideline or model names, no tables. New copy must not claim anything the page did not already say.
 - **The demo** (owner's decision, 2026-10-13): the public site is a landing plus a demo at `/web` that runs on fictional
-  example data. The hero button says «Посмотреть демо» / «View demo», is a plain `<a href='/web'>` (another app lives
-  there: no `next/link`, no prefetch) and has one line under it saying the demo runs on example data. Do not promise
+  example data. The hero button says «Посмотреть демо» / «View demo», is a plain `<a href='/web/auth'>` — the demo's
+  entry screen with «Войти в демонстрацию» (owner's decision, 2026-10-17); another app lives there: no `next/link`, no
+  prefetch — and has one line under it saying the demo runs on example data. Do not promise
   registration, sign-in, invitations or "early access" anywhere on the site, and do not name the real web application's address.
 
 ## Legal documents (152-FZ) — `src/legal/`
