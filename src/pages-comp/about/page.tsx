@@ -104,7 +104,6 @@ const teamPeople = [
   { name: 'Шаров Роман', img: 'team/roma.png', dept: 'dev' as const },
   { name: 'Аухадиев Михаил', img: 'team/misha.png', dept: 'dev' as const },
   { name: 'Усынин Александр', img: 'team/alex-y.png', dept: 'ai' as const },
-  { name: 'Стрелков Юрий', img: 'team/yra.jpg', dept: 'economy' as const },
 ];
 
 function ScrollTopButton() {

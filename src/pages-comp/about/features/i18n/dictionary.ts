@@ -21,7 +21,7 @@ export const dict = {
       ctaDemo   : 'Посмотреть демо',
       ctaTalk   : 'Связаться с нами',
       demoNote  : 'Демо работает на вымышленных примерах данных.',
-      bullets   : ['3D-модель в среднем за ~18 с (тестовый стенд)', 'Развёртывание в контуре клиники', 'Врач подтверждает заключение'],
+      bullets   : ['3D-модель коронарных артерий по двум проекциям', 'Анализ сужений и проект заключения', 'Решение остаётся за врачом'],
       disclaimer: 'Прототип системы поддержки врачебных решений, не медицинское изделие.',
       tag1      : 'Сегментация',
       tag2      : 'Анализ сужений',
@@ -52,7 +52,7 @@ export const dict = {
       cards   : [
         {
           title      : 'От ангиограммы к 3D-модели',
-          description: 'Загрузите DICOM — платформа выберет кадры и построит 3D-модель коронарных артерий.',
+          description: 'Загрузите DICOM — платформа предложит кадры и поможет построить 3D-модель коронарных артерий.',
         },
         {
           title      : 'Анализ и заключение',
@@ -64,7 +64,7 @@ export const dict = {
         },
         {
           title      : 'Безопасность и развёртывание',
-          description: 'Роли и права доступа, журнал аудита, деидентификация DICOM; облако в России или контур клиники.',
+          description: 'Роли и права доступа, журнал аудита, обезличивание DICOM-файлов при загрузке.',
         },
       ],
     },
@@ -117,7 +117,7 @@ export const dict = {
         },
         {
           title: 'Статус',
-          text : 'Рабочий прототип, не медицинское изделие; валидация с врачами ФЦССХ им. С.Г. Суханова продолжается. В планах, пока не реализовано: оценка рисков, моделирование кровотока, подбор стентов.',
+          text : 'Прототип, не медицинское изделие; проведено тестирование с участием врачей. Направления развития: оценка рисков, моделирование кровотока, подбор стентов.',
         },
       ],
     },
@@ -130,7 +130,6 @@ export const dict = {
         lead   : 'Руководитель',
         dev    : 'Разработка',
         ai     : 'Искусственный интеллект',
-        economy: 'Экономика',
       },
     },
     contact: {
@@ -204,7 +203,7 @@ export const dict = {
       ctaDemo   : 'View demo',
       ctaTalk   : 'Contact us',
       demoNote  : 'The demo runs on fictional example data.',
-      bullets   : ['3D model in ~18 s on average (test stand)', 'Deployable inside the clinic', 'The physician confirms the conclusion'],
+      bullets   : ['A 3D model of the coronary arteries from two projections', 'Narrowing analysis and a draft conclusion', 'The decision stays with the physician'],
       disclaimer: 'A prototype of a clinical decision-support system, not a medical device.',
       tag1      : 'Segmentation',
       tag2      : 'Narrowing analysis',
@@ -235,7 +234,7 @@ export const dict = {
       cards   : [
         {
           title      : 'From angiogram to 3D model',
-          description: 'Upload a DICOM study — the platform selects the frames and builds a 3D model of the coronary arteries.',
+          description: 'Upload a DICOM study — the platform suggests the frames and helps build a 3D model of the coronary arteries.',
         },
         {
           title      : 'Analysis and conclusion',
@@ -247,7 +246,7 @@ export const dict = {
         },
         {
           title      : 'Security and deployment',
-          description: 'Roles and access rights, audit log, DICOM de-identification; a Russian cloud or on-premise in the clinic.',
+          description: 'Roles and access rights, audit log, de-identification of DICOM files on upload.',
         },
       ],
     },
@@ -300,7 +299,7 @@ export const dict = {
         },
         {
           title: 'Status',
-          text : 'A working prototype, not a medical device; validation with physicians of the S.G. Sukhanov Federal Center for Cardiovascular Surgery is ongoing. Planned, not implemented yet: risk assessment, blood-flow modeling, stent selection.',
+          text : 'A prototype, not a medical device; tested with physicians. Development directions: risk assessment, blood-flow modeling, stent selection.',
         },
       ],
     },
@@ -313,7 +312,6 @@ export const dict = {
         lead   : 'Lead',
         dev    : 'Engineering',
         ai     : 'AI Research',
-        economy: 'Economics',
       },
     },
     contact: {
