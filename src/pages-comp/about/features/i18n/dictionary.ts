@@ -124,9 +124,10 @@ export const dict = {
     team: {
       badge   : 'Команда',
       title   : 'Кто стоит за продуктом',
-      subtitle: 'Команда инженеров, исследователей и врачей-наставников.',
+      subtitle: 'Команда инженеров, исследователей, медицинских экспертов и наставников.',
       groups  : {
         mentors: 'Наставники',
+        experts: 'Медицинские эксперты',
         lead   : 'Руководитель',
         dev    : 'Разработка',
         ai     : 'Искусственный интеллект',
@@ -165,10 +166,9 @@ export const dict = {
       errCont: 'Укажите контакт',
     },
     footer: {
-      brand   : '© {year} Cardio Assistant',
-      brandOwn: 'Бренд принадлежит ООО «Нексли»',
-      tagline : 'ИИ для кардиохирургии · Пермь, Россия',
-      legal   : {
+      brand  : '© {year} ООО «Нексли»',
+      tagline: 'ИИ для кардиохирургии · Пермь, Россия',
+      legal  : {
         label  : 'Правовая информация',
         inn    : 'ИНН',
         ogrn   : 'ОГРН',
@@ -306,9 +306,10 @@ export const dict = {
     team: {
       badge   : 'Team',
       title   : 'The people behind the product',
-      subtitle: 'A team of engineers, researchers and clinical mentors.',
+      subtitle: 'A team of engineers, researchers, medical experts and mentors.',
       groups  : {
         mentors: 'Mentors',
+        experts: 'Medical experts',
         lead   : 'Lead',
         dev    : 'Engineering',
         ai     : 'AI Research',
@@ -347,10 +348,9 @@ export const dict = {
       errCont: 'Please provide a contact',
     },
     footer: {
-      brand   : '© {year} Cardio Assistant',
-      brandOwn: 'Brand owned by Nexli LLC',
-      tagline : 'AI for cardiac surgery · Perm, Russia',
-      legal   : {
+      brand  : '© {year} Nexli LLC',
+      tagline: 'AI for cardiac surgery · Perm, Russia',
+      legal  : {
         label  : 'Legal information',
         inn    : 'TIN',
         ogrn   : 'PSRN',

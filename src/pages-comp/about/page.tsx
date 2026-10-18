@@ -99,7 +99,8 @@ const solutionIcons = [PiCubeFocus, PiChartLineUp, PiUserList, PiShieldCheck];
 
 const teamPeople = [
   { name: 'Барулина Марина', img: 'team/ma.png', dept: 'mentors' as const },
-  { name: 'Породиков Артём', img: 'team/artem.png', dept: 'mentors' as const },
+  { name: 'Породиков Артём', img: 'team/artem.png', dept: 'experts' as const },
+  { name: 'Азимов Фаридун', img: 'team/farid.jpg', dept: 'experts' as const },
   { name: 'Осипов Александр', img: 'team/alex-o.png', dept: 'lead' as const },
   { name: 'Шаров Роман', img: 'team/roma.png', dept: 'dev' as const },
   { name: 'Аухадиев Михаил', img: 'team/misha.png', dept: 'dev' as const },
@@ -321,7 +322,6 @@ function PageInner() {
             <p className='text-sm font-medium text-slate-700 dark:text-slate-300'>
               {t.footer.brand.replace('{year}', String(new Date().getFullYear()))}
             </p>
-            <p className='text-xs text-slate-500 dark:text-slate-400'>{t.footer.brandOwn}</p>
           </div>
           <p className='text-xs text-slate-400 dark:text-slate-500'>{t.footer.tagline}</p>
         </div>

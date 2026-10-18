@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { LEGAL_DATE, LEGAL_DOCS, LEGAL_ORDER, legalPath } from './documents';
+import { LEGAL_DOCS, LEGAL_ORDER, legalPath } from './documents';
 import { OPERATOR } from './operator';
 
 import type { LegalDocKey } from './documents';
@@ -24,7 +24,7 @@ export function DocLink({ doc, children }: { doc: LegalDocKey; children?: ReactN
   return <Link href={ legalPath(doc) }>{children ?? LEGAL_DOCS[doc].title}</Link>;
 }
 
-// The title block of a document: name, edition, effective date, operator.
+// The title block of a document: operator and name.
 export function DocHeader({ doc }: { doc: LegalDocKey }) {
   const d = LEGAL_DOCS[doc];
 
@@ -36,20 +36,6 @@ export function DocHeader({ doc }: { doc: LegalDocKey }) {
       <h1 className='mt-3 text-balance text-3xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-4xl'>
         {d.title}
       </h1>
-      <dl className='mt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm text-slate-600 dark:text-slate-400'>
-        <div className='flex gap-2'>
-          <dt className='text-slate-500 dark:text-slate-500'>Редакция от</dt>
-          <dd className='font-medium text-slate-900 dark:text-slate-100'>{LEGAL_DATE}</dd>
-        </div>
-        <div className='flex gap-2'>
-          <dt className='text-slate-500 dark:text-slate-500'>Версия</dt>
-          <dd className='font-medium text-slate-900 dark:text-slate-100'>{d.version}</dd>
-        </div>
-        <div className='flex gap-2'>
-          <dt className='text-slate-500 dark:text-slate-500'>Вступает в силу</dt>
-          <dd className='font-medium text-slate-900 dark:text-slate-100'>{LEGAL_DATE}</dd>
-        </div>
-      </dl>
     </header>
   );
 }

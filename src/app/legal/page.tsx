@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { LEGAL_DATE, LEGAL_DOCS, LEGAL_ORDER, legalPath } from '@/legal/documents';
+import { LEGAL_DOCS, LEGAL_ORDER, legalPath } from '@/legal/documents';
 import { OPERATOR } from '@/legal/operator';
 import { Article, MailLink, OperatorTable, Section } from '@/legal/ui';
 
@@ -23,7 +23,7 @@ export default function LegalIndexPage() {
         <p className='text-xs font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400'>{OPERATOR.shortName} · Cardio Assistant</p>
         <h1 className='mt-3 text-balance text-3xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-4xl'>Правовая информация</h1>
         <p className='mt-4 text-slate-600 dark:text-slate-400'>
-          Документы о том, как {OPERATOR.shortName} обрабатывает персональные данные на сайте. Действуют с {LEGAL_DATE}.
+          Документы о том, как {OPERATOR.shortName} обрабатывает персональные данные на сайте.
         </p>
       </header>
 
@@ -36,7 +36,6 @@ export default function LegalIndexPage() {
             >
               <span className='block text-base font-semibold text-slate-900 dark:text-white'>{LEGAL_DOCS[k].title}</span>
               <span className='mt-1 block text-sm leading-relaxed text-slate-600 dark:text-slate-400'>{LEGAL_DOCS[k].summary}</span>
-              <span className='mt-2 block text-xs text-slate-500 dark:text-slate-500'>Редакция от {LEGAL_DATE} · версия {LEGAL_DOCS[k].version}</span>
             </Link>
           </li>
         ))}
