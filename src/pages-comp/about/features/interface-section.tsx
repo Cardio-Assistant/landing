@@ -13,9 +13,9 @@ import type { KeyboardEvent, RefObject } from 'react';
 const SCREENS = [
   { src: '/screens/3d-analysis-01-3d-stenosis-highlight.webp', width: 1440, height: 900 },
   { src: '/screens/3d-analysis-02-branches-and-profile.webp', width: 1440, height: 931 },
-  { src: '/screens/3d-analysis-03-conclusion-editor.webp', width: 1440, height: 1427 },
-  { src: '/screens/patient-conclusions-01-card-tab.webp', width: 1440, height: 1351 },
-  { src: '/screens/patient-conclusions-03-summary-report-confirmed.webp', width: 1584, height: 1802 },
+  { src: '/screens/3d-analysis-03-conclusion-editor.webp', width: 1440, height: 1147 },
+  { src: '/screens/patient-conclusions-01-card-tab.webp', width: 1440, height: 1065 },
+  { src: '/screens/patient-conclusions-03-summary-report-confirmed.webp', width: 1728, height: 1644 },
 ];
 
 export function InterfaceSection({
