@@ -21,7 +21,7 @@ const geistMono = localFont({
 });
 
 const SITE_URL = 'https://ai-cardio.ru';
-const TITLE = 'Cardio Assistant — ИИ для кардиохирургии';
+const TITLE = 'Cardio Assistant – ИИ для кардиохирургии';
 const DESCRIPTION = 'ИИ-платформа для врача: 3D-модель коронарных артерий по ангиограммам, анализ сужений и проект заключения с рекомендациями и источниками. Рабочий прототип, не медицинское изделие.';
 
 export const metadata: Metadata = {

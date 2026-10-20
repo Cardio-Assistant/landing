@@ -69,7 +69,7 @@ const FeedbackForm: React.FC = () => {
       <p className='mt-2 text-sm text-slate-600 dark:text-slate-400'>{t.contact.formS}</p>
 
       <form onSubmit={ handleSubmit(onSubmit) } className='mt-6 flex flex-col gap-4'>
-        {/* honeypot — невидим для людей, заполняется ботами */}
+        {/* honeypot – невидим для людей, заполняется ботами */}
         <input
           type='text'
           tabIndex={ -1 }

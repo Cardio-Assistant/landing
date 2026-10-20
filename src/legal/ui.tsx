@@ -156,9 +156,10 @@ export function OtherDocuments({ current }: { current?: LegalDocKey }) {
 }
 
 // The wrapper of a document's text: typography, width.
+// The text is justified with hyphenation (lang ru gives the browser Russian rules); headings and tables keep the left edge.
 export function Article({ children }: { children: ReactNode }) {
   return (
-    <article className='prose prose-slate max-w-none text-[15px] text-slate-700 dark:prose-invert dark:text-slate-300 prose-p:my-3 prose-p:leading-relaxed prose-ul:my-3 prose-li:my-1 prose-a:font-medium prose-a:text-blue-700 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-blue-300'>
+    <article lang='ru' className='prose prose-slate max-w-none text-justify hyphens-auto text-[15px] text-slate-700 dark:prose-invert dark:text-slate-300 prose-headings:text-left prose-p:my-3 prose-p:leading-relaxed prose-ul:my-3 prose-li:my-1 prose-a:font-medium prose-a:text-blue-700 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-blue-300 [&_table]:text-left'>
       {children}
     </article>
   );

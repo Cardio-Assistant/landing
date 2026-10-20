@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 // carries the share card of the main page (its title, its picture); a legal page must not
 // inherit that, so it sets its own.
 export function legalMetadata(key: LegalDocKey, description: string): Metadata {
-  const title = `${LEGAL_DOCS[key].title} — Cardio Assistant`;
+  const title = `${LEGAL_DOCS[key].title} – Cardio Assistant`;
   const path = legalPath(key);
 
   return {

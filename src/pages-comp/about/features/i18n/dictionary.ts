@@ -17,7 +17,7 @@ export const dict = {
       title1    : 'Помощник хирурга,',
       title2    : 'который видит сосуды сердца',
       title3    : 'в 3D',
-      subtitle  : '3D-модель коронарных артерий по ангиограмме, анализ сужений и проект заключения — врач проверяет и подтверждает.',
+      subtitle  : '3D-модель коронарных артерий по ангиограмме, анализ сужений и проект заключения – врач проверяет и подтверждает.',
       ctaDemo   : 'Посмотреть демо',
       ctaTalk   : 'Связаться с нами',
       demoNote  : 'Демо работает на вымышленных примерах данных.',
@@ -41,7 +41,7 @@ export const dict = {
     },
     problem: {
       badge   : 'Проблема',
-      title   : 'Сердечно-сосудистые заболевания — главная причина смертности',
+      title   : 'Сердечно-сосудистые заболевания – главная причина смертности',
       subtitle: 'Ангиограмму врач разбирает по плоским 2D-снимкам, а заключение оформляет вручную.',
       stat    : { value: '~20 млн', label: 'смертей в мире ежегодно', note: 'ВОЗ, 2022' },
     },
@@ -52,7 +52,7 @@ export const dict = {
       cards   : [
         {
           title      : 'От ангиограммы к 3D-модели',
-          description: 'Загрузите DICOM — платформа предложит кадры и поможет построить 3D-модель коронарных артерий.',
+          description: 'Загрузите DICOM – платформа предложит кадры и поможет построить 3D-модель коронарных артерий.',
         },
         {
           title      : 'Анализ и заключение',
@@ -109,7 +109,7 @@ export const dict = {
       points: [
         {
           title: 'Рынок',
-          text : 'ИИ в кардиологии растёт примерно на 23% в год — до $4,3 млрд к 2030 году (Global Industry Analysts). Первый рынок — Россия.',
+          text : 'ИИ в кардиологии растёт примерно на 23% в год – до $4,3 млрд к 2030 году (Global Industry Analysts). Первый рынок – Россия.',
         },
         {
           title: 'Модель',
@@ -137,15 +137,15 @@ export const dict = {
       badge    : 'Контакты',
       title1   : 'Спасём миллионы сердец',
       title2   : 'вместе',
-      subtitle : 'Расскажите о вашей задаче — мы свяжемся в течение рабочего дня.',
+      subtitle : 'Расскажите о вашей задаче – мы свяжемся в течение рабочего дня.',
       directH  : 'Прямой контакт',
-      directS  : 'Напишите или позвоните — обсудим пилот, демо или партнёрство.',
+      directS  : 'Напишите или позвоните – обсудим пилот, демо или партнёрство.',
       phone    : 'Телефон',
       email    : 'Email',
       city     : 'Где мы',
       cityVal  : 'Пермь, Россия',
       formH    : 'Оставьте заявку',
-      formS    : 'Заполните форму — мы вернёмся с ответом в рабочее время.',
+      formS    : 'Заполните форму – мы вернёмся с ответом в рабочее время.',
       name     : 'Имя',
       namePh   : 'Как к вам обращаться',
       contact  : 'Email или телефон',
@@ -158,7 +158,7 @@ export const dict = {
       consent  : {
         pre       : 'Я даю',
         link      : 'согласие на обработку персональных данных',
-        policyPre : 'Как мы обрабатываем данные — в',
+        policyPre : 'Как мы обрабатываем данные – в',
         policyLink: 'Политике обработки персональных данных',
         error     : 'Для отправки нужно ваше согласие',
       },
@@ -199,7 +199,7 @@ export const dict = {
       title1    : 'A surgeon’s copilot',
       title2    : 'that sees the heart’s vessels',
       title3    : 'in 3D',
-      subtitle  : 'A 3D model of the coronary arteries from an angiogram, narrowing analysis and a draft conclusion — the physician reviews and confirms.',
+      subtitle  : 'A 3D model of the coronary arteries from an angiogram, narrowing analysis and a draft conclusion – the physician reviews and confirms.',
       ctaDemo   : 'View demo',
       ctaTalk   : 'Contact us',
       demoNote  : 'The demo runs on fictional example data.',
@@ -234,7 +234,7 @@ export const dict = {
       cards   : [
         {
           title      : 'From angiogram to 3D model',
-          description: 'Upload a DICOM study — the platform suggests the frames and helps build a 3D model of the coronary arteries.',
+          description: 'Upload a DICOM study – the platform suggests the frames and helps build a 3D model of the coronary arteries.',
         },
         {
           title      : 'Analysis and conclusion',
@@ -319,15 +319,15 @@ export const dict = {
       badge    : 'Contact',
       title1   : 'Let’s save millions of hearts',
       title2   : 'together',
-      subtitle : 'Tell us about your task — we’ll get back to you within a business day.',
+      subtitle : 'Tell us about your task – we’ll get back to you within a business day.',
       directH  : 'Direct contact',
-      directS  : 'Write or call — let’s talk about a pilot, demo or partnership.',
+      directS  : 'Write or call – let’s talk about a pilot, demo or partnership.',
       phone    : 'Phone',
       email    : 'Email',
       city     : 'Where we are',
       cityVal  : 'Perm, Russia',
       formH    : 'Send a request',
-      formS    : 'Fill the form — we’ll reply during business hours.',
+      formS    : 'Fill the form – we’ll reply during business hours.',
       name     : 'Name',
       namePh   : 'How should we address you',
       contact  : 'Email or phone',

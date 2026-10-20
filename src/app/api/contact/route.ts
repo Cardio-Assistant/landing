@@ -67,7 +67,7 @@ function buildEmailText(lead: Lead) {
     '',
     `Имя: ${lead.name}`,
     `Контакт: ${lead.contact}`,
-    `Сообщение: ${lead.message || '—'}`,
+    `Сообщение: ${lead.message || '–'}`,
     '',
     `IP: ${lead.ip}`,
     `Время: ${lead.createdAt}`,
@@ -82,7 +82,7 @@ function buildEmailHtml(lead: Lead) {
       <table cellpadding="6" style="border-collapse:collapse;font-size:14px">
         <tr><td style="color:#64748b">Имя</td><td><b>${escapeHtml(lead.name)}</b></td></tr>
         <tr><td style="color:#64748b">Контакт</td><td><b>${escapeHtml(lead.contact)}</b></td></tr>
-        <tr><td style="color:#64748b;vertical-align:top">Сообщение</td><td>${escapeHtml(lead.message || '—').replace(/\n/g, '<br/>')}</td></tr>
+        <tr><td style="color:#64748b;vertical-align:top">Сообщение</td><td>${escapeHtml(lead.message || '–').replace(/\n/g, '<br/>')}</td></tr>
         <tr><td style="color:#64748b">IP</td><td>${escapeHtml(lead.ip)}</td></tr>
         <tr><td style="color:#64748b">Время</td><td>${lead.createdAt}</td></tr>
         <tr><td style="color:#64748b">Согласие на обработку ПД</td><td>дано, редакция ${escapeHtml(lead.consentVersion)}</td></tr>

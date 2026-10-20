@@ -6,7 +6,7 @@ import { Article, MailLink, OperatorTable, Section } from '@/legal/ui';
 
 import type { Metadata } from 'next';
 
-const TITLE = 'Правовая информация — Cardio Assistant';
+const TITLE = 'Правовая информация – Cardio Assistant';
 const DESCRIPTION = 'Политика обработки персональных данных, согласие на обработку для формы обратной связи и сведения об операторе ООО «Нексли». Legal information in English: short note.';
 
 export const metadata: Metadata = {
